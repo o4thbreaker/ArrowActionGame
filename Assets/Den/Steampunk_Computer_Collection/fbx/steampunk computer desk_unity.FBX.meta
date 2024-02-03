@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 4925e983ff872fc40820ac2ad4ef6b63
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: sp_desk_camera holder
+    100002: sp_desk_camera tray
+    100004: sp_desk_fittings01
+    100006: sp_desk_fittings02
+    100008: sp_desk_L drawers holder
+    100010: sp_desk_L_drawer01
+    100012: sp_desk_L_drawer02
+    100014: sp_desk_middle holder
+    100016: sp_desk_R drawers holder
+    100018: sp_desk_R_drawer01
+    100020: sp_desk_R_drawer02
+    100022: sp_desk_side holders01
+    100024: sp_desk_side holders02
+    100026: sp_desk_upper plank
+    100028: sp_desk_V holder
+    100030: sp_desk_wheel01
+    100032: sp_desk_wheel02
+    100034: sp_desk_wheel03
+    100036: //RootNode
+    400000: sp_desk_camera holder
+    400002: sp_desk_camera tray
+    400004: sp_desk_fittings01
+    400006: sp_desk_fittings02
+    400008: sp_desk_L drawers holder
+    400010: sp_desk_L_drawer01
+    400012: sp_desk_L_drawer02
+    400014: sp_desk_middle holder
+    400016: sp_desk_R drawers holder
+    400018: sp_desk_R_drawer01
+    400020: sp_desk_R_drawer02
+    400022: sp_desk_side holders01
+    400024: sp_desk_side holders02
+    400026: sp_desk_upper plank
+    400028: sp_desk_V holder
+    400030: sp_desk_wheel01
+    400032: sp_desk_wheel02
+    400034: sp_desk_wheel03
+    400036: //RootNode
+    2100000: sp_desk
+    2300000: sp_desk_camera holder
+    2300002: sp_desk_camera tray
+    2300004: sp_desk_fittings01
+    2300006: sp_desk_fittings02
+    2300008: sp_desk_L drawers holder
+    2300010: sp_desk_L_drawer01
+    2300012: sp_desk_L_drawer02
+    2300014: sp_desk_middle holder
+    2300016: sp_desk_R drawers holder
+    2300018: sp_desk_R_drawer01
+    2300020: sp_desk_R_drawer02
+    2300022: sp_desk_side holders01
+    2300024: sp_desk_side holders02
+    2300026: sp_desk_upper plank
+    2300028: sp_desk_V holder
+    2300030: sp_desk_wheel01
+    2300032: sp_desk_wheel02
+    2300034: sp_desk_wheel03
+    3300000: sp_desk_camera holder
+    3300002: sp_desk_camera tray
+    3300004: sp_desk_fittings01
+    3300006: sp_desk_fittings02
+    3300008: sp_desk_L drawers holder
+    3300010: sp_desk_L_drawer01
+    3300012: sp_desk_L_drawer02
+    3300014: sp_desk_middle holder
+    3300016: sp_desk_R drawers holder
+    3300018: sp_desk_R_drawer01
+    3300020: sp_desk_R_drawer02
+    3300022: sp_desk_side holders01
+    3300024: sp_desk_side holders02
+    3300026: sp_desk_upper plank
+    3300028: sp_desk_V holder
+    3300030: sp_desk_wheel01
+    3300032: sp_desk_wheel02
+    3300034: sp_desk_wheel03
+    4300000: sp_desk_upper plank
+    4300002: sp_desk_R drawers holder
+    4300004: sp_desk_L_drawer02
+    4300006: sp_desk_fittings02
+    4300008: sp_desk_fittings01
+    4300010: sp_desk_side holders01
+    4300012: sp_desk_side holders02
+    4300014: sp_desk_V holder
+    4300016: sp_desk_L drawers holder
+    4300018: sp_desk_L_drawer01
+    4300020: sp_desk_R_drawer02
+    4300022: sp_desk_R_drawer01
+    4300024: sp_desk_wheel03
+    4300026: sp_desk_wheel02
+    4300028: sp_desk_wheel01
+    4300030: sp_desk_camera holder
+    4300032: sp_desk_middle holder
+    4300034: sp_desk_camera tray
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sp_desk
+    second: {fileID: 2100000, guid: e2ee79160f179f443893cced59fbfa22, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

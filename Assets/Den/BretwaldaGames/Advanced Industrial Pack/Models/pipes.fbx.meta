@@ -1,0 +1,88 @@
+fileFormatVersion: 2
+guid: 30d6c87487cc71442978bde2e69e11d8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: pipeBig
+    100002: pipeDoubleLong
+    100004: pipeDoubleShort
+    100006: //RootNode
+    100008: pipeSmall
+    100010: pipeSystem
+    400000: pipeBig
+    400002: pipeDoubleLong
+    400004: pipeDoubleShort
+    400006: //RootNode
+    400008: pipeSmall
+    400010: pipeSystem
+    2300000: pipeBig
+    2300002: pipeDoubleLong
+    2300004: pipeDoubleShort
+    2300006: pipeSmall
+    2300008: pipeSystem
+    3300000: pipeBig
+    3300002: pipeDoubleLong
+    3300004: pipeDoubleShort
+    3300006: pipeSmall
+    3300008: pipeSystem
+    4300000: pipeSmall
+    4300002: pipeDoubleLong
+    4300004: pipeBig
+    4300006: pipeDoubleShort
+    4300008: pipeSystem
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 

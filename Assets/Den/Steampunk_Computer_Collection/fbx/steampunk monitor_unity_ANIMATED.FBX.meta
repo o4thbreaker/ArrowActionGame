@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: eab7d4a8d95066d4297177dbd322198b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: sp_monitor_body
+    100002: sp_monitor_down button
+    100004: sp_monitor_down moving piston
+    100006: sp_monitor_fan
+    100008: sp_monitor_fixer01
+    100010: sp_monitor_fixer02
+    100012: sp_monitor_frame
+    100014: sp_monitor_Lamp01
+    100016: sp_monitor_Lamp01_light
+    100018: sp_monitor_Lamp02
+    100020: sp_monitor_Lamp02_light
+    100022: sp_monitor_Lamp03
+    100024: sp_monitor_Lamp03_light
+    100026: sp_monitor_Lamp04
+    100028: sp_monitor_Lamp04_light
+    100030: sp_monitor_Lamp05
+    100032: sp_monitor_Lamp05_light
+    100034: sp_monitor_Lamp06
+    100036: sp_monitor_Lamp06_Light
+    100038: sp_monitor_Lamp07
+    100040: sp_monitor_Lamp07_light
+    100042: sp_monitor_Lamp08
+    100044: sp_monitor_Lamp08_light
+    100046: sp_monitor_Lamp09_glass
+    100048: sp_monitor_Lamp09_light
+    100050: sp_monitor_Lamp10
+    100052: sp_monitor_Lamp10_lights
+    100054: sp_monitor_main cord
+    100056: sp_monitor_menu button
+    100058: sp_monitor_moving leg
+    100060: sp_monitor_on off button
+    100062: sp_monitor_piston controller wheel
+    100064: sp_monitor_piston controller wheel001
+    100066: sp_monitor_piston on off button
+    100068: sp_monitor_protector glass
+    100070: sp_monitor_screen
+    100072: sp_monitor_slider plane
+    100074: sp_monitor_static leg
+    100076: sp_monitor_up button
+    100078: sp_monitor_up moving piston
+    100080: sp_monitor_up moving rod
+    100082: sp_monitor_up moving rod001
+    100084: sp_monitor_usb door button
+    100086: sp_monitor_usb door moving rod
+    100088: sp_monitor_usb down moving door
+    100090: sp_monitor_usb up moving door
+    100092: sp_monitor_wheel01
+    100094: sp_monitor_wheel02
+    100096: sp_monitor_wheel03
+    100098: sp_monitor_wires
+    100100: //RootNode
+    400000: sp_monitor_body
+    400002: sp_monitor_down button
+    400004: sp_monitor_down moving piston
+    400006: sp_monitor_fan
+    400008: sp_monitor_fixer01
+    400010: sp_monitor_fixer02
+    400012: sp_monitor_frame
+    400014: sp_monitor_Lamp01
+    400016: sp_monitor_Lamp01_light
+    400018: sp_monitor_Lamp02
+    400020: sp_monitor_Lamp02_light
+    400022: sp_monitor_Lamp03
+    400024: sp_monitor_Lamp03_light
+    400026: sp_monitor_Lamp04
+    400028: sp_monitor_Lamp04_light
+    400030: sp_monitor_Lamp05
+    400032: sp_monitor_Lamp05_light
+    400034: sp_monitor_Lamp06
+    400036: sp_monitor_Lamp06_Light
+    400038: sp_monitor_Lamp07
+    400040: sp_monitor_Lamp07_light
+    400042: sp_monitor_Lamp08
+    400044: sp_monitor_Lamp08_light
+    400046: sp_monitor_Lamp09_glass
+    400048: sp_monitor_Lamp09_light
+    400050: sp_monitor_Lamp10
+    400052: sp_monitor_Lamp10_lights
+    400054: sp_monitor_main cord
+    400056: sp_monitor_menu button
+    400058: sp_monitor_moving leg
+    400060: sp_monitor_on off button
+    400062: sp_monitor_piston controller wheel
+    400064: sp_monitor_piston controller wheel001
+    400066: sp_monitor_piston on off button
+    400068: sp_monitor_protector glass
+    400070: sp_monitor_screen
+    400072: sp_monitor_slider plane
+    400074: sp_monitor_static leg
+    400076: sp_monitor_up button
+    400078: sp_monitor_up moving piston
+    400080: sp_monitor_up moving rod
+    400082: sp_monitor_up moving rod001
+    400084: sp_monitor_usb door button
+    400086: sp_monitor_usb door moving rod
+    400088: sp_monitor_usb down moving door
+    400090: sp_monitor_usb up moving door
+    400092: sp_monitor_wheel01
+    400094: sp_monitor_wheel02
+    400096: sp_monitor_wheel03
+    400098: sp_monitor_wires
+    400100: //RootNode
+    2100000: sp_monitor
+    2100002: SP_glass
+    2300000: sp_monitor_body
+    2300002: sp_monitor_down button
+    2300004: sp_monitor_down moving piston
+    2300006: sp_monitor_fan
+    2300008: sp_monitor_fixer01
+    2300010: sp_monitor_fixer02
+    2300012: sp_monitor_frame
+    2300014: sp_monitor_Lamp01
+    2300016: sp_monitor_Lamp01_light
+    2300018: sp_monitor_Lamp02
+    2300020: sp_monitor_Lamp02_light
+    2300022: sp_monitor_Lamp03
+    2300024: sp_monitor_Lamp03_light
+    2300026: sp_monitor_Lamp04
+    2300028: sp_monitor_Lamp04_light
+    2300030: sp_monitor_Lamp05
+    2300032: sp_monitor_Lamp05_light
+    2300034: sp_monitor_Lamp06
+    2300036: sp_monitor_Lamp06_Light
+    2300038: sp_monitor_Lamp07
+    2300040: sp_monitor_Lamp07_light
+    2300042: sp_monitor_Lamp08
+    2300044: sp_monitor_Lamp08_light
+    2300046: sp_monitor_Lamp09_glass
+    2300048: sp_monitor_Lamp09_light
+    2300050: sp_monitor_Lamp10
+    2300052: sp_monitor_Lamp10_lights
+    2300054: sp_monitor_main cord
+    2300056: sp_monitor_menu button
+    2300058: sp_monitor_moving leg
+    2300060: sp_monitor_on off button
+    2300062: sp_monitor_piston controller wheel
+    2300064: sp_monitor_piston controller wheel001
+    2300066: sp_monitor_piston on off button
+    2300068: sp_monitor_protector glass
+    2300070: sp_monitor_screen
+    2300072: sp_monitor_slider plane
+    2300074: sp_monitor_static leg
+    2300076: sp_monitor_up button
+    2300078: sp_monitor_up moving piston
+    2300080: sp_monitor_up moving rod
+    2300082: sp_monitor_up moving rod001
+    2300084: sp_monitor_usb door button
+    2300086: sp_monitor_usb door moving rod
+    2300088: sp_monitor_usb down moving door
+    2300090: sp_monitor_usb up moving door
+    2300092: sp_monitor_wheel01
+    2300094: sp_monitor_wheel02
+    2300096: sp_monitor_wheel03
+    2300098: sp_monitor_wires
+    3300000: sp_monitor_body
+    3300002: sp_monitor_down button
+    3300004: sp_monitor_down moving piston
+    3300006: sp_monitor_fan
+    3300008: sp_monitor_fixer01
+    3300010: sp_monitor_fixer02
+    3300012: sp_monitor_frame
+    3300014: sp_monitor_Lamp01
+    3300016: sp_monitor_Lamp01_light
+    3300018: sp_monitor_Lamp02
+    3300020: sp_monitor_Lamp02_light
+    3300022: sp_monitor_Lamp03
+    3300024: sp_monitor_Lamp03_light
+    3300026: sp_monitor_Lamp04
+    3300028: sp_monitor_Lamp04_light
+    3300030: sp_monitor_Lamp05
+    3300032: sp_monitor_Lamp05_light
+    3300034: sp_monitor_Lamp06
+    3300036: sp_monitor_Lamp06_Light
+    3300038: sp_monitor_Lamp07
+    3300040: sp_monitor_Lamp07_light
+    3300042: sp_monitor_Lamp08
+    3300044: sp_monitor_Lamp08_light
+    3300046: sp_monitor_Lamp09_glass
+    3300048: sp_monitor_Lamp09_light
+    3300050: sp_monitor_Lamp10
+    3300052: sp_monitor_Lamp10_lights
+    3300054: sp_monitor_main cord
+    3300056: sp_monitor_menu button
+    3300058: sp_monitor_moving leg
+    3300060: sp_monitor_on off button
+    3300062: sp_monitor_piston controller wheel
+    3300064: sp_monitor_piston controller wheel001
+    3300066: sp_monitor_piston on off button
+    3300068: sp_monitor_protector glass
+    3300070: sp_monitor_screen
+    3300072: sp_monitor_slider plane
+    3300074: sp_monitor_static leg
+    3300076: sp_monitor_up button
+    3300078: sp_monitor_up moving piston
+    3300080: sp_monitor_up moving rod
+    3300082: sp_monitor_up moving rod001
+    3300084: sp_monitor_usb door button
+    3300086: sp_monitor_usb door moving rod
+    3300088: sp_monitor_usb down moving door
+    3300090: sp_monitor_usb up moving door
+    3300092: sp_monitor_wheel01
+    3300094: sp_monitor_wheel02
+    3300096: sp_monitor_wheel03
+    3300098: sp_monitor_wires
+    4300000: sp_monitor_body
+    4300002: sp_monitor_moving leg
+    4300004: sp_monitor_static leg
+    4300006: sp_monitor_screen
+    4300008: sp_monitor_protector glass
+    4300010: sp_monitor_up moving piston
+    4300012: sp_monitor_down moving piston
+    4300014: sp_monitor_usb down moving door
+    4300016: sp_monitor_usb door moving rod
+    4300018: sp_monitor_usb up moving door
+    4300020: sp_monitor_fixer01
+    4300022: sp_monitor_fixer02
+    4300024: sp_monitor_usb door button
+    4300026: sp_monitor_piston on off button
+    4300028: sp_monitor_piston controller wheel
+    4300030: sp_monitor_on off button
+    4300032: sp_monitor_fan
+    4300034: sp_monitor_wheel03
+    4300036: sp_monitor_wheel02
+    4300038: sp_monitor_wheel01
+    4300040: sp_monitor_menu button
+    4300042: sp_monitor_down button
+    4300044: sp_monitor_up button
+    4300046: sp_monitor_wires
+    4300048: sp_monitor_Lamp08
+    4300050: sp_monitor_Lamp07
+    4300052: sp_monitor_Lamp05
+    4300054: sp_monitor_Lamp04
+    4300056: sp_monitor_Lamp03
+    4300058: sp_monitor_Lamp10
+    4300060: sp_monitor_Lamp02
+    4300062: sp_monitor_Lamp01
+    4300064: sp_monitor_main cord
+    4300066: sp_monitor_Lamp06_Light
+    4300068: sp_monitor_Lamp07_light
+    4300070: sp_monitor_Lamp08_light
+    4300072: sp_monitor_slider plane
+    4300074: sp_monitor_up moving rod
+    4300076: sp_monitor_up moving rod001
+    4300078: sp_monitor_Lamp06
+    4300080: sp_monitor_Lamp09_glass
+    4300082: sp_monitor_Lamp09_light
+    4300084: sp_monitor_Lamp05_light
+    4300086: sp_monitor_Lamp04_light
+    4300088: sp_monitor_Lamp03_light
+    4300090: sp_monitor_Lamp01_light
+    4300092: sp_monitor_Lamp02_light
+    4300094: sp_monitor_Lamp10_lights
+    4300096: sp_monitor_piston controller wheel001
+    4300098: sp_monitor_frame
+    7400000: SP_Monitor_Rods
+    9500000: //RootNode
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SP_glass
+    second: {fileID: 2100000, guid: 1ddbc79989538d242a62195d0034fa4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sp_monitor
+    second: {fileID: 2100000, guid: aeb0649e2c428f142878791a40d55139, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SP_Monitor_Rods
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

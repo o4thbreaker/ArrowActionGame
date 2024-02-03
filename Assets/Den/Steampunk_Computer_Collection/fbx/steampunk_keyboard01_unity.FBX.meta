@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: 31c7d9a3bf9dc424b9d7b88179a5d364
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: sp_keyboard01_0
+    100002: sp_keyboard01_1
+    100004: sp_keyboard01_2
+    100006: sp_keyboard01_3
+    100008: sp_keyboard01_4
+    100010: sp_keyboard01_5
+    100012: sp_keyboard01_6
+    100014: sp_keyboard01_7
+    100016: sp_keyboard01_8
+    100018: sp_keyboard01_9
+    100020: sp_keyboard01_A
+    100022: sp_keyboard01_Alt
+    100024: sp_keyboard01_Alt 1
+    100026: sp_keyboard01_B
+    100028: sp_keyboard01_Back slash
+    100030: sp_keyboard01_Backspace
+    100032: sp_keyboard01_Bracket close
+    100034: sp_keyboard01_Bracket open
+    100036: sp_keyboard01_C
+    100038: sp_keyboard01_Caps Lock
+    100040: sp_keyboard01_Cas Lock Light
+    100042: sp_keyboard01_Ctrl
+    100044: sp_keyboard01_ctrl
+    100046: sp_keyboard01_D
+    100048: sp_keyboard01_Dash
+    100050: sp_keyboard01_Delete
+    100052: sp_keyboard01_Down
+    100054: sp_keyboard01_E
+    100056: sp_keyboard01_End
+    100058: sp_keyboard01_Enter
+    100060: sp_keyboard01_Esc
+    100062: sp_keyboard01_F
+    100064: sp_keyboard01_F0
+    100066: sp_keyboard01_F1
+    100068: sp_keyboard01_F11
+    100070: sp_keyboard01_F12
+    100072: sp_keyboard01_F2
+    100074: sp_keyboard01_F3
+    100076: sp_keyboard01_F4
+    100078: sp_keyboard01_F5
+    100080: sp_keyboard01_F6
+    100082: sp_keyboard01_F7
+    100084: sp_keyboard01_F8
+    100086: sp_keyboard01_F9
+    100088: sp_keyboard01_G
+    100090: sp_keyboard01_Greater
+    100092: sp_keyboard01_H
+    100094: sp_keyboard01_Home
+    100096: sp_keyboard01_I
+    100098: sp_keyboard01_Insert
+    100100: sp_keyboard01_J
+    100102: sp_keyboard01_K
+    100104: sp_keyboard01_L
+    100106: sp_keyboard01_Left
+    100108: sp_keyboard01_Left Speaker control
+    100110: sp_keyboard01_Left Speaker Light
+    100112: sp_keyboard01_Left Speaker Light glass
+    100114: sp_keyboard01_Left Speaker Light Tube
+    100116: sp_keyboard01_Less
+    100118: sp_keyboard01_M
+    100120: sp_keyboard01_main body
+    100122: sp_keyboard01_N
+    100124: sp_keyboard01_N asterix
+    100126: sp_keyboard01_N dot
+    100128: sp_keyboard01_N enter
+    100130: sp_keyboard01_N plus
+    100132: sp_keyboard01_N slash
+    100134: sp_keyboard01_N underscore
+    100136: sp_keyboard01_N0
+    100138: sp_keyboard01_N1
+    100140: sp_keyboard01_N2
+    100142: sp_keyboard01_N3
+    100144: sp_keyboard01_N4
+    100146: sp_keyboard01_N5
+    100148: sp_keyboard01_N6
+    100150: sp_keyboard01_N7
+    100152: sp_keyboard01_N8
+    100154: sp_keyboard01_N9
+    100156: sp_keyboard01_NumLock
+    100158: sp_keyboard01_NumLock Light
+    100160: sp_keyboard01_O
+    100162: sp_keyboard01_P
+    100164: sp_keyboard01_Page Down
+    100166: sp_keyboard01_Page Up
+    100168: sp_keyboard01_PauseBreak
+    100170: sp_keyboard01_plus
+    100172: sp_keyboard01_PrtSC
+    100174: sp_keyboard01_Q
+    100176: sp_keyboard01_Quetation mark
+    100178: sp_keyboard01_R
+    100180: sp_keyboard01_Right
+    100182: sp_keyboard01_Right Speaker control
+    100184: sp_keyboard01_right Speaker light
+    100186: sp_keyboard01_right Speaker light glass
+    100188: sp_keyboard01_right Speaker light tube
+    100190: sp_keyboard01_Rt click
+    100192: sp_keyboard01_S
+    100194: sp_keyboard01_Scroll Lock Light
+    100196: sp_keyboard01_ScrollLock
+    100198: sp_keyboard01_Semi colone
+    100200: sp_keyboard01_Shift
+    100202: sp_keyboard01_Shift 1
+    100204: sp_keyboard01_Slash
+    100206: sp_keyboard01_Space
+    100208: sp_keyboard01_sticking object002
+    100210: sp_keyboard01_sticking object02
+    100212: sp_keyboard01_sticking object03
+    100214: sp_keyboard01_T
+    100216: sp_keyboard01_Tab
+    100218: sp_keyboard01_U
+    100220: //RootNode
+    100222: sp_keyboard01_Up
+    100224: sp_keyboard01_V
+    100226: sp_keyboard01_W
+    100228: sp_keyboard01_WiFi Light
+    100230: sp_keyboard01_WiFi Light Glass
+    100232: sp_keyboard01_WiFi Light tube
+    100234: sp_keyboard01_Win
+    100236: sp_keyboard01_Win 1
+    100238: sp_keyboard01_X
+    100240: sp_keyboard01_Y
+    100242: sp_keyboard01_Z
+    100244: sp_keyboard01_~
+    400000: sp_keyboard01_0
+    400002: sp_keyboard01_1
+    400004: sp_keyboard01_2
+    400006: sp_keyboard01_3
+    400008: sp_keyboard01_4
+    400010: sp_keyboard01_5
+    400012: sp_keyboard01_6
+    400014: sp_keyboard01_7
+    400016: sp_keyboard01_8
+    400018: sp_keyboard01_9
+    400020: sp_keyboard01_A
+    400022: sp_keyboard01_Alt
+    400024: sp_keyboard01_Alt 1
+    400026: sp_keyboard01_B
+    400028: sp_keyboard01_Back slash
+    400030: sp_keyboard01_Backspace
+    400032: sp_keyboard01_Bracket close
+    400034: sp_keyboard01_Bracket open
+    400036: sp_keyboard01_C
+    400038: sp_keyboard01_Caps Lock
+    400040: sp_keyboard01_Cas Lock Light
+    400042: sp_keyboard01_Ctrl
+    400044: sp_keyboard01_ctrl
+    400046: sp_keyboard01_D
+    400048: sp_keyboard01_Dash
+    400050: sp_keyboard01_Delete
+    400052: sp_keyboard01_Down
+    400054: sp_keyboard01_E
+    400056: sp_keyboard01_End
+    400058: sp_keyboard01_Enter
+    400060: sp_keyboard01_Esc
+    400062: sp_keyboard01_F
+    400064: sp_keyboard01_F0
+    400066: sp_keyboard01_F1
+    400068: sp_keyboard01_F11
+    400070: sp_keyboard01_F12
+    400072: sp_keyboard01_F2
+    400074: sp_keyboard01_F3
+    400076: sp_keyboard01_F4
+    400078: sp_keyboard01_F5
+    400080: sp_keyboard01_F6
+    400082: sp_keyboard01_F7
+    400084: sp_keyboard01_F8
+    400086: sp_keyboard01_F9
+    400088: sp_keyboard01_G
+    400090: sp_keyboard01_Greater
+    400092: sp_keyboard01_H
+    400094: sp_keyboard01_Home
+    400096: sp_keyboard01_I
+    400098: sp_keyboard01_Insert
+    400100: sp_keyboard01_J
+    400102: sp_keyboard01_K
+    400104: sp_keyboard01_L
+    400106: sp_keyboard01_Left
+    400108: sp_keyboard01_Left Speaker control
+    400110: sp_keyboard01_Left Speaker Light
+    400112: sp_keyboard01_Left Speaker Light glass
+    400114: sp_keyboard01_Left Speaker Light Tube
+    400116: sp_keyboard01_Less
+    400118: sp_keyboard01_M
+    400120: sp_keyboard01_main body
+    400122: sp_keyboard01_N
+    400124: sp_keyboard01_N asterix
+    400126: sp_keyboard01_N dot
+    400128: sp_keyboard01_N enter
+    400130: sp_keyboard01_N plus
+    400132: sp_keyboard01_N slash
+    400134: sp_keyboard01_N underscore
+    400136: sp_keyboard01_N0
+    400138: sp_keyboard01_N1
+    400140: sp_keyboard01_N2
+    400142: sp_keyboard01_N3
+    400144: sp_keyboard01_N4
+    400146: sp_keyboard01_N5
+    400148: sp_keyboard01_N6
+    400150: sp_keyboard01_N7
+    400152: sp_keyboard01_N8
+    400154: sp_keyboard01_N9
+    400156: sp_keyboard01_NumLock
+    400158: sp_keyboard01_NumLock Light
+    400160: sp_keyboard01_O
+    400162: sp_keyboard01_P
+    400164: sp_keyboard01_Page Down
+    400166: sp_keyboard01_Page Up
+    400168: sp_keyboard01_PauseBreak
+    400170: sp_keyboard01_plus
+    400172: sp_keyboard01_PrtSC
+    400174: sp_keyboard01_Q
+    400176: sp_keyboard01_Quetation mark
+    400178: sp_keyboard01_R
+    400180: sp_keyboard01_Right
+    400182: sp_keyboard01_Right Speaker control
+    400184: sp_keyboard01_right Speaker light
+    400186: sp_keyboard01_right Speaker light glass
+    400188: sp_keyboard01_right Speaker light tube
+    400190: sp_keyboard01_Rt click
+    400192: sp_keyboard01_S
+    400194: sp_keyboard01_Scroll Lock Light
+    400196: sp_keyboard01_ScrollLock
+    400198: sp_keyboard01_Semi colone
+    400200: sp_keyboard01_Shift
+    400202: sp_keyboard01_Shift 1
+    400204: sp_keyboard01_Slash
+    400206: sp_keyboard01_Space
+    400208: sp_keyboard01_sticking object002
+    400210: sp_keyboard01_sticking object02
+    400212: sp_keyboard01_sticking object03
+    400214: sp_keyboard01_T
+    400216: sp_keyboard01_Tab
+    400218: sp_keyboard01_U
+    400220: //RootNode
+    400222: sp_keyboard01_Up
+    400224: sp_keyboard01_V
+    400226: sp_keyboard01_W
+    400228: sp_keyboard01_WiFi Light
+    400230: sp_keyboard01_WiFi Light Glass
+    400232: sp_keyboard01_WiFi Light tube
+    400234: sp_keyboard01_Win
+    400236: sp_keyboard01_Win 1
+    400238: sp_keyboard01_X
+    400240: sp_keyboard01_Y
+    400242: sp_keyboard01_Z
+    400244: sp_keyboard01_~
+    2100000: SP_keyboard
+    2100002: glass
+    2300000: sp_keyboard01_0
+    2300002: sp_keyboard01_1
+    2300004: sp_keyboard01_2
+    2300006: sp_keyboard01_3
+    2300008: sp_keyboard01_4
+    2300010: sp_keyboard01_5
+    2300012: sp_keyboard01_6
+    2300014: sp_keyboard01_7
+    2300016: sp_keyboard01_8
+    2300018: sp_keyboard01_9
+    2300020: sp_keyboard01_A
+    2300022: sp_keyboard01_Alt
+    2300024: sp_keyboard01_Alt 1
+    2300026: sp_keyboard01_B
+    2300028: sp_keyboard01_Back slash
+    2300030: sp_keyboard01_Backspace
+    2300032: sp_keyboard01_Bracket close
+    2300034: sp_keyboard01_Bracket open
+    2300036: sp_keyboard01_C
+    2300038: sp_keyboard01_Caps Lock
+    2300040: sp_keyboard01_Cas Lock Light
+    2300042: sp_keyboard01_Ctrl
+    2300044: sp_keyboard01_ctrl
+    2300046: sp_keyboard01_D
+    2300048: sp_keyboard01_Dash
+    2300050: sp_keyboard01_Delete
+    2300052: sp_keyboard01_Down
+    2300054: sp_keyboard01_E
+    2300056: sp_keyboard01_End
+    2300058: sp_keyboard01_Enter
+    2300060: sp_keyboard01_Esc
+    2300062: sp_keyboard01_F
+    2300064: sp_keyboard01_F0
+    2300066: sp_keyboard01_F1
+    2300068: sp_keyboard01_F11
+    2300070: sp_keyboard01_F12
+    2300072: sp_keyboard01_F2
+    2300074: sp_keyboard01_F3
+    2300076: sp_keyboard01_F4
+    2300078: sp_keyboard01_F5
+    2300080: sp_keyboard01_F6
+    2300082: sp_keyboard01_F7
+    2300084: sp_keyboard01_F8
+    2300086: sp_keyboard01_F9
+    2300088: sp_keyboard01_G
+    2300090: sp_keyboard01_Greater
+    2300092: sp_keyboard01_H
+    2300094: sp_keyboard01_Home
+    2300096: sp_keyboard01_I
+    2300098: sp_keyboard01_Insert
+    2300100: sp_keyboard01_J
+    2300102: sp_keyboard01_K
+    2300104: sp_keyboard01_L
+    2300106: sp_keyboard01_Left
+    2300108: sp_keyboard01_Left Speaker control
+    2300110: sp_keyboard01_Left Speaker Light
+    2300112: sp_keyboard01_Left Speaker Light glass
+    2300114: sp_keyboard01_Left Speaker Light Tube
+    2300116: sp_keyboard01_Less
+    2300118: sp_keyboard01_M
+    2300120: sp_keyboard01_main body
+    2300122: sp_keyboard01_N
+    2300124: sp_keyboard01_N asterix
+    2300126: sp_keyboard01_N dot
+    2300128: sp_keyboard01_N enter
+    2300130: sp_keyboard01_N plus
+    2300132: sp_keyboard01_N slash
+    2300134: sp_keyboard01_N underscore
+    2300136: sp_keyboard01_N0
+    2300138: sp_keyboard01_N1
+    2300140: sp_keyboard01_N2
+    2300142: sp_keyboard01_N3
+    2300144: sp_keyboard01_N4
+    2300146: sp_keyboard01_N5
+    2300148: sp_keyboard01_N6
+    2300150: sp_keyboard01_N7
+    2300152: sp_keyboard01_N8
+    2300154: sp_keyboard01_N9
+    2300156: sp_keyboard01_NumLock
+    2300158: sp_keyboard01_NumLock Light
+    2300160: sp_keyboard01_O
+    2300162: sp_keyboard01_P
+    2300164: sp_keyboard01_Page Down
+    2300166: sp_keyboard01_Page Up
+    2300168: sp_keyboard01_PauseBreak
+    2300170: sp_keyboard01_plus
+    2300172: sp_keyboard01_PrtSC
+    2300174: sp_keyboard01_Q
+    2300176: sp_keyboard01_Quetation mark
+    2300178: sp_keyboard01_R
+    2300180: sp_keyboard01_Right
+    2300182: sp_keyboard01_Right Speaker control
+    2300184: sp_keyboard01_right Speaker light
+    2300186: sp_keyboard01_right Speaker light glass
+    2300188: sp_keyboard01_right Speaker light tube
+    2300190: sp_keyboard01_Rt click
+    2300192: sp_keyboard01_S
+    2300194: sp_keyboard01_Scroll Lock Light
+    2300196: sp_keyboard01_ScrollLock
+    2300198: sp_keyboard01_Semi colone
+    2300200: sp_keyboard01_Shift
+    2300202: sp_keyboard01_Shift 1
+    2300204: sp_keyboard01_Slash
+    2300206: sp_keyboard01_Space
+    2300208: sp_keyboard01_sticking object002
+    2300210: sp_keyboard01_sticking object02
+    2300212: sp_keyboard01_sticking object03
+    2300214: sp_keyboard01_T
+    2300216: sp_keyboard01_Tab
+    2300218: sp_keyboard01_U
+    2300220: sp_keyboard01_Up
+    2300222: sp_keyboard01_V
+    2300224: sp_keyboard01_W
+    2300226: sp_keyboard01_WiFi Light
+    2300228: sp_keyboard01_WiFi Light Glass
+    2300230: sp_keyboard01_WiFi Light tube
+    2300232: sp_keyboard01_Win
+    2300234: sp_keyboard01_Win 1
+    2300236: sp_keyboard01_X
+    2300238: sp_keyboard01_Y
+    2300240: sp_keyboard01_Z
+    2300242: sp_keyboard01_~
+    3300000: sp_keyboard01_0
+    3300002: sp_keyboard01_1
+    3300004: sp_keyboard01_2
+    3300006: sp_keyboard01_3
+    3300008: sp_keyboard01_4
+    3300010: sp_keyboard01_5
+    3300012: sp_keyboard01_6
+    3300014: sp_keyboard01_7
+    3300016: sp_keyboard01_8
+    3300018: sp_keyboard01_9
+    3300020: sp_keyboard01_A
+    3300022: sp_keyboard01_Alt
+    3300024: sp_keyboard01_Alt 1
+    3300026: sp_keyboard01_B
+    3300028: sp_keyboard01_Back slash
+    3300030: sp_keyboard01_Backspace
+    3300032: sp_keyboard01_Bracket close
+    3300034: sp_keyboard01_Bracket open
+    3300036: sp_keyboard01_C
+    3300038: sp_keyboard01_Caps Lock
+    3300040: sp_keyboard01_Cas Lock Light
+    3300042: sp_keyboard01_Ctrl
+    3300044: sp_keyboard01_ctrl
+    3300046: sp_keyboard01_D
+    3300048: sp_keyboard01_Dash
+    3300050: sp_keyboard01_Delete
+    3300052: sp_keyboard01_Down
+    3300054: sp_keyboard01_E
+    3300056: sp_keyboard01_End
+    3300058: sp_keyboard01_Enter
+    3300060: sp_keyboard01_Esc
+    3300062: sp_keyboard01_F
+    3300064: sp_keyboard01_F0
+    3300066: sp_keyboard01_F1
+    3300068: sp_keyboard01_F11
+    3300070: sp_keyboard01_F12
+    3300072: sp_keyboard01_F2
+    3300074: sp_keyboard01_F3
+    3300076: sp_keyboard01_F4
+    3300078: sp_keyboard01_F5
+    3300080: sp_keyboard01_F6
+    3300082: sp_keyboard01_F7
+    3300084: sp_keyboard01_F8
+    3300086: sp_keyboard01_F9
+    3300088: sp_keyboard01_G
+    3300090: sp_keyboard01_Greater
+    3300092: sp_keyboard01_H
+    3300094: sp_keyboard01_Home
+    3300096: sp_keyboard01_I
+    3300098: sp_keyboard01_Insert
+    3300100: sp_keyboard01_J
+    3300102: sp_keyboard01_K
+    3300104: sp_keyboard01_L
+    3300106: sp_keyboard01_Left
+    3300108: sp_keyboard01_Left Speaker control
+    3300110: sp_keyboard01_Left Speaker Light
+    3300112: sp_keyboard01_Left Speaker Light glass
+    3300114: sp_keyboard01_Left Speaker Light Tube
+    3300116: sp_keyboard01_Less
+    3300118: sp_keyboard01_M
+    3300120: sp_keyboard01_main body
+    3300122: sp_keyboard01_N
+    3300124: sp_keyboard01_N asterix
+    3300126: sp_keyboard01_N dot
+    3300128: sp_keyboard01_N enter
+    3300130: sp_keyboard01_N plus
+    3300132: sp_keyboard01_N slash
+    3300134: sp_keyboard01_N underscore
+    3300136: sp_keyboard01_N0
+    3300138: sp_keyboard01_N1
+    3300140: sp_keyboard01_N2
+    3300142: sp_keyboard01_N3
+    3300144: sp_keyboard01_N4
+    3300146: sp_keyboard01_N5
+    3300148: sp_keyboard01_N6
+    3300150: sp_keyboard01_N7
+    3300152: sp_keyboard01_N8
+    3300154: sp_keyboard01_N9
+    3300156: sp_keyboard01_NumLock
+    3300158: sp_keyboard01_NumLock Light
+    3300160: sp_keyboard01_O
+    3300162: sp_keyboard01_P
+    3300164: sp_keyboard01_Page Down
+    3300166: sp_keyboard01_Page Up
+    3300168: sp_keyboard01_PauseBreak
+    3300170: sp_keyboard01_plus
+    3300172: sp_keyboard01_PrtSC
+    3300174: sp_keyboard01_Q
+    3300176: sp_keyboard01_Quetation mark
+    3300178: sp_keyboard01_R
+    3300180: sp_keyboard01_Right
+    3300182: sp_keyboard01_Right Speaker control
+    3300184: sp_keyboard01_right Speaker light
+    3300186: sp_keyboard01_right Speaker light glass
+    3300188: sp_keyboard01_right Speaker light tube
+    3300190: sp_keyboard01_Rt click
+    3300192: sp_keyboard01_S
+    3300194: sp_keyboard01_Scroll Lock Light
+    3300196: sp_keyboard01_ScrollLock
+    3300198: sp_keyboard01_Semi colone
+    3300200: sp_keyboard01_Shift
+    3300202: sp_keyboard01_Shift 1
+    3300204: sp_keyboard01_Slash
+    3300206: sp_keyboard01_Space
+    3300208: sp_keyboard01_sticking object002
+    3300210: sp_keyboard01_sticking object02
+    3300212: sp_keyboard01_sticking object03
+    3300214: sp_keyboard01_T
+    3300216: sp_keyboard01_Tab
+    3300218: sp_keyboard01_U
+    3300220: sp_keyboard01_Up
+    3300222: sp_keyboard01_V
+    3300224: sp_keyboard01_W
+    3300226: sp_keyboard01_WiFi Light
+    3300228: sp_keyboard01_WiFi Light Glass
+    3300230: sp_keyboard01_WiFi Light tube
+    3300232: sp_keyboard01_Win
+    3300234: sp_keyboard01_Win 1
+    3300236: sp_keyboard01_X
+    3300238: sp_keyboard01_Y
+    3300240: sp_keyboard01_Z
+    3300242: sp_keyboard01_~
+    4300000: sp_keyboard01_Right Speaker control
+    4300002: sp_keyboard01_ctrl
+    4300004: sp_keyboard01_Shift
+    4300006: sp_keyboard01_Caps Lock
+    4300008: sp_keyboard01_Win
+    4300010: sp_keyboard01_Z
+    4300012: sp_keyboard01_A
+    4300014: sp_keyboard01_Tab
+    4300016: sp_keyboard01_Q
+    4300018: sp_keyboard01_Esc
+    4300020: sp_keyboard01_F1
+    4300022: sp_keyboard01_Space
+    4300024: sp_keyboard01_Alt
+    4300026: sp_keyboard01_Win
+    4300028: sp_keyboard01_Rt click
+    4300030: sp_keyboard01_Ctrl
+    4300032: sp_keyboard01_Shift
+    4300034: sp_keyboard01_Enter
+    4300036: sp_keyboard01_Left
+    4300038: sp_keyboard01_Down
+    4300040: sp_keyboard01_Right
+    4300042: sp_keyboard01_Up
+    4300044: sp_keyboard01_X
+    4300046: sp_keyboard01_C
+    4300048: sp_keyboard01_V
+    4300050: sp_keyboard01_B
+    4300052: sp_keyboard01_N
+    4300054: sp_keyboard01_M
+    4300056: sp_keyboard01_Less
+    4300058: sp_keyboard01_Greater
+    4300060: sp_keyboard01_Slash
+    4300062: sp_keyboard01_S
+    4300064: sp_keyboard01_D
+    4300066: sp_keyboard01_F
+    4300068: sp_keyboard01_G
+    4300070: sp_keyboard01_H
+    4300072: sp_keyboard01_J
+    4300074: sp_keyboard01_K
+    4300076: sp_keyboard01_L
+    4300078: sp_keyboard01_Semi colone
+    4300080: sp_keyboard01_Quetation mark
+    4300082: sp_keyboard01_Back slash
+    4300084: sp_keyboard01_W
+    4300086: sp_keyboard01_E
+    4300088: sp_keyboard01_R
+    4300090: sp_keyboard01_T
+    4300092: sp_keyboard01_Y
+    4300094: sp_keyboard01_U
+    4300096: sp_keyboard01_I
+    4300098: sp_keyboard01_O
+    4300100: sp_keyboard01_P
+    4300102: sp_keyboard01_Bracket open
+    4300104: sp_keyboard01_Bracket close
+    4300106: sp_keyboard01_~
+    4300108: sp_keyboard01_1
+    4300110: sp_keyboard01_2
+    4300112: sp_keyboard01_3
+    4300114: sp_keyboard01_4
+    4300116: sp_keyboard01_5
+    4300118: sp_keyboard01_6
+    4300120: sp_keyboard01_7
+    4300122: sp_keyboard01_8
+    4300124: sp_keyboard01_9
+    4300126: sp_keyboard01_0
+    4300128: sp_keyboard01_Dash
+    4300130: sp_keyboard01_plus
+    4300132: sp_keyboard01_Alt
+    4300134: sp_keyboard01_Backspace
+    4300136: sp_keyboard01_Delete
+    4300138: sp_keyboard01_End
+    4300140: sp_keyboard01_Page Down
+    4300142: sp_keyboard01_Insert
+    4300144: sp_keyboard01_Home
+    4300146: sp_keyboard01_Page Up
+    4300148: sp_keyboard01_F2
+    4300150: sp_keyboard01_F3
+    4300152: sp_keyboard01_F4
+    4300154: sp_keyboard01_F5
+    4300156: sp_keyboard01_F6
+    4300158: sp_keyboard01_F7
+    4300160: sp_keyboard01_F8
+    4300162: sp_keyboard01_F9
+    4300164: sp_keyboard01_F0
+    4300166: sp_keyboard01_F11
+    4300168: sp_keyboard01_F12
+    4300170: sp_keyboard01_PrtSC
+    4300172: sp_keyboard01_ScrollLock
+    4300174: sp_keyboard01_PauseBreak
+    4300176: sp_keyboard01_NumLock
+    4300178: sp_keyboard01_N slash
+    4300180: sp_keyboard01_N asterix
+    4300182: sp_keyboard01_N7
+    4300184: sp_keyboard01_N8
+    4300186: sp_keyboard01_N9
+    4300188: sp_keyboard01_N4
+    4300190: sp_keyboard01_N5
+    4300192: sp_keyboard01_N6
+    4300194: sp_keyboard01_N1
+    4300196: sp_keyboard01_N2
+    4300198: sp_keyboard01_N3
+    4300200: sp_keyboard01_N0
+    4300202: sp_keyboard01_N dot
+    4300204: sp_keyboard01_N underscore
+    4300206: sp_keyboard01_N plus
+    4300208: sp_keyboard01_N enter
+    4300210: sp_keyboard01_Left Speaker control
+    4300212: sp_keyboard01_WiFi Light tube
+    4300214: sp_keyboard01_Left Speaker Light Tube
+    4300216: sp_keyboard01_NumLock Light
+    4300218: sp_keyboard01_right Speaker light tube
+    4300220: sp_keyboard01_Cas Lock Light
+    4300222: sp_keyboard01_Scroll Lock Light
+    4300224: sp_keyboard01_main body
+    4300226: sp_keyboard01_sticking object002
+    4300228: sp_keyboard01_sticking object02
+    4300230: sp_keyboard01_sticking object03
+    4300232: sp_keyboard01_Left Speaker Light glass
+    4300234: sp_keyboard01_Left Speaker Light
+    4300236: sp_keyboard01_right Speaker light glass
+    4300238: sp_keyboard01_right Speaker light
+    4300240: sp_keyboard01_WiFi Light Glass
+    4300242: sp_keyboard01_WiFi Light
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SP_keyboard
+    second: {fileID: 2100000, guid: 355ae29c4490f8d4c928d813f5253bd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 1ddbc79989538d242a62195d0034fa4e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

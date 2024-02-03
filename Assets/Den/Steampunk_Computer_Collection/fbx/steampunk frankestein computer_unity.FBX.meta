@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: 64f8b8aa9f9be674186e44131581107e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: sp_frankestein_90 deg valve01
+    100002: sp_frankestein_90 Deg Valve02
+    100004: sp_frankestein_arc gauge
+    100006: sp_frankestein_belt sticked socket002
+    100008: sp_frankestein_belt sticked socket003
+    100010: sp_frankestein_belt sticked socket01
+    100012: sp_frankestein_body
+    100014: sp_frankestein_cylinder valve chamber
+    100016: sp_frankestein_Electical cylinder chamber
+    100018: sp_frankestein_Electrical L Rod
+    100020: sp_frankestein_Electrical R Rod
+    100022: sp_frankestein_electricity producer gear
+    100024: sp_frankestein_fixer01
+    100026: sp_frankestein_fixer02
+    100028: sp_frankestein_gear electricity dynam
+    100030: sp_frankestein_gear01
+    100032: sp_frankestein_gear02
+    100034: sp_frankestein_gear03
+    100036: sp_frankestein_gear04
+    100038: sp_frankestein_Gears chamber
+    100040: sp_frankestein_glass chamber
+    100042: sp_frankestein_glass01
+    100044: sp_frankestein_glass02
+    100046: sp_frankestein_glass03
+    100048: sp_frankestein_glass04
+    100050: sp_frankestein_glass05
+    100052: sp_frankestein_guage01
+    100054: sp_frankestein_guage01 hand
+    100056: sp_frankestein_guage02
+    100058: sp_frankestein_guage02 hand
+    100060: sp_frankestein_guage02 valve
+    100062: sp_frankestein_guage03
+    100064: sp_frankestein_guage03 hand
+    100066: sp_frankestein_guage03 valve
+    100068: sp_frankestein_guage04
+    100070: sp_frankestein_guage04 hand
+    100072: sp_frankestein_guage04 valve01
+    100074: sp_frankestein_guage04 valve02
+    100076: sp_frankestein_hardware
+    100078: sp_frankestein_hardware01
+    100080: sp_frankestein_hardware03
+    100082: sp_frankestein_Highvoltage control01
+    100084: sp_frankestein_Highvoltage control02
+    100086: sp_frankestein_Highvoltage hardware
+    100088: sp_frankestein_iron plate
+    100090: sp_frankestein_L Belt
+    100092: sp_frankestein_L Belt Gear01
+    100094: sp_frankestein_L Belt Gear02
+    100096: sp_frankestein_L Belt sticky socket01
+    100098: sp_frankestein_L Belt sticky socket02
+    100100: sp_frankestein_Left Hand
+    100102: sp_frankestein_Lside Chamber03
+    100104: sp_frankestein_Lside Light
+    100106: sp_frankestein_Lside Light holder
+    100108: sp_frankestein_Lside_valve chamber01
+    100110: sp_frankestein_Lside_valve chamber02
+    100112: sp_frankestein_main electrical gear
+    100114: sp_frankestein_main electrical gear001
+    100116: sp_frankestein_main steam chamber
+    100118: sp_frankestein_Off Red Light
+    100120: sp_frankestein_On Green Light
+    100122: sp_frankestein_on off lights body
+    100124: sp_frankestein_Pliers01
+    100126: sp_frankestein_Pliers02
+    100128: sp_frankestein_power gauge01
+    100130: sp_frankestein_pressure chamber
+    100132: sp_frankestein_pressure chamber valve
+    100134: sp_frankestein_R belt
+    100136: sp_frankestein_R belt gear01
+    100138: sp_frankestein_R belt gear02
+    100140: sp_frankestein_R Light
+    100142: sp_frankestein_Right Hand
+    100144: sp_frankestein_steam chamber fixer
+    100146: sp_frankestein_steam exhoust
+    100148: sp_frankestein_steam valve01
+    100150: sp_frankestein_steam valve02
+    100152: sp_frankestein_steam valve03
+    100154: sp_frankestein_sticker rod
+    100156: sp_frankestein_transistor
+    100158: sp_frankestein_valve rod
+    100160: sp_frankestein_valve01
+    100162: sp_frankestein_valve02
+    100164: sp_frankestein_valve03
+    100166: sp_frankestein_valve04
+    100168: sp_frankestein_valve05
+    100170: sp_frankestein_valve06
+    100172: sp_frankestein_valve07
+    100174: sp_frankestein_valve08
+    100176: sp_frankestein_valve09
+    100178: sp_frankestein_valve10
+    100180: sp_frankestein_valvy holde01
+    100182: sp_frankestein_valvy holde02
+    100184: sp_frankestein_VGA body01
+    100186: sp_frankestein_VGA body02
+    100188: sp_frankestein_VGA body03
+    100190: sp_frankestein_VGA fan01_L
+    100192: sp_frankestein_VGA fan01_R
+    100194: sp_frankestein_VGA fan01_R 1
+    100196: sp_frankestein_VGA fan02_L
+    100198: sp_frankestein_VGA fan03_L
+    100200: sp_frankestein_VGA fan03_R
+    100202: sp_frankestein_VGA Light fan01_L
+    100204: sp_frankestein_VGA Light fan01_R
+    100206: sp_frankestein_VGA Light fan02_L
+    100208: sp_frankestein_VGA Light fan02_R
+    100210: sp_frankestein_VGA Light fan03_L
+    100212: sp_frankestein_VGA Light fan03_R
+    100214: sp_frankestein_wire holder01
+    100216: sp_frankestein_wire holder02
+    100218: sp_frankestein_wire holder03
+    100220: sp_frankestein_wire holder04
+    100222: sp_frankestein_wires
+    100224: //RootNode
+    100226: Cylinder001
+    100228: sp_frankestein_dome glass
+    100230: sp_frankestein_Electical cylinder glass
+    400000: sp_frankestein_90 deg valve01
+    400002: sp_frankestein_90 Deg Valve02
+    400004: sp_frankestein_arc gauge
+    400006: sp_frankestein_belt sticked socket002
+    400008: sp_frankestein_belt sticked socket003
+    400010: sp_frankestein_belt sticked socket01
+    400012: sp_frankestein_body
+    400014: sp_frankestein_cylinder valve chamber
+    400016: sp_frankestein_Electical cylinder chamber
+    400018: sp_frankestein_Electrical L Rod
+    400020: sp_frankestein_Electrical R Rod
+    400022: sp_frankestein_electricity producer gear
+    400024: sp_frankestein_fixer01
+    400026: sp_frankestein_fixer02
+    400028: sp_frankestein_gear electricity dynam
+    400030: sp_frankestein_gear01
+    400032: sp_frankestein_gear02
+    400034: sp_frankestein_gear03
+    400036: sp_frankestein_gear04
+    400038: sp_frankestein_Gears chamber
+    400040: sp_frankestein_glass chamber
+    400042: sp_frankestein_glass01
+    400044: sp_frankestein_glass02
+    400046: sp_frankestein_glass03
+    400048: sp_frankestein_glass04
+    400050: sp_frankestein_glass05
+    400052: sp_frankestein_guage01
+    400054: sp_frankestein_guage01 hand
+    400056: sp_frankestein_guage02
+    400058: sp_frankestein_guage02 hand
+    400060: sp_frankestein_guage02 valve
+    400062: sp_frankestein_guage03
+    400064: sp_frankestein_guage03 hand
+    400066: sp_frankestein_guage03 valve
+    400068: sp_frankestein_guage04
+    400070: sp_frankestein_guage04 hand
+    400072: sp_frankestein_guage04 valve01
+    400074: sp_frankestein_guage04 valve02
+    400076: sp_frankestein_hardware
+    400078: sp_frankestein_hardware01
+    400080: sp_frankestein_hardware03
+    400082: sp_frankestein_Highvoltage control01
+    400084: sp_frankestein_Highvoltage control02
+    400086: sp_frankestein_Highvoltage hardware
+    400088: sp_frankestein_iron plate
+    400090: sp_frankestein_L Belt
+    400092: sp_frankestein_L Belt Gear01
+    400094: sp_frankestein_L Belt Gear02
+    400096: sp_frankestein_L Belt sticky socket01
+    400098: sp_frankestein_L Belt sticky socket02
+    400100: sp_frankestein_Left Hand
+    400102: sp_frankestein_Lside Chamber03
+    400104: sp_frankestein_Lside Light
+    400106: sp_frankestein_Lside Light holder
+    400108: sp_frankestein_Lside_valve chamber01
+    400110: sp_frankestein_Lside_valve chamber02
+    400112: sp_frankestein_main electrical gear
+    400114: sp_frankestein_main electrical gear001
+    400116: sp_frankestein_main steam chamber
+    400118: sp_frankestein_Off Red Light
+    400120: sp_frankestein_On Green Light
+    400122: sp_frankestein_on off lights body
+    400124: sp_frankestein_Pliers01
+    400126: sp_frankestein_Pliers02
+    400128: sp_frankestein_power gauge01
+    400130: sp_frankestein_pressure chamber
+    400132: sp_frankestein_pressure chamber valve
+    400134: sp_frankestein_R belt
+    400136: sp_frankestein_R belt gear01
+    400138: sp_frankestein_R belt gear02
+    400140: sp_frankestein_R Light
+    400142: sp_frankestein_Right Hand
+    400144: sp_frankestein_steam chamber fixer
+    400146: sp_frankestein_steam exhoust
+    400148: sp_frankestein_steam valve01
+    400150: sp_frankestein_steam valve02
+    400152: sp_frankestein_steam valve03
+    400154: sp_frankestein_sticker rod
+    400156: sp_frankestein_transistor
+    400158: sp_frankestein_valve rod
+    400160: sp_frankestein_valve01
+    400162: sp_frankestein_valve02
+    400164: sp_frankestein_valve03
+    400166: sp_frankestein_valve04
+    400168: sp_frankestein_valve05
+    400170: sp_frankestein_valve06
+    400172: sp_frankestein_valve07
+    400174: sp_frankestein_valve08
+    400176: sp_frankestein_valve09
+    400178: sp_frankestein_valve10
+    400180: sp_frankestein_valvy holde01
+    400182: sp_frankestein_valvy holde02
+    400184: sp_frankestein_VGA body01
+    400186: sp_frankestein_VGA body02
+    400188: sp_frankestein_VGA body03
+    400190: sp_frankestein_VGA fan01_L
+    400192: sp_frankestein_VGA fan01_R
+    400194: sp_frankestein_VGA fan01_R 1
+    400196: sp_frankestein_VGA fan02_L
+    400198: sp_frankestein_VGA fan03_L
+    400200: sp_frankestein_VGA fan03_R
+    400202: sp_frankestein_VGA Light fan01_L
+    400204: sp_frankestein_VGA Light fan01_R
+    400206: sp_frankestein_VGA Light fan02_L
+    400208: sp_frankestein_VGA Light fan02_R
+    400210: sp_frankestein_VGA Light fan03_L
+    400212: sp_frankestein_VGA Light fan03_R
+    400214: sp_frankestein_wire holder01
+    400216: sp_frankestein_wire holder02
+    400218: sp_frankestein_wire holder03
+    400220: sp_frankestein_wire holder04
+    400222: sp_frankestein_wires
+    400224: //RootNode
+    400226: Cylinder001
+    400228: sp_frankestein_dome glass
+    400230: sp_frankestein_Electical cylinder glass
+    2100000: Frankestein_SP computer_ID05
+    2100002: Frankestein_SP computer_ID03
+    2100004: Frankestein_SP computer_ID04
+    2100006: Frankestein_SP computer_ID01
+    2100008: Frankestein_SP computer_ID02
+    2100010: Frankestein_SP computer_Glasses
+    2300000: sp_frankestein_90 deg valve01
+    2300002: sp_frankestein_90 Deg Valve02
+    2300004: sp_frankestein_arc gauge
+    2300006: sp_frankestein_belt sticked socket002
+    2300008: sp_frankestein_belt sticked socket003
+    2300010: sp_frankestein_belt sticked socket01
+    2300012: sp_frankestein_body
+    2300014: sp_frankestein_cylinder valve chamber
+    2300016: sp_frankestein_Electical cylinder chamber
+    2300018: sp_frankestein_Electrical L Rod
+    2300020: sp_frankestein_Electrical R Rod
+    2300022: sp_frankestein_electricity producer gear
+    2300024: sp_frankestein_fixer01
+    2300026: sp_frankestein_fixer02
+    2300028: sp_frankestein_gear electricity dynam
+    2300030: sp_frankestein_gear01
+    2300032: sp_frankestein_gear02
+    2300034: sp_frankestein_gear03
+    2300036: sp_frankestein_gear04
+    2300038: sp_frankestein_Gears chamber
+    2300040: sp_frankestein_glass chamber
+    2300042: sp_frankestein_glass01
+    2300044: sp_frankestein_glass02
+    2300046: sp_frankestein_glass03
+    2300048: sp_frankestein_glass04
+    2300050: sp_frankestein_glass05
+    2300052: sp_frankestein_guage01
+    2300054: sp_frankestein_guage01 hand
+    2300056: sp_frankestein_guage02
+    2300058: sp_frankestein_guage02 hand
+    2300060: sp_frankestein_guage02 valve
+    2300062: sp_frankestein_guage03
+    2300064: sp_frankestein_guage03 hand
+    2300066: sp_frankestein_guage03 valve
+    2300068: sp_frankestein_guage04
+    2300070: sp_frankestein_guage04 hand
+    2300072: sp_frankestein_guage04 valve01
+    2300074: sp_frankestein_guage04 valve02
+    2300076: sp_frankestein_hardware
+    2300078: sp_frankestein_hardware01
+    2300080: sp_frankestein_hardware03
+    2300082: sp_frankestein_Highvoltage control01
+    2300084: sp_frankestein_Highvoltage control02
+    2300086: sp_frankestein_Highvoltage hardware
+    2300088: sp_frankestein_iron plate
+    2300090: sp_frankestein_L Belt
+    2300092: sp_frankestein_L Belt Gear01
+    2300094: sp_frankestein_L Belt Gear02
+    2300096: sp_frankestein_L Belt sticky socket01
+    2300098: sp_frankestein_L Belt sticky socket02
+    2300100: sp_frankestein_Left Hand
+    2300102: sp_frankestein_Lside Chamber03
+    2300104: sp_frankestein_Lside Light
+    2300106: sp_frankestein_Lside Light holder
+    2300108: sp_frankestein_Lside_valve chamber01
+    2300110: sp_frankestein_Lside_valve chamber02
+    2300112: sp_frankestein_main electrical gear
+    2300114: sp_frankestein_main electrical gear001
+    2300116: sp_frankestein_main steam chamber
+    2300118: sp_frankestein_Off Red Light
+    2300120: sp_frankestein_On Green Light
+    2300122: sp_frankestein_on off lights body
+    2300124: sp_frankestein_Pliers01
+    2300126: sp_frankestein_Pliers02
+    2300128: sp_frankestein_power gauge01
+    2300130: sp_frankestein_pressure chamber
+    2300132: sp_frankestein_pressure chamber valve
+    2300134: sp_frankestein_R belt
+    2300136: sp_frankestein_R belt gear01
+    2300138: sp_frankestein_R belt gear02
+    2300140: sp_frankestein_R Light
+    2300142: sp_frankestein_Right Hand
+    2300144: sp_frankestein_steam chamber fixer
+    2300146: sp_frankestein_steam exhoust
+    2300148: sp_frankestein_steam valve01
+    2300150: sp_frankestein_steam valve02
+    2300152: sp_frankestein_steam valve03
+    2300154: sp_frankestein_sticker rod
+    2300156: sp_frankestein_transistor
+    2300158: sp_frankestein_valve rod
+    2300160: sp_frankestein_valve01
+    2300162: sp_frankestein_valve02
+    2300164: sp_frankestein_valve03
+    2300166: sp_frankestein_valve04
+    2300168: sp_frankestein_valve05
+    2300170: sp_frankestein_valve06
+    2300172: sp_frankestein_valve07
+    2300174: sp_frankestein_valve08
+    2300176: sp_frankestein_valve09
+    2300178: sp_frankestein_valve10
+    2300180: sp_frankestein_valvy holde01
+    2300182: sp_frankestein_valvy holde02
+    2300184: sp_frankestein_VGA body01
+    2300186: sp_frankestein_VGA body02
+    2300188: sp_frankestein_VGA body03
+    2300190: sp_frankestein_VGA fan01_L
+    2300192: sp_frankestein_VGA fan01_R
+    2300194: sp_frankestein_VGA fan01_R 1
+    2300196: sp_frankestein_VGA fan02_L
+    2300198: sp_frankestein_VGA fan03_L
+    2300200: sp_frankestein_VGA fan03_R
+    2300202: sp_frankestein_VGA Light fan01_L
+    2300204: sp_frankestein_VGA Light fan01_R
+    2300206: sp_frankestein_VGA Light fan02_L
+    2300208: sp_frankestein_VGA Light fan02_R
+    2300210: sp_frankestein_VGA Light fan03_L
+    2300212: sp_frankestein_VGA Light fan03_R
+    2300214: sp_frankestein_wire holder01
+    2300216: sp_frankestein_wire holder02
+    2300218: sp_frankestein_wire holder03
+    2300220: sp_frankestein_wire holder04
+    2300222: sp_frankestein_wires
+    2300224: Cylinder001
+    2300226: sp_frankestein_dome glass
+    2300228: sp_frankestein_Electical cylinder glass
+    3300000: sp_frankestein_90 deg valve01
+    3300002: sp_frankestein_90 Deg Valve02
+    3300004: sp_frankestein_arc gauge
+    3300006: sp_frankestein_belt sticked socket002
+    3300008: sp_frankestein_belt sticked socket003
+    3300010: sp_frankestein_belt sticked socket01
+    3300012: sp_frankestein_body
+    3300014: sp_frankestein_cylinder valve chamber
+    3300016: sp_frankestein_Electical cylinder chamber
+    3300018: sp_frankestein_Electrical L Rod
+    3300020: sp_frankestein_Electrical R Rod
+    3300022: sp_frankestein_electricity producer gear
+    3300024: sp_frankestein_fixer01
+    3300026: sp_frankestein_fixer02
+    3300028: sp_frankestein_gear electricity dynam
+    3300030: sp_frankestein_gear01
+    3300032: sp_frankestein_gear02
+    3300034: sp_frankestein_gear03
+    3300036: sp_frankestein_gear04
+    3300038: sp_frankestein_Gears chamber
+    3300040: sp_frankestein_glass chamber
+    3300042: sp_frankestein_glass01
+    3300044: sp_frankestein_glass02
+    3300046: sp_frankestein_glass03
+    3300048: sp_frankestein_glass04
+    3300050: sp_frankestein_glass05
+    3300052: sp_frankestein_guage01
+    3300054: sp_frankestein_guage01 hand
+    3300056: sp_frankestein_guage02
+    3300058: sp_frankestein_guage02 hand
+    3300060: sp_frankestein_guage02 valve
+    3300062: sp_frankestein_guage03
+    3300064: sp_frankestein_guage03 hand
+    3300066: sp_frankestein_guage03 valve
+    3300068: sp_frankestein_guage04
+    3300070: sp_frankestein_guage04 hand
+    3300072: sp_frankestein_guage04 valve01
+    3300074: sp_frankestein_guage04 valve02
+    3300076: sp_frankestein_hardware
+    3300078: sp_frankestein_hardware01
+    3300080: sp_frankestein_hardware03
+    3300082: sp_frankestein_Highvoltage control01
+    3300084: sp_frankestein_Highvoltage control02
+    3300086: sp_frankestein_Highvoltage hardware
+    3300088: sp_frankestein_iron plate
+    3300090: sp_frankestein_L Belt
+    3300092: sp_frankestein_L Belt Gear01
+    3300094: sp_frankestein_L Belt Gear02
+    3300096: sp_frankestein_L Belt sticky socket01
+    3300098: sp_frankestein_L Belt sticky socket02
+    3300100: sp_frankestein_Left Hand
+    3300102: sp_frankestein_Lside Chamber03
+    3300104: sp_frankestein_Lside Light
+    3300106: sp_frankestein_Lside Light holder
+    3300108: sp_frankestein_Lside_valve chamber01
+    3300110: sp_frankestein_Lside_valve chamber02
+    3300112: sp_frankestein_main electrical gear
+    3300114: sp_frankestein_main electrical gear001
+    3300116: sp_frankestein_main steam chamber
+    3300118: sp_frankestein_Off Red Light
+    3300120: sp_frankestein_On Green Light
+    3300122: sp_frankestein_on off lights body
+    3300124: sp_frankestein_Pliers01
+    3300126: sp_frankestein_Pliers02
+    3300128: sp_frankestein_power gauge01
+    3300130: sp_frankestein_pressure chamber
+    3300132: sp_frankestein_pressure chamber valve
+    3300134: sp_frankestein_R belt
+    3300136: sp_frankestein_R belt gear01
+    3300138: sp_frankestein_R belt gear02
+    3300140: sp_frankestein_R Light
+    3300142: sp_frankestein_Right Hand
+    3300144: sp_frankestein_steam chamber fixer
+    3300146: sp_frankestein_steam exhoust
+    3300148: sp_frankestein_steam valve01
+    3300150: sp_frankestein_steam valve02
+    3300152: sp_frankestein_steam valve03
+    3300154: sp_frankestein_sticker rod
+    3300156: sp_frankestein_transistor
+    3300158: sp_frankestein_valve rod
+    3300160: sp_frankestein_valve01
+    3300162: sp_frankestein_valve02
+    3300164: sp_frankestein_valve03
+    3300166: sp_frankestein_valve04
+    3300168: sp_frankestein_valve05
+    3300170: sp_frankestein_valve06
+    3300172: sp_frankestein_valve07
+    3300174: sp_frankestein_valve08
+    3300176: sp_frankestein_valve09
+    3300178: sp_frankestein_valve10
+    3300180: sp_frankestein_valvy holde01
+    3300182: sp_frankestein_valvy holde02
+    3300184: sp_frankestein_VGA body01
+    3300186: sp_frankestein_VGA body02
+    3300188: sp_frankestein_VGA body03
+    3300190: sp_frankestein_VGA fan01_L
+    3300192: sp_frankestein_VGA fan01_R
+    3300194: sp_frankestein_VGA fan01_R 1
+    3300196: sp_frankestein_VGA fan02_L
+    3300198: sp_frankestein_VGA fan03_L
+    3300200: sp_frankestein_VGA fan03_R
+    3300202: sp_frankestein_VGA Light fan01_L
+    3300204: sp_frankestein_VGA Light fan01_R
+    3300206: sp_frankestein_VGA Light fan02_L
+    3300208: sp_frankestein_VGA Light fan02_R
+    3300210: sp_frankestein_VGA Light fan03_L
+    3300212: sp_frankestein_VGA Light fan03_R
+    3300214: sp_frankestein_wire holder01
+    3300216: sp_frankestein_wire holder02
+    3300218: sp_frankestein_wire holder03
+    3300220: sp_frankestein_wire holder04
+    3300222: sp_frankestein_wires
+    3300224: Cylinder001
+    3300226: sp_frankestein_dome glass
+    3300228: sp_frankestein_Electical cylinder glass
+    4300000: sp_frankestein_body
+    4300002: sp_frankestein_transistor
+    4300004: sp_frankestein_VGA Light fan01_L
+    4300006: sp_frankestein_VGA body01
+    4300008: sp_frankestein_VGA fan01_L
+    4300010: sp_frankestein_VGA fan01_R
+    4300012: sp_frankestein_VGA Light fan01_R
+    4300014: sp_frankestein_Right Hand
+    4300016: sp_frankestein_Left Hand
+    4300018: sp_frankestein_wire holder01
+    4300020: sp_frankestein_hardware01
+    4300022: sp_frankestein_power gauge01
+    4300024: sp_frankestein_Highvoltage hardware
+    4300026: sp_frankestein_Highvoltage control02
+    4300028: sp_frankestein_Highvoltage control01
+    4300030: sp_frankestein_glass chamber
+    4300032: sp_frankestein_wire holder02
+    4300034: sp_frankestein_fixer01
+    4300036: sp_frankestein_fixer02
+    4300038: sp_frankestein_Lside_valve chamber01
+    4300040: sp_frankestein_valve01
+    4300042: sp_frankestein_valve02
+    4300044: sp_frankestein_Lside_valve chamber02
+    4300046: sp_frankestein_valve03
+    4300048: sp_frankestein_valve04
+    4300050: sp_frankestein_Lside Light holder
+    4300052: sp_frankestein_Lside Light
+    4300054: sp_frankestein_Lside Chamber03
+    4300056: sp_frankestein_main steam chamber
+    4300058: sp_frankestein_steam valve01
+    4300060: sp_frankestein_steam valve02
+    4300062: sp_frankestein_steam valve03
+    4300064: sp_frankestein_steam chamber fixer
+    4300066: sp_frankestein_steam exhoust
+    4300068: sp_frankestein_valve rod
+    4300070: sp_frankestein_90 deg valve01
+    4300072: sp_frankestein_valve05
+    4300074: sp_frankestein_valvy holde01
+    4300076: sp_frankestein_valvy holde02
+    4300078: sp_frankestein_valve06
+    4300080: sp_frankestein_valve07
+    4300082: sp_frankestein_R Light
+    4300084: sp_frankestein_pressure chamber
+    4300086: sp_frankestein_pressure chamber valve
+    4300088: sp_frankestein_main electrical gear
+    4300090: sp_frankestein_gear electricity dynam
+    4300092: sp_frankestein_electricity producer gear
+    4300094: sp_frankestein_iron plate
+    4300096: sp_frankestein_sticker rod
+    4300098: sp_frankestein_cylinder valve chamber
+    4300100: sp_frankestein_Electical cylinder chamber
+    4300102: sp_frankestein_Electrical R Rod
+    4300104: sp_frankestein_Electrical L Rod
+    4300106: sp_frankestein_Pliers01
+    4300108: sp_frankestein_Pliers02
+    4300110: sp_frankestein_on off lights body
+    4300112: sp_frankestein_On Green Light
+    4300114: sp_frankestein_Off Red Light
+    4300116: sp_frankestein_Gears chamber
+    4300118: sp_frankestein_hardware
+    4300120: sp_frankestein_90 Deg Valve02
+    4300122: sp_frankestein_R belt
+    4300124: sp_frankestein_R belt gear01
+    4300126: sp_frankestein_R belt gear02
+    4300128: sp_frankestein_belt sticked socket01
+    4300130: sp_frankestein_belt sticked socket002
+    4300132: sp_frankestein_valve08
+    4300134: sp_frankestein_valve09
+    4300136: sp_frankestein_valve10
+    4300138: sp_frankestein_L Belt
+    4300140: sp_frankestein_L Belt Gear02
+    4300142: sp_frankestein_L Belt Gear01
+    4300144: sp_frankestein_L Belt sticky socket01
+    4300146: sp_frankestein_L Belt sticky socket02
+    4300148: sp_frankestein_wires
+    4300150: sp_frankestein_arc gauge
+    4300152: sp_frankestein_gear01
+    4300154: sp_frankestein_gear02
+    4300156: sp_frankestein_gear03
+    4300158: sp_frankestein_gear04
+    4300160: sp_frankestein_hardware03
+    4300162: sp_frankestein_main electrical gear001
+    4300164: sp_frankestein_belt sticked socket003
+    4300166: sp_frankestein_guage01 hand
+    4300168: sp_frankestein_guage01
+    4300170: sp_frankestein_guage02
+    4300172: sp_frankestein_guage02 valve
+    4300174: sp_frankestein_guage02 hand
+    4300176: sp_frankestein_guage03 hand
+    4300178: sp_frankestein_guage03 valve
+    4300180: sp_frankestein_guage03
+    4300182: sp_frankestein_guage04
+    4300184: sp_frankestein_guage04 valve02
+    4300186: sp_frankestein_guage04 valve01
+    4300188: sp_frankestein_guage04 hand
+    4300190: sp_frankestein_wire holder03
+    4300192: sp_frankestein_wire holder04
+    4300194: sp_frankestein_VGA body02
+    4300196: sp_frankestein_VGA fan02_L
+    4300198: sp_frankestein_VGA fan01_R
+    4300200: sp_frankestein_VGA Light fan02_R
+    4300202: sp_frankestein_VGA Light fan02_L
+    4300204: sp_frankestein_VGA Light fan03_L
+    4300206: sp_frankestein_VGA Light fan03_R
+    4300208: sp_frankestein_VGA body03
+    4300210: sp_frankestein_VGA fan03_R
+    4300212: sp_frankestein_VGA fan03_L
+    4300214: sp_frankestein_glass01
+    4300216: sp_frankestein_glass02
+    4300218: sp_frankestein_glass03
+    4300220: sp_frankestein_glass04
+    4300222: sp_frankestein_glass05
+    4300224: Cylinder001
+    4300226: sp_frankestein_dome glass
+    4300228: sp_frankestein_Electical cylinder glass
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_Glasses
+    second: {fileID: 2100000, guid: 1ddbc79989538d242a62195d0034fa4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_ID01
+    second: {fileID: 2100000, guid: fdd4f81575858cd4babdbd6b37644ca1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_ID02
+    second: {fileID: 2100000, guid: 90324d52a99badf428eb97a9fcca5f0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_ID03
+    second: {fileID: 2100000, guid: 39b4f27a469465b4881b12a222c1f71c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_ID04
+    second: {fileID: 2100000, guid: c3cf7d0013629bf46b0531b2cf6ebc85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frankestein_SP computer_ID05
+    second: {fileID: 2100000, guid: 82b660ab7dadfbf47a1d0cb41eb6630a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

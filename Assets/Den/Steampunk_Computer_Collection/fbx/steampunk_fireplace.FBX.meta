@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: bd0bc76da1c219740ae4a94ae5845679
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: sp_fireplace_body
+    100002: sp_fireplace_door frame01
+    100004: sp_fireplace_door frame02
+    100006: sp_fireplace_door glass01
+    100008: sp_fireplace_door glass02
+    100010: sp_fireplace_Door lock01
+    100012: sp_fireplace_Door lock02
+    100014: //RootNode
+    400000: sp_fireplace_body
+    400002: sp_fireplace_door frame01
+    400004: sp_fireplace_door frame02
+    400006: sp_fireplace_door glass01
+    400008: sp_fireplace_door glass02
+    400010: sp_fireplace_Door lock01
+    400012: sp_fireplace_Door lock02
+    400014: //RootNode
+    2100000: sp_fireplace
+    2300000: sp_fireplace_body
+    2300002: sp_fireplace_door frame01
+    2300004: sp_fireplace_door frame02
+    2300006: sp_fireplace_door glass01
+    2300008: sp_fireplace_door glass02
+    2300010: sp_fireplace_Door lock01
+    2300012: sp_fireplace_Door lock02
+    3300000: sp_fireplace_body
+    3300002: sp_fireplace_door frame01
+    3300004: sp_fireplace_door frame02
+    3300006: sp_fireplace_door glass01
+    3300008: sp_fireplace_door glass02
+    3300010: sp_fireplace_Door lock01
+    3300012: sp_fireplace_Door lock02
+    4300000: sp_fireplace_body
+    4300002: sp_fireplace_Door lock01
+    4300004: sp_fireplace_door glass01
+    4300006: sp_fireplace_door frame01
+    4300008: sp_fireplace_door glass02
+    4300010: sp_fireplace_Door lock02
+    4300012: sp_fireplace_door frame02
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sp_fireplace
+    second: {fileID: 2100000, guid: 31e75aff0f334cd44bfdd11a9e025bdd, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
