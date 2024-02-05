@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         {
             //kill player
             Debug.Log("Player killed");
-            SceneManager.LoadScene("GameOver");           
+            //SceneManager.LoadScene("GameOver");           
         }
         Destroy(gameObject);
     }

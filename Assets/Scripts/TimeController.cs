@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
-    //[SerializeField] Slider slider;
-    //[SerializeField] TextMeshProUGUI speedText;
+    [SerializeField] Slider slider;
+    [SerializeField] TextMeshProUGUI speedText;
 
     private float fixedTime = 0f;
     private float maxfixedTime = 0f;
@@ -20,7 +20,7 @@ public class TimeController : MonoBehaviour
         maxfixedTime = Time.fixedDeltaTime;
         unscaledTimeFactor = 1 / Time.timeScale;
 
-        //SetSlider();
+        SetSlider();
     }
 
     private void Update()
@@ -28,23 +28,23 @@ public class TimeController : MonoBehaviour
         ChangeTimeScale();
     }
 
-    /*private void SetSlider()
+    private void SetSlider()
     {
         slider.maxValue = 1.0f;
         slider.minValue = 0.01f;
         slider.value = 1f;
-    }*/
+    }
 
     public void ChangeTimeScale()
     {
-        if (ArrowController.Instance.isArrowActive)
+        /*if (ArrowController.Instance.isArrowActive)
         {
             Time.timeScale = 0.2f;
-        }
-        //speedText.text = slider.value.ToString("N2");
-        //Time.timeScale = slider.value;
+        }*/
+        speedText.text = slider.value.ToString("N2");
+        Time.timeScale = slider.value;
 
-        //Time.fixedDeltaTime = Mathf.Clamp(fixedTime * Time.timeScale, 0f, maxfixedTime);
+        Time.fixedDeltaTime = Mathf.Clamp(fixedTime * Time.timeScale, 0f, maxfixedTime);
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         lastFrameChanged = Time.frameCount;
 

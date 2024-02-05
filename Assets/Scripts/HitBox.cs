@@ -1,18 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HitBox : MonoBehaviour
 {
 
     public event EventHandler OnCollideWithArrow;
     public CapsuleCollider arrow;
-    public static event Action OnHeadshot;
     public static event Action OnKill;
-    private bool isKIlled;
     private bool isKilled;
 
 
@@ -33,16 +27,6 @@ public class HitBox : MonoBehaviour
             if (!isKilled)
             {
                 OnKill?.Invoke();
-                //isKilled = true;
-            }
-            
-            Debug.Log(gameObject.tag);
-            Debug.Log(gameObject);
-            if (gameObject.name == "mixamorig:Head" && !isKIlled)
-            {
-                Debug.Log("Headshot");
-                OnHeadshot?.Invoke();
-                isKIlled = true;
             }
         }
         else
@@ -50,13 +34,4 @@ public class HitBox : MonoBehaviour
             arrow.isTrigger = false;
         }
     }
-
-   /* private IEnumerator Kill()
-    {
-        yield return WaitForSeconds(1f);
-       
-    }*/
-
-    
-
 }
