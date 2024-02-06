@@ -21,8 +21,8 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        ToggleActionMap(playerInputActions.Player);
-        DisableArrowActionMap();
+        /*ToggleActionMap(playerInputActions.Player);
+        DisableArrowActionMap();*/
     }
 
     public static void ToggleActionMap(InputActionMap actionMap)

@@ -42,7 +42,7 @@ public class ArrowCameraManager : MonoBehaviour
 		// Reference to the camera transform.
 		cam = transform;
 
-		arrowVirtualCamera.gameObject.SetActive(false);
+		//arrowVirtualCamera.gameObject.SetActive(false);
 
         // Set camera default position.
         cam.position = arrow.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;

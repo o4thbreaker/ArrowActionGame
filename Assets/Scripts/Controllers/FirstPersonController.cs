@@ -115,7 +115,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-			TransferControl();
+			//TransferControl();
         }
 
 		private void LateUpdate()

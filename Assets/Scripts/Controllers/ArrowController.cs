@@ -7,7 +7,7 @@ public class ArrowController : MonoBehaviour
 
     [SerializeField] private float flySpeed = 4;
     [SerializeField] private Transform arrowCamera;
-    [SerializeField] private float turnSmoothing = 0.06f;
+    [SerializeField] private float turnSmoothing = 0.15f;
     [SerializeField] private float sprintFactor = 2f;
     [SerializeField] private TimeController timeController;
 
