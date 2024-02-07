@@ -30,9 +30,9 @@ public class ArrowController : MonoBehaviour
         previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
     }
 
-    private void FlyManagement(float horizontal, float vertical)
+    private void HandleFlight(float horizontal, float vertical)
     {
-        Vector3 direction = Rotating(horizontal, vertical);
+        Vector3 direction = CalculateDirection(horizontal, vertical);
 
         if (previousUnscaledTimeFactor != timeController.UnscaledTimeFactor)
         {
@@ -43,10 +43,12 @@ public class ArrowController : MonoBehaviour
         float speed = flySpeed * 10 * (IsSprinting() ? sprintFactor : 1);
         float speedMultiplier = timeController.UnscaledTimeFactor;
         rb.velocity = speed * speedMultiplier * direction;
+
+        HandleRotation();
         HandleSprint();
     }
 
-    private Vector3 Rotating(float horizontal, float vertical)
+    private Vector3 CalculateDirection(float horizontal, float vertical)
     {
         Vector3 forward = arrowCamera.TransformDirection(Vector3.forward);
         // Camera forward Y component is relevant when flying.
@@ -57,19 +59,24 @@ public class ArrowController : MonoBehaviour
         // Calculate target direction based on camera forward and direction key.
         Vector3 targetDirection = forward * vertical + right * horizontal;
 
-        // Rotate the player to the correct fly position.
-        if ((IsMoving() && targetDirection != Vector3.zero))
+        // Return the current fly direction.
+        return targetDirection;
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 direction = rb.velocity;
+
+        // Rotate the arrow to the correct fly position.
+        if (IsMoving() && direction.sqrMagnitude > 0.1f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
             Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
 
             rb.MoveRotation(newRotation);
-            SetLastDirection(targetDirection);
+            SetLastDirection(direction);
         }
-
-        // Return the current fly direction.
-        return targetDirection;
     }
 
     private void HandleSprint()
@@ -112,7 +119,7 @@ public class ArrowController : MonoBehaviour
     {
         if (InputManager.playerInputActions.Arrow.enabled)
         {
-            FlyManagement(Input.GetAxisRaw("Yaw"), Input.GetAxisRaw("Pitch"));
+            HandleFlight(Input.GetAxisRaw("Yaw"), Input.GetAxisRaw("Pitch"));
 
             /*if (Input.GetKey(KeyCode.N))
                 TransferControl();*/

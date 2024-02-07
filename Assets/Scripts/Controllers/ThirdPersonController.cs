@@ -6,8 +6,9 @@ public class ThirdPersonController : MonoBehaviour
 {
     private PlayerInputActions playerInput;
     private InputAction move;
+    private Animator animator;
 
-    [SerializeField] private float movementForce = 1f;
+    [SerializeField] private float playerSpeed = 1.5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float turnSmoothing = 0.15f;
@@ -16,11 +17,19 @@ public class ThirdPersonController : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 forceDirection = Vector3.zero;
+    private int isWalkingHash;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerInput = new PlayerInputActions();
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        isWalkingHash = Animator.StringToHash("isWalking");
     }
 
     private void OnEnable()
@@ -36,26 +45,29 @@ public class ThirdPersonController : MonoBehaviour
         playerInput.Player.Disable();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Debug.Log("ReadValue: " + move.ReadValue<Vector2>());
-        HandleMovement(move.ReadValue<Vector2>().x, move.ReadValue<Vector2>().y);
+        //bool isWalking = animator.GetBool(isWalkingHash); maybe do an if statement to check but not neccesary now
+        if (IsMoving())
+        {
+            animator.SetBool(isWalkingHash, true);
 
-        // to remove movement after releasing the button
-        forceDirection = Vector3.zero;
+            forceDirection = CalculateDirection(move.ReadValue<Vector2>().x, move.ReadValue<Vector2>().y);
 
-        HandleJump();
+            float movementForceMultiplier = 10;
+            rb.velocity = forceDirection * movementForceMultiplier;
+
+            // to remove movement after releasing the button
+            forceDirection = Vector3.zero;
+        }
+        else
+        {
+            animator.SetBool(isWalkingHash, false);
+        }
+
+        HandleRotation();
     }
-
-    private void HandleMovement(float forward, float right)
-    {
-        Vector3 direction = Rotating(forward, right);
-
-        rb.AddForce(direction * movementForce, ForceMode.Impulse);
-        Debug.Log(direction);
-    }
-
-    private Vector3 Rotating(float playerForward, float playerRight)
+    private Vector3 CalculateDirection(float playerForward, float playerRight)
     {
         Vector3 cameraForward = playerCamera.transform.forward;
         Vector3 cameraRight = playerCamera.transform.right;
@@ -67,16 +79,21 @@ public class ThirdPersonController : MonoBehaviour
         // probably did smth wrong here but it works so fine for now
         Vector3 targetDirection = cameraForward * playerRight + cameraRight * playerForward;
 
-        if (IsMoving() && targetDirection != Vector3.zero)
+        return targetDirection;
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 direction = rb.velocity;
+
+        if (IsMoving() && direction.sqrMagnitude > 0.1f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
             Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
-
             rb.MoveRotation(newRotation);
         }
-        
-        return targetDirection;
+        else 
+            rb.angularVelocity = Vector3.zero;
     }
 
     private bool IsMoving()
