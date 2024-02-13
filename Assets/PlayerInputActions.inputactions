@@ -246,172 +246,110 @@
             "id": "6a2c1241-af83-4d16-8fc5-6d3d8be527d7",
             "actions": [
                 {
-                    "name": "Roll",
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "5fc86817-6e06-4081-b423-09aad71ffc92",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "fb5d7c5b-334d-49a1-af18-2f656fa17bed",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Accelerate",
                     "type": "PassThrough",
-                    "id": "d270c500-1bbe-4433-8484-f4f76e4b7803",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pitch",
-                    "type": "Button",
-                    "id": "c4cbf90e-6c64-42cc-8df8-f80ea35a6eda",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Yaw",
-                    "type": "Button",
-                    "id": "cddff580-e2f3-45cf-94a1-f4c1552c7040",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ThrottleDown",
-                    "type": "PassThrough",
-                    "id": "4d357f81-569f-47eb-8d82-64414ec6514d",
+                    "id": "71c9c845-6d22-4f2a-96c7-340307748af7",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ThrottleUp",
-                    "type": "PassThrough",
-                    "id": "4e9cd6f4-4551-470f-888c-89700f627eeb",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "31256908-e313-4fcc-a103-3f251ad87eb6",
-                    "path": "<Keyboard>/ctrl",
+                    "name": "WASD",
+                    "id": "c612c136-5443-40cd-ab43-fc445aa0f79b",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrottleDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b1e0922d-0818-4d61-9ecf-d405f4343dd5",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ThrottleUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Roll",
-                    "id": "9e468de7-7a9e-4eae-973a-8a5b9bdabb31",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "254fc1d8-a6cd-4de7-99bc-074a977caaad",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "1e9e493c-cd75-4790-a9fa-fe221397c285",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Pitch",
-                    "id": "8e1f772c-6146-4973-88f0-2a668589b705",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "085db50b-7d6f-409b-a95d-075e66a5eedb",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "a84d9efd-039b-4da3-b0a5-c65f2478be94",
+                    "name": "up",
+                    "id": "5697bfd4-292f-493b-9563-554507ca8ff6",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Pitch",
+                    "groups": "KeyboardMouse",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Yaw",
-                    "id": "6a52fd60-44e7-4eb0-ad43-b439e95f571a",
-                    "path": "1DAxis",
+                    "name": "down",
+                    "id": "adb9eb10-7886-40be-a848-a2fc7d67c5a4",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": true,
+                    "groups": "KeyboardMouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "5576ec88-3bf2-4437-a8af-c8dc4cc72a41",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "60d30df5-4dda-4add-b478-7e8052818814",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8e6355df-48f8-4bb7-b718-ef47d7022608",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=0.5,y=0.5)",
+                    "groups": "KeyboardMouse",
+                    "action": "Look",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "958ed9aa-6e89-49ea-a5b7-51337e1276c2",
-                    "path": "<Keyboard>/q",
+                    "name": "",
+                    "id": "58f2eb88-02a4-41cc-9018-dfc8d9b08332",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
+                    "groups": "KeyboardMouse",
+                    "action": "Accelerate",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "c33dd7dc-b12b-4970-810b-86f6d60c5906",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

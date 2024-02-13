@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -251,7 +251,7 @@ namespace StarterAssets
 		{
 				ArrowCameraManager.Instance.SetCameraActive();
 				CameraSwitcher.Instance.SwitchCameraPriority();
-				InputManager.ToggleActionMap(InputManager.playerInputActions.Arrow);
+				InputManager.ToggleActionMap(InputManager.playerInput.Arrow);
 				
 				ArrowController.Instance.isArrowActive = true;
 				ArrowController.Instance.isControlTransferedToPlayer = false;
@@ -276,4 +276,4 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z), groundedRadius);
 		}
 	}
-}
+}*/

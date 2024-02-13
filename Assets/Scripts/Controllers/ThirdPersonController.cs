@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ThirdPersonController : MonoBehaviour
 {
-    private PlayerInputActions playerInput;
-    private InputAction move;
+    public static ThirdPersonController Instance { get; private set; }
+
+    private Rigidbody rb;
+    private InputManager inputManager;
     private Animator animator;
 
     [SerializeField] private float playerSpeed = 5f;
@@ -16,17 +17,19 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private Camera playerCamera;
 
-    private Rigidbody rb;
     private Vector3 forceDirection = Vector3.zero;
     private int isWalkingHash;
     private int isRunningHash;
     private bool isSprinting = false;
+    private float groundedDrag;
 
     private void Awake()
     {
+        Instance = this; 
+
         rb = GetComponent<Rigidbody>();
-        playerInput = new PlayerInputActions();
         animator = GetComponentInChildren<Animator>();
+        inputManager = InputManager.Instance;
     }
 
     private void Start()
@@ -34,55 +37,45 @@ public class ThirdPersonController : MonoBehaviour
         Cursor.visible = false;
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        groundedDrag = rb.drag;
     }
 
     private void OnEnable()
     {
-        move = playerInput.Player.Move;
-
-        playerInput.Player.Sprint.performed += OnSprintPressed;
+       /* playerInput.Player.Sprint.performed += OnSprintPressed;
         playerInput.Player.Sprint.canceled += OnSprintReleased;
 
         playerInput.Player.Jump.performed += OnJump;
         
-        playerInput.Player.Enable();
+        playerInput.Player.Enable();*/
     }
 
     private void OnDisable()
     {
-        playerInput.Player.Sprint.performed -= OnSprintPressed;
+       /* playerInput.Player.Sprint.performed -= OnSprintPressed;
         playerInput.Player.Sprint.canceled -= OnSprintReleased;
 
         playerInput.Player.Jump.performed -= OnJump;
 
-        playerInput.Player.Disable();
+        playerInput.Player.Disable();*/
     }
 
     private void Update()
     {
         HandleMovement();
         HandleRotation();
-
-        if (IsGrounded())
-        {
-            Debug.Log("isGrounded");
-        }
-        else
-        {
-            Debug.Log("-");
-        }
     }
 
     private void HandleMovement()
     {
         //bool isWalking = animator.GetBool(isWalkingHash); maybe do an if statement to check but not neccesary now
-        if (IsMoving())
+        if (inputManager.IsPlayerMoving())
         {
             animator.SetBool(isWalkingHash, true);
 
-            forceDirection = CalculateDirection(move.ReadValue<Vector2>().x, move.ReadValue<Vector2>().y);
+            forceDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y);
 
-            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintMultiplier : 1), ForceMode.Force);
+            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintMultiplier : 1), ForceMode.Force); 
 
             // to remove movement after releasing the button
             forceDirection = Vector3.zero;
@@ -112,7 +105,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         Vector3 direction = rb.velocity;
 
-        if (IsMoving() && direction.sqrMagnitude > 0.1f)
+        if (inputManager.IsPlayerMoving() && direction.sqrMagnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
@@ -122,37 +115,38 @@ public class ThirdPersonController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
     }
 
-    private bool IsMoving()
-    {
-        return (move.ReadValue<Vector2>().x != 0) || (move.ReadValue<Vector2>().y != 0);
-    }
-
     private bool IsGrounded()
     {
         Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
+        {
+            rb.drag = groundedDrag;
             return true;
+        }
         else
+        {
+            rb.drag = 0;
             return false;
+        }
     }
 
-    private void OnSprintPressed(InputAction.CallbackContext context)
+    public void OnSprintPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (IsMoving())
+        if (inputManager.IsPlayerMoving())
         {
             animator.SetBool(isRunningHash, true);
             isSprinting = true;
         }
     }
 
-    private void OnSprintReleased(InputAction.CallbackContext context)
+    public void OnSprintReleased(UnityEngine.InputSystem.InputAction.CallbackContext context)
     { 
         animator.SetBool(isRunningHash, false);
         isSprinting = false;
     }
 
-    private void OnJump(InputAction.CallbackContext context)
+    public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (IsGrounded())
         {

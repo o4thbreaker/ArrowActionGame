@@ -1,76 +1,113 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; set; }
+    public static InputManager Instance { get; private set; }
 
-    public static PlayerInputActions playerInputActions;
+    public static PlayerInputActions playerInput;
     public static event Action<InputActionMap> actionMapChange; 
 
     public bool analogMovement;
 
-    private void Awake()
+    private InputAction playerMove;
+    private InputAction playerLook;
+    private InputAction playerSprint;
+    private InputAction playerJump;
+
+    private InputAction arrowMove;
+    private InputAction arrowLook;
+    private InputAction arrowAccelerate;
+
+    public Vector2 GetPlayerMovement()
     {
+        return playerMove.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetArrowMovement()
+    {
+        return arrowMove.ReadValue<Vector2>();
+    }
+
+    public InputAction GetArrowAccelerate()
+    {
+        return arrowAccelerate;
+    }
+
+    private void Awake()
+    { 
         Instance = this;
-        playerInputActions = new PlayerInputActions();
+
+        playerInput = new PlayerInputActions();
+
+        playerMove = playerInput.Player.Move;
+        playerLook = playerInput.Player.Look;
+        playerSprint = playerInput.Player.Sprint;
+        playerJump = playerInput.Player.Jump;
+
+        arrowMove = playerInput.Arrow.Move;
+        arrowLook = playerInput.Arrow.Look;
+        arrowAccelerate = playerInput.Arrow.Accelerate;
+    }
+
+    private void RegisterInputActions()
+    {
+        if (playerInput.Arrow.enabled)
+        {
+            arrowAccelerate.performed += ArrowController.Instance.OnAcceleratePressed;
+            arrowAccelerate.canceled += ArrowController.Instance.OnAccelerateReleased;
+        }
+        else if (playerInput.Player.enabled)
+        {
+            playerSprint.performed += ThirdPersonController.Instance.OnSprintPressed;
+            playerSprint.canceled += ThirdPersonController.Instance.OnSprintReleased;
+
+            playerJump.performed += ThirdPersonController.Instance.OnJump;
+        }
     }
 
     private void Start()
     {
-        /*ToggleActionMap(playerInputActions.Player);
-        DisableArrowActionMap();*/
+        RegisterInputActions();
     }
 
-    public static void ToggleActionMap(InputActionMap actionMap)
+    public static void EnableActionMap(InputActionMap actionMap)
     {
         if (actionMap.enabled) return;
         
-        playerInputActions.Disable();
+        playerInput.Disable();
         actionMapChange?.Invoke(actionMap);
         actionMap.Enable();
     }
 
     private void OnEnable()
     {
-        playerInputActions.Enable();
+        EnableActionMap(playerInput.Arrow);
     }
 
     private void OnDisable()
     {
-        playerInputActions.Disable();
+        // smth like DisableActionMap()
     }
 
-    public Vector2 GetPlayerMovement()
+    public bool IsPlayerMoving()
     {
-        return playerInputActions.Player.Move.ReadValue<Vector2>();
+        return (playerMove.ReadValue<Vector2>().x != 0) || (playerMove.ReadValue<Vector2>().y != 0);
     }
 
-    public Vector2 GetPlayerMouseDelta()
+    public bool IsArrowMoving()
     {
-        return playerInputActions.Player.Look.ReadValue<Vector2>();
-    }
-
-    public bool IsPlayerRunning()
-    {
-        return playerInputActions.Player.Sprint.triggered;
-    }
-
-    public bool IsPlayerJumping()
-    {
-        return playerInputActions.Player.Jump.triggered;
+        return (arrowMove.ReadValue<Vector2>().x != 0) || (arrowMove.ReadValue<Vector2>().y != 0);
     }
 
     public bool IsPlayerControlTransfered()
     {
-        return playerInputActions.Player.TransferToArrow.triggered;
+        return playerInput.Player.TransferToArrow.triggered;
     }
 
     public void DisableArrowActionMap()
     {
-        playerInputActions.Arrow.Disable();
+        playerInput.Arrow.Disable();
     }
 }

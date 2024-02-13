@@ -36,7 +36,7 @@ public class _ArrowController : MonoBehaviour
 
     private void HandleInputs()
     {
-        if (InputManager.playerInputActions.Arrow.enabled)
+        if (InputManager.playerInput.Arrow.enabled)
         {
             roll = Input.GetAxis("Roll");
             pitch = Input.GetAxis("Pitch");

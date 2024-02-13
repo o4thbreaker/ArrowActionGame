@@ -12,17 +12,22 @@ public class ArrowController : MonoBehaviour
     [SerializeField] private TimeController timeController;
 
     private Rigidbody rb;
+    private InputManager inputManager;
 
     private Vector3 lastDirection;
     private float previousUnscaledTimeFactor;
     public bool isControlTransferedToPlayer = false;
     public bool isArrowActive = false;
+    private bool isAccelerating = false;
 
     private void Awake()
     {
         Instance = this;
 
         rb = GetComponent<Rigidbody>();
+        inputManager = InputManager.Instance;
+
+        Debug.Log("inputManager: " + inputManager);
     }
 
     private void Start()
@@ -30,9 +35,25 @@ public class ArrowController : MonoBehaviour
         previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
     }
 
-    private void HandleFlight(float horizontal, float vertical)
+    private void OnEnable()
     {
-        Vector3 direction = CalculateDirection(horizontal, vertical);
+        /*InputManager.Instance.GetArrowAccelerate().performed += OnAcceleratePressed;
+        InputManager.Instance.GetArrowAccelerate().canceled += OnAccelerateReleased;*/
+
+        //playerInput.Arrow.Enable();
+    }
+
+    private void OnDisable()
+    {
+        /*InputManager.Instance.GetArrowAccelerate().performed -= OnAcceleratePressed;
+        InputManager.Instance.GetArrowAccelerate().canceled -= OnAccelerateReleased;*/
+
+        //playerInput.Arrow.Disable();
+    }
+
+    private void HandleFlight()
+    {
+        Vector3 direction = CalculateDirection(inputManager.GetArrowMovement().x, inputManager.GetArrowMovement().y);
 
         if (previousUnscaledTimeFactor != timeController.UnscaledTimeFactor)
         {
@@ -40,12 +61,11 @@ public class ArrowController : MonoBehaviour
             previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
         }
 
-        float speed = flySpeed * 10 * (IsSprinting() ? sprintFactor : 1);
+        float speed = flySpeed * 10 * (isAccelerating ? sprintFactor : 1);
         float speedMultiplier = timeController.UnscaledTimeFactor;
         rb.velocity = speed * speedMultiplier * direction;
 
         HandleRotation();
-        HandleSprint();
     }
 
     private Vector3 CalculateDirection(float horizontal, float vertical)
@@ -68,7 +88,7 @@ public class ArrowController : MonoBehaviour
         Vector3 direction = rb.velocity;
 
         // Rotate the arrow to the correct fly position.
-        if (IsMoving() && direction.sqrMagnitude > 0.1f)
+        if (inputManager.IsArrowMoving() && direction.sqrMagnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
@@ -79,47 +99,40 @@ public class ArrowController : MonoBehaviour
         }
     }
 
-    private void HandleSprint()
-    {
-        if (IsSprinting())
-        {
-            ArrowCameraManager.Instance.SetFOV(45);
-        }
-        else
-        {
-            ArrowCameraManager.Instance.ResetFOV();
-        }
-    }
-
-    private bool IsMoving()
-    {
-        return (Input.GetAxis("Yaw") != 0) || (Input.GetAxis("Pitch") != 0);
-    }
-
-    private bool IsSprinting()
-    {
-        return Input.GetKey(KeyCode.LeftShift) && IsMoving();
-    }
-
     private void SetLastDirection(Vector3 direction)
     {
         lastDirection = direction;
     }
+
+    public void OnAcceleratePressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        isAccelerating = true;
+
+        ArrowCameraManager.Instance.SetFOV(45);
+    }
+
+    public void OnAccelerateReleased(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        isAccelerating = false;
+
+        ArrowCameraManager.Instance.ResetFOV();
+    }
+
     private void TransferControl()
     {
         ArrowCameraManager.Instance.SetCameraInactive();
         CameraSwitcher.Instance.SwitchCameraPriority();
         InputManager.Instance.DisableArrowActionMap();
-        InputManager.ToggleActionMap(InputManager.playerInputActions.Player); 
+        InputManager.EnableActionMap(InputManager.playerInput.Player); 
 
         isControlTransferedToPlayer = true;
     }
 
     private void Update()
     {
-        if (InputManager.playerInputActions.Arrow.enabled)
+        if (InputManager.playerInput.Arrow.enabled)
         {
-            HandleFlight(Input.GetAxisRaw("Yaw"), Input.GetAxisRaw("Pitch"));
+            HandleFlight();
 
             /*if (Input.GetKey(KeyCode.N))
                 TransferControl();*/
