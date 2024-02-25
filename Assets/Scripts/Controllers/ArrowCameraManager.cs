@@ -8,14 +8,24 @@ public class ArrowCameraManager : MonoBehaviour
     [SerializeField] private float defaultFOV = 60;                     // Default Camera's FOV
 
     private CinemachineVirtualCamera arrowVirtualCamera;               // Camera's reference
+	private CinemachineBrain brain;
 
     private float targetFOV;                                           // Target camera Field of View
 
 	void Awake()
 	{
-		Instance = this;
-		Debug.Log(Instance);
-		arrowVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        arrowVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+		brain = GetComponent<CinemachineBrain>();
 
 		ResetFOV();
 	}

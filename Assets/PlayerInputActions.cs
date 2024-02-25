@@ -64,7 +64,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TransferToArrow"",
+                    ""name"": ""TransferControl"",
                     ""type"": ""Button"",
                     ""id"": ""5a64a184-80a4-4ec0-b56c-1414c819f05b"",
                     ""expectedControlType"": ""Button"",
@@ -256,8 +256,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TransferToArrow"",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""TransferControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -292,6 +292,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TransferControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e695180-d373-4c52-a83a-6beeab80220e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -372,6 +381,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Accelerate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4f325c1-f3db-4295-bc1b-fad0de58c1e8"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""TransferControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -432,12 +452,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_TransferToArrow = m_Player.FindAction("TransferToArrow", throwIfNotFound: true);
+        m_Player_TransferControl = m_Player.FindAction("TransferControl", throwIfNotFound: true);
         // Arrow
         m_Arrow = asset.FindActionMap("Arrow", throwIfNotFound: true);
         m_Arrow_Move = m_Arrow.FindAction("Move", throwIfNotFound: true);
         m_Arrow_Look = m_Arrow.FindAction("Look", throwIfNotFound: true);
         m_Arrow_Accelerate = m_Arrow.FindAction("Accelerate", throwIfNotFound: true);
+        m_Arrow_TransferControl = m_Arrow.FindAction("TransferControl", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -503,7 +524,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_TransferToArrow;
+    private readonly InputAction m_Player_TransferControl;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -512,7 +533,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @TransferToArrow => m_Wrapper.m_Player_TransferToArrow;
+        public InputAction @TransferControl => m_Wrapper.m_Player_TransferControl;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -534,9 +555,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @TransferToArrow.started += instance.OnTransferToArrow;
-            @TransferToArrow.performed += instance.OnTransferToArrow;
-            @TransferToArrow.canceled += instance.OnTransferToArrow;
+            @TransferControl.started += instance.OnTransferControl;
+            @TransferControl.performed += instance.OnTransferControl;
+            @TransferControl.canceled += instance.OnTransferControl;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -553,9 +574,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @TransferToArrow.started -= instance.OnTransferToArrow;
-            @TransferToArrow.performed -= instance.OnTransferToArrow;
-            @TransferToArrow.canceled -= instance.OnTransferToArrow;
+            @TransferControl.started -= instance.OnTransferControl;
+            @TransferControl.performed -= instance.OnTransferControl;
+            @TransferControl.canceled -= instance.OnTransferControl;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -580,6 +601,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Arrow_Move;
     private readonly InputAction m_Arrow_Look;
     private readonly InputAction m_Arrow_Accelerate;
+    private readonly InputAction m_Arrow_TransferControl;
     public struct ArrowActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -587,6 +609,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Arrow_Move;
         public InputAction @Look => m_Wrapper.m_Arrow_Look;
         public InputAction @Accelerate => m_Wrapper.m_Arrow_Accelerate;
+        public InputAction @TransferControl => m_Wrapper.m_Arrow_TransferControl;
         public InputActionMap Get() { return m_Wrapper.m_Arrow; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -605,6 +628,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Accelerate.started += instance.OnAccelerate;
             @Accelerate.performed += instance.OnAccelerate;
             @Accelerate.canceled += instance.OnAccelerate;
+            @TransferControl.started += instance.OnTransferControl;
+            @TransferControl.performed += instance.OnTransferControl;
+            @TransferControl.canceled += instance.OnTransferControl;
         }
 
         private void UnregisterCallbacks(IArrowActions instance)
@@ -618,6 +644,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Accelerate.started -= instance.OnAccelerate;
             @Accelerate.performed -= instance.OnAccelerate;
             @Accelerate.canceled -= instance.OnAccelerate;
+            @TransferControl.started -= instance.OnTransferControl;
+            @TransferControl.performed -= instance.OnTransferControl;
+            @TransferControl.canceled -= instance.OnTransferControl;
         }
 
         public void RemoveCallbacks(IArrowActions instance)
@@ -677,12 +706,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnTransferToArrow(InputAction.CallbackContext context);
+        void OnTransferControl(InputAction.CallbackContext context);
     }
     public interface IArrowActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
+        void OnTransferControl(InputAction.CallbackContext context);
     }
 }

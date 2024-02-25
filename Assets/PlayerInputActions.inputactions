@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TransferToArrow",
+                    "name": "TransferControl",
                     "type": "Button",
                     "id": "5a64a184-80a4-4ec0-b56c-1414c819f05b",
                     "expectedControlType": "Button",
@@ -234,8 +234,8 @@
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "TransferToArrow",
+                    "groups": "KeyboardMouse",
+                    "action": "TransferControl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -270,6 +270,15 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold(duration=0.1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TransferControl",
+                    "type": "Button",
+                    "id": "7e695180-d373-4c52-a83a-6beeab80220e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -348,6 +357,17 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4f325c1-f3db-4295-bc1b-fad0de58c1e8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "TransferControl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

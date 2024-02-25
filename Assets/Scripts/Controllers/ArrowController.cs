@@ -1,15 +1,20 @@
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class ArrowController : MonoBehaviour
 {
     public static ArrowController Instance { get; private set; }
 
     [SerializeField] private float flySpeed = 4;
-    [SerializeField] private Transform arrowCamera;
     [SerializeField] private float turnSmoothing = 0.15f;
     [SerializeField] private float sprintFactor = 2f;
     [SerializeField] private TimeController timeController;
+    [SerializeField] private Transform arrowCamera;
+    [SerializeField] private Transform parent;
+    [SerializeField] private Transform targetReturnTo;
+    [SerializeField] private Transform curvePoint;
+
 
     private Rigidbody rb;
     private InputManager inputManager;
@@ -19,15 +24,25 @@ public class ArrowController : MonoBehaviour
     public bool isControlTransferedToPlayer = false;
     public bool isArrowActive = false;
     private bool isAccelerating = false;
+    private bool isReturning = false;
+    private Vector3 oldPosition;
+    private float returningTime = 0f;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        rb = GetComponent<Rigidbody>();
         inputManager = InputManager.Instance;
 
-        Debug.Log("inputManager: " + inputManager);
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -37,18 +52,12 @@ public class ArrowController : MonoBehaviour
 
     private void OnEnable()
     {
-        /*InputManager.Instance.GetArrowAccelerate().performed += OnAcceleratePressed;
-        InputManager.Instance.GetArrowAccelerate().canceled += OnAccelerateReleased;*/
-
-        //playerInput.Arrow.Enable();
+        inputManager.OnArrowMapEnable();
     }
 
     private void OnDisable()
     {
-        /*InputManager.Instance.GetArrowAccelerate().performed -= OnAcceleratePressed;
-        InputManager.Instance.GetArrowAccelerate().canceled -= OnAccelerateReleased;*/
-
-        //playerInput.Arrow.Disable();
+        inputManager.OnArrowMapDisable();
     }
 
     private void HandleFlight()
@@ -62,8 +71,8 @@ public class ArrowController : MonoBehaviour
         }
 
         float speed = flySpeed * 10 * (isAccelerating ? sprintFactor : 1);
-        float speedMultiplier = timeController.UnscaledTimeFactor;
-        rb.velocity = speed * speedMultiplier * direction;
+        float timeFactor = timeController.UnscaledTimeFactor;
+        rb.velocity = speed * timeFactor * direction;
 
         HandleRotation();
     }
@@ -99,33 +108,74 @@ public class ArrowController : MonoBehaviour
         }
     }
 
+    private void ReturnArrow()
+    {
+        oldPosition = rb.position;
+        isReturning = true;
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
+    }
+
+    private Vector3 GetBQCPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
+    {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+
+        Vector3 p = (uu * p0) + (2 * u * t * p1) + (tt * p2);
+
+        return p;
+    }
+
+    private void HandleReturning()
+    {
+        if (isReturning)
+        {
+            if (returningTime < 1.0f)
+            {
+                rb.position = GetBQCPoint(returningTime, oldPosition, curvePoint.position, targetReturnTo.position);
+                returningTime += Time.unscaledDeltaTime;
+            }
+            else
+            {
+                isReturning = false;
+                rb.position = targetReturnTo.position;
+                rb.rotation = targetReturnTo.rotation;
+                returningTime = 0f;
+                rb.isKinematic = false;
+
+                gameObject.SetActive(false);
+                transform.parent = parent;
+            }
+        }
+    }
+
     private void SetLastDirection(Vector3 direction)
     {
         lastDirection = direction;
     }
 
-    public void OnAcceleratePressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnAcceleratePressed(InputAction.CallbackContext context)
     {
         isAccelerating = true;
 
-        ArrowCameraManager.Instance.SetFOV(45);
+        //ArrowCameraManager.Instance.SetFOV(45);
     }
 
-    public void OnAccelerateReleased(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnAccelerateReleased(InputAction.CallbackContext context)
     {
         isAccelerating = false;
 
-        ArrowCameraManager.Instance.ResetFOV();
+        //ArrowCameraManager.Instance.ResetFOV();
     }
 
-    private void TransferControl()
+    public void OnTransferControl(InputAction.CallbackContext context)
     {
-        ArrowCameraManager.Instance.SetCameraInactive();
+        Debug.Log("Arrow OnTransferControl"); 
         CameraSwitcher.Instance.SwitchCameraPriority();
-        InputManager.Instance.DisableArrowActionMap();
-        InputManager.EnableActionMap(InputManager.playerInput.Player); 
-
-        isControlTransferedToPlayer = true;
+        InputManager.EnableActionMap(InputManager.playerInput.Player);
+        
+        ReturnArrow();
     }
 
     private void Update()
@@ -133,9 +183,8 @@ public class ArrowController : MonoBehaviour
         if (InputManager.playerInput.Arrow.enabled)
         {
             HandleFlight();
+        }
 
-            /*if (Input.GetKey(KeyCode.N))
-                TransferControl();*/
-        }    
+        HandleReturning();
     }
 }

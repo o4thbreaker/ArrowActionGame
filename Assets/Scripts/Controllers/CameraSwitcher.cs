@@ -15,7 +15,15 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SwitchCameraPriority()
@@ -27,13 +35,15 @@ public class CameraSwitcher : MonoBehaviour
 
             isCameraSwitchedToArrow = !isCameraSwitchedToArrow;
             isPlayerCameraOn = !isPlayerCameraOn;
+            isArrowCameraOn = true;
         }
         else if (isArrowCameraOn)
-        {
+        {   
             arrowCamera.Priority = 0;
             playerCamera.Priority = 1;
 
             isArrowCameraOn = !isArrowCameraOn;
+            isPlayerCameraOn = true;
         }
     }
 

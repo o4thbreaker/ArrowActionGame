@@ -1,5 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -20,44 +22,47 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 forceDirection = Vector3.zero;
     private int isWalkingHash;
     private int isRunningHash;
+    private int throwHash;
     private bool isSprinting = false;
     private float groundedDrag;
 
     private void Awake()
     {
-        Instance = this; 
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        inputManager = InputManager.Instance;
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        inputManager = InputManager.Instance;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Start()
     {
-        Cursor.visible = false;
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        throwHash = Animator.StringToHash("Throw");
         groundedDrag = rb.drag;
     }
 
     private void OnEnable()
     {
-       /* playerInput.Player.Sprint.performed += OnSprintPressed;
-        playerInput.Player.Sprint.canceled += OnSprintReleased;
-
-        playerInput.Player.Jump.performed += OnJump;
-        
-        playerInput.Player.Enable();*/
+        inputManager.OnPlayerMapEnable();
     }
 
     private void OnDisable()
     {
-       /* playerInput.Player.Sprint.performed -= OnSprintPressed;
-        playerInput.Player.Sprint.canceled -= OnSprintReleased;
-
-        playerInput.Player.Jump.performed -= OnJump;
-
-        playerInput.Player.Disable();*/
+        inputManager.OnPlayerMapDisable();
     }
 
     private void Update()
@@ -68,7 +73,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void HandleMovement()
     {
-        //bool isWalking = animator.GetBool(isWalkingHash); maybe do an if statement to check but not neccesary now
+        //Debug.Log(inputManager.IsPlayerMoving());
         if (inputManager.IsPlayerMoving())
         {
             animator.SetBool(isWalkingHash, true);
@@ -131,7 +136,7 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-    public void OnSprintPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnSprintPressed(InputAction.CallbackContext context)
     {
         if (inputManager.IsPlayerMoving())
         {
@@ -140,17 +145,25 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-    public void OnSprintReleased(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnSprintReleased(InputAction.CallbackContext context)
     { 
         animator.SetBool(isRunningHash, false);
         isSprinting = false;
     }
 
-    public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (IsGrounded())
         {
             rb.velocity += jumpForce * Vector3.up;
         }
+    }
+
+    public void OnTransferControl(InputAction.CallbackContext context)
+    {
+        Debug.Log("Player OnTransferControl");
+
+        animator.Play(throwHash); //plays an animation with trigger
+
     }
 }
