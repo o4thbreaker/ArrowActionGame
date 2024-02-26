@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,9 +40,6 @@ public class ThirdPersonController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void Start()

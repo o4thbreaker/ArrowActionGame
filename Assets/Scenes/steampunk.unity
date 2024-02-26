@@ -27534,6 +27534,65 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b262fc9eebb06ee419611893694a6d13, type: 3}
+--- !u!1 &1045256359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045256362}
+  - component: {fileID: 1045256363}
+  - component: {fileID: 1045256360}
+  m_Layer: 0
+  m_Name: RewindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1045256360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045256359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89e9a0bf7058424e9bfd8dfb7c3365b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindIntensity: 0.02
+--- !u!4 &1045256362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045256359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045256363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045256359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508566eae27c7294cb46c204c7b0eb6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HowManySecondsToTrack>k__BackingField: 30
 --- !u!1 &1053241177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1387272060457452, guid: 4401406a398c5d14d8778eb169ea9f73,
@@ -42466,7 +42525,7 @@ Transform:
   m_GameObject: {fileID: 1553038937}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000001906664, y: 0.99904823, z: -0.043619387, w: -0.000000043669786}
-  m_LocalPosition: {x: 37.65357, y: 1.7998294, z: 21.694305}
+  m_LocalPosition: {x: 38.027027, y: 0.37341556, z: 20.026163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60779,19 +60838,6 @@ Transform:
   - {fileID: 4183753290833748484}
   m_Father: {fileID: 4456203021995568033}
   m_LocalEulerAnglesHint: {x: -34.34354, y: 18.235367, z: -155.27908}
---- !u!114 &603575020824741078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383363067680970021}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 607f7c417843b1b43a4265845e4d003a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 40
 --- !u!4 &612771045792631762
 Transform:
   m_ObjectHideFlags: 0
@@ -61225,7 +61271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 0.4
-  turnSmoothing: 0.15
+  turnSmoothing: 0.3
   sprintFactor: 2
   timeController: {fileID: 1203707795}
   arrowCamera: {fileID: 1553038943}
@@ -62192,19 +62238,6 @@ Transform:
   - {fileID: 6061590352399385270}
   m_Father: {fileID: 7390259247170774198}
   m_LocalEulerAnglesHint: {x: 32.989086, y: -0.8983628, z: -3.031703}
---- !u!114 &4364242862025233009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383363067680970021}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39164eec9b9dac84bbfdd038846711a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recordingEnabled: 0
 --- !u!1 &4415958681665764936
 GameObject:
   m_ObjectHideFlags: 0
@@ -63702,8 +63735,7 @@ GameObject:
   - component: {fileID: 2484853450952329604}
   - component: {fileID: 4453447448064157053}
   - component: {fileID: 1532053884213873148}
-  - component: {fileID: 4364242862025233009}
-  - component: {fileID: 603575020824741078}
+  - component: {fileID: 8383363067680970022}
   m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
@@ -63711,6 +63743,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8383363067680970022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383363067680970021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d3503ee59c6f540bce276fb3de6694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackObjectActiveState: 1
+  trackTransform: 1
+  trackVelocity: 1
 --- !u!4 &8452267330480705430
 Transform:
   m_ObjectHideFlags: 0
@@ -63982,6 +64029,7 @@ SceneRoots:
   - {fileID: 8470054654228706640}
   - {fileID: 274794614}
   - {fileID: 1203707794}
+  - {fileID: 1045256362}
   - {fileID: 1559097920}
   - {fileID: 1020248830}
   - {fileID: 973732859}

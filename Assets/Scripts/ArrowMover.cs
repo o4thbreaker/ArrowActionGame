@@ -21,8 +21,8 @@ public class ArrowMover : MonoBehaviour
     {
         if (!isMovementStarted)
         {
-            positions = PositionRecorder.Instance.GetPositionsList();
-            rotations = PositionRecorder.Instance.GetRotationsList();
+            positions = TransformRecorder.Instance.GetPositionsList();
+            rotations = TransformRecorder.Instance.GetRotationsList();
             //Debug.Log("positions[positionIndex]: " + positions[positionIndex]);
             transform.position = positions[positionIndex]; // but not in start
             transform.rotation = rotations[rotationIndex];

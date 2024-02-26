@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using UnityEngine.InputSystem;
 
 public class ArrowController : MonoBehaviour
@@ -180,11 +179,14 @@ public class ArrowController : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.playerInput.Arrow.enabled)
+        if (!RewindManager.Instance.IsBeingRewinded)
         {
-            HandleFlight();
-        }
+            if (InputManager.playerInput.Arrow.enabled)
+            {
+                HandleFlight();
+            }
 
-        HandleReturning();
+            HandleReturning();
+        }
     }
 }

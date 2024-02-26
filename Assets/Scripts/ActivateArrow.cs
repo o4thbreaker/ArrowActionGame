@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivateArrow : MonoBehaviour
@@ -14,5 +12,6 @@ public class ActivateArrow : MonoBehaviour
         arrow.gameObject.SetActive(true);
         InputManager.EnableActionMap(InputManager.playerInput.Arrow);
         CameraSwitcher.Instance.SwitchCameraPriority();
+        RewindManager.Instance.TrackingEnabled = true;
     }
 }
