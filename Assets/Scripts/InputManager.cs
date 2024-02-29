@@ -59,6 +59,12 @@ public class InputManager : MonoBehaviour
         arrowTransferControl = playerInput.Arrow.TransferControl;
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnCharacterActivated += EnableCharacter;
+        GameManager.Instance.OnArrowActivated += EnableArrow;
+    }
+
     public static void EnableActionMap(InputActionMap actionMap)
     {
         if (actionMap.enabled) return;
@@ -66,11 +72,6 @@ public class InputManager : MonoBehaviour
         playerInput.Disable();
         actionMapChange?.Invoke(actionMap);
         actionMap.Enable();
-    }
-
-    private void OnEnable()
-    {
-        EnableActionMap(playerInput.Player);
     }
 
     public bool IsPlayerMoving()
@@ -81,6 +82,16 @@ public class InputManager : MonoBehaviour
     public bool IsArrowMoving()
     {
         return (arrowMove.ReadValue<Vector2>().x != 0) || (arrowMove.ReadValue<Vector2>().y != 0);
+    }
+
+    private void EnableCharacter()
+    {
+        EnableActionMap(playerInput.Player);
+    }
+
+    private void EnableArrow()
+    {
+        EnableActionMap(playerInput.Arrow);
     }
 
     public void OnPlayerMapEnable()
@@ -94,6 +105,7 @@ public class InputManager : MonoBehaviour
 
         playerTransferControl.performed += ThirdPersonController.Instance.OnTransferControl;
     }
+
     public void OnPlayerMapDisable()
     {
         Debug.Log("OnPlayerMapDisable()");

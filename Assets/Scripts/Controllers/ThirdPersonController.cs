@@ -159,6 +159,5 @@ public class ThirdPersonController : MonoBehaviour
         Debug.Log("Player OnTransferControl");
 
         animator.Play(throwHash); //plays an animation with trigger
-
     }
 }

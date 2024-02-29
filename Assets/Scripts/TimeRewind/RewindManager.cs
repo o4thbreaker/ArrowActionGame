@@ -18,6 +18,45 @@ public class RewindManager : MonoBehaviour
     private float rewindSeconds = 0;
     private List<RewindAbstract> rewindedObjects;
 
+    private void OnEnable()
+    {
+        HowManySecondsAvailableForRewind = 0;
+    }
+
+    private void Awake()
+    {
+        // warning!!! may cause unpredictable behaviour cuz (true) tracks inactive objects aswell
+        rewindedObjects = FindObjectsOfType<RewindAbstract>(true).ToList();
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+
+        rewindedObjects.ForEach(x => x.MainInit());
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnArrowActivated += EnableTracking;
+    }
+
+    private void FixedUpdate()
+    {
+        if (IsBeingRewinded)
+        {
+            rewindedObjects.ForEach(x => x.Rewind(rewindSeconds));
+        }
+        else
+        {
+            rewindedObjects.ForEach(x => x.Track());
+
+            if (TrackingEnabled)
+                HowManySecondsAvailableForRewind = Mathf.Min(HowManySecondsAvailableForRewind + Time.fixedDeltaTime, HowManySecondsToTrack);
+        }
+    }
+
     public void InstantRewindTimeBySeconds(float seconds)
     {
         if (seconds > HowManySecondsAvailableForRewind)
@@ -91,38 +130,9 @@ public class RewindManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void EnableTracking()
     {
-        HowManySecondsAvailableForRewind = 0;
-    }
-
-    private void Awake()
-    {
-        // warning!!! may cause unpredictable behaviour cuz (true) tracks inactive objects aswell
-        rewindedObjects = FindObjectsOfType<RewindAbstract>(true).ToList();
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(Instance);
-        }
-        Instance = this;
-
-        rewindedObjects.ForEach(x => x.MainInit());
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsBeingRewinded)
-        {
-            rewindedObjects.ForEach(x => x.Rewind(rewindSeconds));
-        }
-        else
-        {
-            rewindedObjects.ForEach(x => x.Track());
-
-            if (TrackingEnabled)
-                HowManySecondsAvailableForRewind = Mathf.Min(HowManySecondsAvailableForRewind + Time.fixedDeltaTime, HowManySecondsToTrack);
-        }
+        TrackingEnabled = true;
     }
 
     /// <summary>

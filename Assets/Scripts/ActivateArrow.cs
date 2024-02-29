@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActivateArrow : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class ActivateArrow : MonoBehaviour
         arrow.transform.parent = null;
         arrow.transform.rotation = player.transform.rotation;
         arrow.gameObject.SetActive(true);
-        InputManager.EnableActionMap(InputManager.playerInput.Arrow);
-        CameraSwitcher.Instance.SwitchCameraPriority();
+
+        GameManager.Instance.UpdateState(GameManager.State.ControllingArrow);
         RewindManager.Instance.TrackingEnabled = true;
     }
 }

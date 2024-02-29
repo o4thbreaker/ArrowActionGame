@@ -107,7 +107,7 @@ public class ArrowController : MonoBehaviour
         }
     }
 
-    private void ReturnArrow()
+    public void ReturnArrow()
     {
         oldPosition = rb.position;
         isReturning = true;
@@ -170,9 +170,7 @@ public class ArrowController : MonoBehaviour
 
     public void OnTransferControl(InputAction.CallbackContext context)
     {
-        Debug.Log("Arrow OnTransferControl"); 
-        CameraSwitcher.Instance.SwitchCameraPriority();
-        InputManager.EnableActionMap(InputManager.playerInput.Player);
+        GameManager.Instance.UpdateState(GameManager.State.ControllingCharacter);
         
         ReturnArrow();
     }
