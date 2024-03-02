@@ -19,12 +19,20 @@ public class CameraSwitcher : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    } 
+    }
 
     private void Start()
     {
         GameManager.Instance.OnArrowActivated += TurnOnArrowCamera;
+        GameManager.Instance.OnArrowPathRepeated += TurnOnPlayerCamera;
         GameManager.Instance.OnCharacterActivated += TurnOnPlayerCamera;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnArrowActivated -= TurnOnArrowCamera;
+        GameManager.Instance.OnArrowPathRepeated -= TurnOnPlayerCamera;
+        GameManager.Instance.OnCharacterActivated -= TurnOnPlayerCamera;
     }
 
     private void TurnOnArrowCamera()

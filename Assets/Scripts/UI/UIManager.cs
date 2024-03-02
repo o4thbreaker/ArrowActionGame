@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private ArrowTimer clock;
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,7 +22,13 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.OnArrowActivated += ActivateArrowTimer;
-        GameManager.Instance.OnCharacterActivated += ResetArrowTimer;
+        GameManager.Instance.OnArrowPathRepeated += ResetArrowTimer;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnArrowActivated -= ActivateArrowTimer;
+        GameManager.Instance.OnArrowPathRepeated -= ResetArrowTimer;
     }
 
     private void ActivateArrowTimer()

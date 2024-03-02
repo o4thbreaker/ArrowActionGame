@@ -8,7 +8,7 @@ public class RewindByKeyPress : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Tab))                     
+        if (Input.GetKey(KeyCode.Tab))
         {
             rewindValue += rewindIntensity;  //While holding the button, we will gradually rewind more and more time into the past
 
@@ -19,7 +19,7 @@ public class RewindByKeyPress : MonoBehaviour
 
             else
             {
-                if (RewindManager.Instance.HowManySecondsAvailableForRewind>rewindValue) //Safety check so it is not grabbing values out of the bounds
+                if (RewindManager.Instance.HowManySecondsAvailableForRewind > rewindValue) //Safety check so it is not grabbing values out of the bounds
                     RewindManager.Instance.SetTimeSecondsInRewind(rewindValue);
             }
 

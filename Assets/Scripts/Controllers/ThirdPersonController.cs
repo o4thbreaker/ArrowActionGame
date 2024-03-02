@@ -68,7 +68,6 @@ public class ThirdPersonController : MonoBehaviour
 
     private void HandleMovement()
     {
-        //Debug.Log(inputManager.IsPlayerMoving());
         if (inputManager.IsPlayerMoving())
         {
             animator.SetBool(isWalkingHash, true);
@@ -156,8 +155,6 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnTransferControl(InputAction.CallbackContext context)
     {
-        Debug.Log("Player OnTransferControl");
-
         animator.Play(throwHash); //plays an animation with trigger
     }
 }

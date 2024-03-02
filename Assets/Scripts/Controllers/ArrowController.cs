@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -169,10 +170,9 @@ public class ArrowController : MonoBehaviour
     }
 
     public void OnTransferControl(InputAction.CallbackContext context)
-    {
-        GameManager.Instance.UpdateState(GameManager.State.ControllingCharacter);
-        
-        ReturnArrow();
+    { 
+        GameManager.Instance.UpdateState(GameManager.State.RepeatingArrowPath);
+        //ReturnArrow();
     }
 
     private void Update()

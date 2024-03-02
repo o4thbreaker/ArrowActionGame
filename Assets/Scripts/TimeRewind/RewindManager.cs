@@ -40,6 +40,13 @@ public class RewindManager : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.OnArrowActivated += EnableTracking;
+        GameManager.Instance.OnArrowPathRepeated += DisableTracking;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnArrowActivated -= EnableTracking;
+        GameManager.Instance.OnArrowPathRepeated -= DisableTracking;
     }
 
     private void FixedUpdate()
@@ -133,6 +140,11 @@ public class RewindManager : MonoBehaviour
     private void EnableTracking()
     {
         TrackingEnabled = true;
+    }
+
+    private void DisableTracking()
+    {
+        TrackingEnabled = false;
     }
 
     /// <summary>

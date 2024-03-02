@@ -13,6 +13,5 @@ public class ActivateArrow : MonoBehaviour
         arrow.gameObject.SetActive(true);
 
         GameManager.Instance.UpdateState(GameManager.State.ControllingArrow);
-        RewindManager.Instance.TrackingEnabled = true;
     }
 }

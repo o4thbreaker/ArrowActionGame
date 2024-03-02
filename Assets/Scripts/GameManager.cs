@@ -7,14 +7,18 @@ public class GameManager : MonoBehaviour
 
     public enum State 
     {
+        InitialState,
         ControllingCharacter,
         ControllingArrow,
+        RepeatingArrowPath,
         GameOver,
         LevelComplete
     }
     
+    public Action OnArrowPathRepeated; 
     public Action OnArrowActivated; 
     public Action OnCharacterActivated; 
+    public Action OnGameStart; 
 
     private State state;
 
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateState(State.ControllingCharacter);
+        UpdateState(State.InitialState);
     }
 
     public void UpdateState(State newState)
@@ -42,10 +46,16 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
+            case State.InitialState:
+                HandleInitialState();
+                break;
             case State.ControllingCharacter:
                 HandleCharacterControlState();
                 break;
             case State.ControllingArrow:
+                HandleArrowRewindState();
+                break;
+            case State.RepeatingArrowPath:
                 HandleArrowControlState();
                 break;
             case State.GameOver:
@@ -57,16 +67,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void HandleInitialState()
+    {
+        OnGameStart?.Invoke();
+    }
+
     private void HandleCharacterControlState()
     {
         Debug.Log("In Character Control state");
         OnCharacterActivated?.Invoke();
     }
 
+    private void HandleArrowRewindState()
+    {
+        OnArrowActivated?.Invoke();
+    }
+
     private void HandleArrowControlState()
     {
-        Debug.Log("In Arrow Control state");
-        OnArrowActivated?.Invoke();
+        Debug.Log("In Arrow repeating its own path state");
+        OnArrowPathRepeated?.Invoke();
     }
 
     private void HandleGameOverState()
