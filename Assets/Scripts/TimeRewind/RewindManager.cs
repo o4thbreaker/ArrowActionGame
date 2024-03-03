@@ -39,13 +39,13 @@ public class RewindManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnArrowActivated += EnableTracking;
+        GameManager.Instance.OnArrowActivated += RestartTracking;
         GameManager.Instance.OnArrowPathRepeated += DisableTracking;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnArrowActivated -= EnableTracking;
+        GameManager.Instance.OnArrowActivated -= RestartTracking;
         GameManager.Instance.OnArrowPathRepeated -= DisableTracking;
     }
 
@@ -55,12 +55,11 @@ public class RewindManager : MonoBehaviour
         {
             rewindedObjects.ForEach(x => x.Rewind(rewindSeconds));
         }
-        else
+        else if (TrackingEnabled)
         {
             rewindedObjects.ForEach(x => x.Track());
 
-            if (TrackingEnabled)
-                HowManySecondsAvailableForRewind = Mathf.Min(HowManySecondsAvailableForRewind + Time.fixedDeltaTime, HowManySecondsToTrack);
+            HowManySecondsAvailableForRewind = Mathf.Min(HowManySecondsAvailableForRewind + Time.fixedDeltaTime, HowManySecondsToTrack);
         }
     }
 
@@ -135,11 +134,6 @@ public class RewindManager : MonoBehaviour
             Debug.LogError("Parameter in StartRewindTimeBySeconds() must have positive value!!!");
             return;
         }
-    }
-
-    private void EnableTracking()
-    {
-        TrackingEnabled = true;
     }
 
     private void DisableTracking()

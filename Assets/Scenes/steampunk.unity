@@ -27599,7 +27599,6 @@ GameObject:
   - component: {fileID: 1045256363}
   - component: {fileID: 1045256360}
   - component: {fileID: 1045256364}
-  - component: {fileID: 1045256365}
   m_Layer: 0
   m_Name: RewindManager
   m_TagString: Untagged
@@ -27658,18 +27657,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c8dd187f78272c4480c517e98a356d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1045256365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045256359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 135f2f0ee541c834cafe66febc325d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1053241177 stripped
@@ -64138,7 +64125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8383363067680970022
 MonoBehaviour:
   m_ObjectHideFlags: 0

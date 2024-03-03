@@ -3,7 +3,6 @@ using UnityEngine;
 public class RewindByTimer : MonoBehaviour
 {
     private bool isRewindEnabled = false;
-    private float rewindSeconds = 0f;
 
     private void Start()
     {
@@ -31,7 +30,10 @@ public class RewindByTimer : MonoBehaviour
     {
         if (isRewindEnabled)
         {
-            RewindManager.Instance.InstantRewindTimeBySeconds(ArrowTracker.Instance.GetSeconds());
+            float seconds = RewindManager.Instance.HowManySecondsAvailableForRewind - 0.01f;
+            RewindManager.Instance.InstantRewindTimeBySeconds(seconds);
+
+            isRewindEnabled = false;
         } 
     }
 }
