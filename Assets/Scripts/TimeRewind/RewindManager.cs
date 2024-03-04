@@ -37,18 +37,6 @@ public class RewindManager : MonoBehaviour
         rewindedObjects.ForEach(x => x.MainInit());
     }
 
-    private void Start()
-    {
-        GameManager.Instance.OnArrowActivated += RestartTracking;
-        GameManager.Instance.OnArrowPathRepeated += DisableTracking;
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnArrowActivated -= RestartTracking;
-        GameManager.Instance.OnArrowPathRepeated -= DisableTracking;
-    }
-
     private void FixedUpdate()
     {
         if (IsBeingRewinded)
@@ -134,11 +122,6 @@ public class RewindManager : MonoBehaviour
             Debug.LogError("Parameter in StartRewindTimeBySeconds() must have positive value!!!");
             return;
         }
-    }
-
-    private void DisableTracking()
-    {
-        TrackingEnabled = false;
     }
 
     /// <summary>

@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ArrowTimer : MonoBehaviour
+public class ArrowModeTimer : MonoBehaviour
 {
     [SerializeField] private Image greenWheel;
     [SerializeField] private Image redWheel;
 
-    [SerializeField] private float maxTime = 10f;
+    [SerializeField] private float maxArrowModeTime = 10f;
     private float timeLeft;
     private bool isTimeOut = false;
 
     private void Start()
     {
-        timeLeft = maxTime;
+        timeLeft = maxArrowModeTime;
     }
 
     private void TimerCountdown()
@@ -20,8 +20,8 @@ public class ArrowTimer : MonoBehaviour
         if (timeLeft > 0f)
         {
             timeLeft -= Time.unscaledDeltaTime;
-            redWheel.fillAmount = (timeLeft / maxTime + 0.05f);
-            greenWheel.fillAmount = (timeLeft / maxTime);
+            redWheel.fillAmount = (timeLeft / maxArrowModeTime + 0.05f);
+            greenWheel.fillAmount = (timeLeft / maxArrowModeTime);
         }
         else if (timeLeft < 0f)
         {
@@ -35,7 +35,7 @@ public class ArrowTimer : MonoBehaviour
 
     public void ResetTimer()
     {
-        timeLeft = maxTime;
+        timeLeft = maxArrowModeTime;
         isTimeOut = false;
     }
 

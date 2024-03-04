@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [SerializeField] private ArrowTimer clock;
+    [SerializeField] private ArrowModeTimer arrowModeClock;
+    [SerializeField] private ArrowCooldownTimer arrowCooldownClock;
 
     private void Awake()
     {
@@ -23,6 +25,9 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.OnArrowActivated += ActivateArrowTimer;
         GameManager.Instance.OnArrowPathRepeated += ResetArrowTimer;
+
+        GameManager.Instance.OnArrowActivated += ResetCooldownTimer;
+        GameManager.Instance.OnCharacterActivated += ActivateCooldownTimer;
     }
 
     private void OnDestroy()
@@ -33,12 +38,27 @@ public class UIManager : MonoBehaviour
 
     private void ActivateArrowTimer()
     {
-        clock.gameObject.SetActive(true);
+        arrowModeClock.gameObject.SetActive(true);
     }
 
     private void ResetArrowTimer()
     {
-        clock.ResetTimer();
-        clock.gameObject.SetActive(false);
+        arrowModeClock.ResetTimer();
+        arrowModeClock.gameObject.SetActive(false);
+    }
+
+    private void ActivateCooldownTimer()
+    {
+        arrowCooldownClock.ActivateCooldown();
+    }
+
+    private void ResetCooldownTimer()
+    {
+        arrowCooldownClock.ResetCooldown();
+    }
+
+    public bool GetCooldownActive()
+    {
+        return arrowCooldownClock.IsCooldown;
     }
 }

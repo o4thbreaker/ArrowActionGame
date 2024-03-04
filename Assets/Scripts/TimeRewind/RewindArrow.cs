@@ -5,6 +5,7 @@ public class RewindArrow : RewindAbstract
     [SerializeField] bool trackObjectActiveState;
     [SerializeField] bool trackTransform;
     [SerializeField] bool trackVelocity;
+
     
     public override void Rewind(float seconds)
     {

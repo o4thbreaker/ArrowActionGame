@@ -44,6 +44,7 @@ public class GenericRewind : RewindAbstract
         if (trackParticles.Enabled)
             TrackParticles();      
     }
+
     private void Start()
     {
         if (trackParticles.Enabled)

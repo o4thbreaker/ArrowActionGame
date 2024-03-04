@@ -67,15 +67,15 @@ public class CircularBuffer <T>
 
     private void MoveLastBufferPosition(float seconds)
     {
-        bufferCurrentPosition = CalculateIndex(seconds);    
+        bufferCurrentPosition = CalculateIndex(seconds);
     }
 
     private int CalculateIndex(float seconds)
     {
         double secondsRound = Math.Round(seconds, 2);
         int howManyBeforeLast = (int)(howManyRecordsPerSecond * secondsRound);
-
         int moveBy = bufferCurrentPosition - howManyBeforeLast;
+        
         if (moveBy < 0)
         {
             return bufferCapacity + moveBy;

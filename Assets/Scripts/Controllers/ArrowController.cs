@@ -19,6 +19,8 @@ public class ArrowController : MonoBehaviour
     private Rigidbody rb;
     private InputManager inputManager;
 
+    public bool HasArrowReturned { get; private set; } = true;
+
     private Vector3 lastDirection;
     private float previousUnscaledTimeFactor;
     public bool isControlTransferedToPlayer = false;
@@ -52,6 +54,8 @@ public class ArrowController : MonoBehaviour
 
     private void OnEnable()
     {
+        HasArrowReturned = false;
+
         inputManager.OnArrowMapEnable();
     }
 
@@ -144,7 +148,9 @@ public class ArrowController : MonoBehaviour
                 returningTime = 0f;
                 rb.isKinematic = false;
 
-                gameObject.SetActive(false);
+                HasArrowReturned = true;
+
+                //gameObject.SetActive(false);
                 transform.parent = parent;
             }
         }
@@ -172,7 +178,6 @@ public class ArrowController : MonoBehaviour
     public void OnTransferControl(InputAction.CallbackContext context)
     { 
         GameManager.Instance.UpdateState(GameManager.State.RepeatingArrowPath);
-        //ReturnArrow();
     }
 
     private void Update()
