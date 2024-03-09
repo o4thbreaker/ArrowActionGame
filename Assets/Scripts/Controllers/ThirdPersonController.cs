@@ -155,7 +155,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnTransferControl(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.GetCooldownActive() && ArrowController.Instance.HasArrowReturned)
+        if (!UIManager.Instance.GetCooldownActive())
         {
             animator.Play(throwHash); //plays an animation with trigger
         }
