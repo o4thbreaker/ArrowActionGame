@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -14,9 +10,9 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Transform target = GameObject.FindGameObjectWithTag(targetPoint).transform;
-        Vector3 direction = target.position - transform.position;
-        rb.AddForce(direction * speed * 10f * Time.deltaTime, ForceMode.Impulse);
+        //Transform target = GameObject.FindGameObjectWithTag(targetPoint).transform;
+        //Vector3 direction = target.position - transform.position;
+        //rb.AddForce(direction * speed * 10f * Time.deltaTime, ForceMode.Impulse);
     }
 
 

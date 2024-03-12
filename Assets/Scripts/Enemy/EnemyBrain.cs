@@ -1,91 +1,53 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBrain : MonoBehaviour
 {
-    [SerializeField] private Waypoints waypoints;
-    [SerializeField] private EnemyShoot shootManager;
+    
     [SerializeField] private Transform gunMuzzle;
-
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 10f;
-    [SerializeField] private float distanceThreshold = .1f;
+
+    private EnemyManager enemyManager;
+    private EnemyShoot shootManager;
+    private NavMeshAgent navMeshAgent;
+    private Animator animator;
 
     public Transform target;
-    private EnemyReferences enemyReferences;
     private float shootingDistance;
-    private bool inRange = false;
+    private bool targetInRange = false;
     private string isRunning = "isRunning";
     private string isAiming = "isAiming";
 
-    private Transform currentWaypoint;
-    private Quaternion rotationGoal;
-    private Vector3 directionToWaypoint;
-
     private void Awake()
     {
-        enemyReferences = GetComponent<EnemyReferences>();
+        enemyManager = GetComponent<EnemyManager>();
+        shootManager = GetComponent<EnemyShoot>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        // ----------navmesh part----------
-        shootingDistance = enemyReferences.navMeshAgent.stoppingDistance;
-        // --------------------------------
-
-        //set the initial waypoint
-        currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-        transform.position = currentWaypoint.position;
-
-        //set the next waypoint target
-        currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-
-        transform.LookAt(currentWaypoint);
-
+        shootingDistance = navMeshAgent.stoppingDistance;
     }
 
     private void Update()
     {
-        if (!waypoints.isLastWaypointReached & !inRange & !enemyReferences.enemyManager.IsDead())
-        {
-            enemyReferences.animator.SetBool(isRunning, true);
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            enemyReferences.animator.SetBool(isRunning, false);
-            enemyReferences.animator.SetBool(isAiming, true);
-        }
-       
-            
-
-        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
-        {
-            currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-        }
-        if (!inRange)
-        {
-            RotateTowardsWaypoint();
-        }
-        
-        // ----------navmesh part----------
         if (target != null)
         {
-            inRange = Vector3.Distance(transform.position, target.position) <= shootingDistance;
+            targetInRange = Vector3.Distance(transform.position, target.position) <= shootingDistance;
 
-            if (inRange & !enemyReferences.enemyManager.IsDead())
+            if (targetInRange)
             {
                 LookAtTarget();
                 StartCoroutine(shootManager.Aim());
             }
+            else
+            {
+                animator.SetBool(isAiming, false);
+            }
         }
-        // --------------------------------
-    }
-
-    private void RotateTowardsWaypoint()
-    {
-        directionToWaypoint = (currentWaypoint.position - transform.position).normalized;
-        rotationGoal = Quaternion.LookRotation(directionToWaypoint);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, rotateSpeed * Time.deltaTime);   
     }
 
     private void LookAtTarget()

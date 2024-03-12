@@ -7,40 +7,56 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private Transform gunMuzzle;
-    [SerializeField] private EnemyReferences enemyReferences;    
     [SerializeField] private float aimingTime = 2f;
     [SerializeField] private float shootCooldownTime = 0.5f;
 
+    private Animator animator;
+    private EnemyManager enemyManager;
+
     private bool canShoot = true;
-    private string isFiring = "isFiring";
-    private string isAiming = "isAiming";
+
+    private int isAimingHash;
+    private int shootHash;
 
     private void Awake()
     {
-        enemyReferences = GetComponent<EnemyReferences>();
+        animator = GetComponent<Animator>();
+        enemyManager = GetComponent<EnemyManager>();
     }
 
-    private void Shoot()
+    private void Start()
     {
-        if (enemyReferences.enemyManager.IsDead()) return;
+        isAimingHash = Animator.StringToHash("isAiming");
+        shootHash = Animator.StringToHash("Shoot");
+    }
+
+    private void _Shoot()
+    {
+        if (enemyManager.IsDead()) return;
 
         if (canShoot)
         {
-            enemyReferences.animator.SetBool(isAiming, false);
-            enemyReferences.animator.SetBool(isFiring, true);
-            GameObject bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.rotation) as GameObject;
+            animator.SetBool(isAimingHash, false);
+
+            GameObject bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.rotation);
             muzzleFlash.Play();
             canShoot = false;            
             StartCoroutine(shootCooldown());
         }
     }
 
+    // animation trigger
+    private void Shoot()
+    {
+        muzzleFlash.Play();
+        GameObject bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.rotation);
+    }
+
     public IEnumerator Aim()
     {
-        enemyReferences.animator.SetBool(isFiring, false);
-        enemyReferences.animator.SetBool(isAiming, true);
+        animator.SetBool(isAimingHash, true);
         yield return new WaitForSeconds(aimingTime);
-        Shoot();
+        animator.Play(shootHash);
     }
 
     private IEnumerator shootCooldown()
