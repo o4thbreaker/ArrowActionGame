@@ -5,23 +5,26 @@ public class EnemyBrain : MonoBehaviour
 {
     
     [SerializeField] private Transform gunMuzzle;
+    [SerializeField] private Transform target;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 10f;
+    [SerializeField] private float pathUpdateDelay = 0.2f;
 
-    private EnemyManager enemyManager;
     private EnemyShoot shootManager;
     private NavMeshAgent navMeshAgent;
     private Animator animator;
 
-    public Transform target;
+    
     private float shootingDistance;
     private bool targetInRange = false;
+    private float pathUpdateDeadline;
+    private string speed = "speed";
+    private string isShooting = "isShooting";
     private string isRunning = "isRunning";
     private string isAiming = "isAiming";
 
     private void Awake()
     {
-        enemyManager = GetComponent<EnemyManager>();
         shootManager = GetComponent<EnemyShoot>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -39,15 +42,13 @@ public class EnemyBrain : MonoBehaviour
             targetInRange = Vector3.Distance(transform.position, target.position) <= shootingDistance;
 
             if (targetInRange)
-            {
                 LookAtTarget();
-                StartCoroutine(shootManager.Aim());
-            }
             else
-            {
-                animator.SetBool(isAiming, false);
-            }
+                UpdatePath();
+
+            animator.SetBool(isShooting, targetInRange);
         }
+        animator.SetFloat(speed, navMeshAgent.desiredVelocity.sqrMagnitude);
     }
 
     private void LookAtTarget()
@@ -56,5 +57,14 @@ public class EnemyBrain : MonoBehaviour
         lookPosition.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPosition);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+    }
+
+    private void UpdatePath()
+    {
+        if (Time.time >= pathUpdateDeadline)
+        {
+            pathUpdateDeadline = Time.time + pathUpdateDelay;
+            navMeshAgent.SetDestination(target.position);
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
@@ -10,7 +8,7 @@ public class Ragdoll : MonoBehaviour
     private void Start()
     {
         rigidBodies = GetComponentsInChildren<Rigidbody>();
-        animator = GetComponent<Animator>();   
+        animator = GetComponent<Animator>();
         DeactivateRagdoll();
     }
 

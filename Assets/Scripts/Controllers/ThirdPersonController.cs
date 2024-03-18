@@ -10,7 +10,7 @@ public class ThirdPersonController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private float sprintMultiplier = 1.5f;
+    [SerializeField] private float sprintFactor = 1.5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float turnSmoothing = 0.15f;
@@ -23,6 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     private int throwHash;
     private bool isSprinting = false;
     private float groundedDrag;
+    private float movementMultiplier = 60f;
 
     private void Awake()
     {
@@ -74,7 +75,7 @@ public class ThirdPersonController : MonoBehaviour
 
             forceDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y);
 
-            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintMultiplier : 1), ForceMode.Force); 
+            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintFactor : 1) * Time.deltaTime * movementMultiplier, ForceMode.Force); 
 
             // to remove movement after releasing the button
             forceDirection = Vector3.zero;
