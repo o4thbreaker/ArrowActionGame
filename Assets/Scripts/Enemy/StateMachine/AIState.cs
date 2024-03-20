@@ -3,7 +3,8 @@ public enum AIStateId
 {
     ChasePlayer,
     Death,
-    Idle
+    Idle,
+    AttackPlayer
 }
 
 public interface AIState

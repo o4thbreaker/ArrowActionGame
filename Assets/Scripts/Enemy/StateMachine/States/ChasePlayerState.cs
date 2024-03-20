@@ -6,7 +6,7 @@ public class ChasePlayerState : AIState
     private bool targetInRange = false;
     private float pathUpdateDeadline;
     private string speed = "speed";
-    private string isShooting = "isShooting";
+    private string isAiming = "isAiming";
 
     public AIStateId GetId()
     {
@@ -29,12 +29,12 @@ public class ChasePlayerState : AIState
         {
             targetInRange = Vector3.Distance(agent.transform.position, agent.target.position) <= shootingDistance;
 
+            agent.animator.SetBool(isAiming, targetInRange);
+
             if (targetInRange)
-                LookAtTarget(agent);
+                agent.stateMachine.ChangeState(AIStateId.AttackPlayer);
             else
                 UpdatePath(agent);
-
-            agent.animator.SetBool(isShooting, targetInRange);
         }
         agent.animator.SetFloat(speed, agent.navMeshAgent.desiredVelocity.sqrMagnitude);
     }

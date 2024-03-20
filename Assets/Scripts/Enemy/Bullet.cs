@@ -2,29 +2,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed;
     private Rigidbody rb;
-    private const string targetPoint = "TargetPoint";
-    private const string player = "PlayerCapsule";
-
-    private void Start()
+    [SerializeField] private float shootForce = 50f;
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        //Transform target = GameObject.FindGameObjectWithTag(targetPoint).transform;
-        //Vector3 direction = target.position - transform.position;
-        //rb.AddForce(direction * speed * 10f * Time.deltaTime, ForceMode.Impulse);
-    }
+        /*rb = GetComponent<Rigidbody>();
 
+        GameObject target = GameObject.FindGameObjectWithTag("TargetPoint");
+        Vector3 direction = (target.transform.position - transform.position).normalized;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag(player))
-        {
-            //kill player
-            Debug.Log("Player killed");
-            //SceneManager.LoadScene("GameOver");           
-        }
-        Destroy(gameObject);
+        rb.AddForce(direction * shootForce, ForceMode.Impulse);*/
     }
 }
