@@ -7,28 +7,24 @@ public class ArrowController : MonoBehaviour
     public static ArrowController Instance { get; private set; }
 
     [SerializeField] private float flySpeed = 4;
-    [SerializeField] private float turnSmoothing = 0.15f;
     [SerializeField] private float sprintFactor = 2f;
     [SerializeField] private TimeController timeController;
     [SerializeField] private Transform parent;
     [SerializeField] private Transform targetReturnTo;
     [SerializeField] private Transform curvePoint;
 
-
-
     private Rigidbody rb;
     private InputManager inputManager;
 
-    private Vector3 lastDirection;
     private float previousUnscaledTimeFactor;
     public bool isControlTransferedToPlayer = false;
     public bool isArrowActive = false;
     private bool isAccelerating = false;
+
     private bool isReturning = false;
     private Vector3 oldPosition;
     private float returningTime = 0f;
 
-    public float lookRateSpeed = 90f;
     private Vector2 turn;
 
     private Vector3 screenCenter;
@@ -83,8 +79,6 @@ public class ArrowController : MonoBehaviour
 
     private void HandleFlight()
     {
-        //Vector3 direction = CalculateDirection(inputManager.GetArrowMovement().x, inputManager.GetArrowMovement().y);
-
         if (previousUnscaledTimeFactor != timeController.UnscaledTimeFactor)
         {
             rb.velocity = rb.velocity * timeController.UnscaledTimeFactor / previousUnscaledTimeFactor;
@@ -99,45 +93,16 @@ public class ArrowController : MonoBehaviour
         HandleRotation();
     }
 
-    private Vector3 CalculateDirection(float horizontal, float vertical)
-    {
-        Vector3 up = transform.TransformDirection(Vector3.up);
-        // Camera forward Y component is relevant when flying.
-        up = up.normalized;
-
-        Vector3 right = new Vector3(up.z, 0, -up.x);
-
-        // Calculate target direction based on camera forward and direction key.
-        Vector3 targetDirection = -up * vertical + right * horizontal;
-
-        // Return the current fly direction.
-        return targetDirection;
-    }
-
     private void HandleRotation()
     {
-        // TODO: fix the initial rotation bug
-
-
-        /* Vector3 direction = rb.velocity;
-
-         // Rotate the arrow to the correct fly position.
-         if (inputManager.IsArrowMoving() && direction.sqrMagnitude > 0.1f)
-         {
-             Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-             Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
-
-             rb.MoveRotation(newRotation);
-             SetLastDirection(direction);
-         }*/
-        turn = inputManager.GetArrowMovement();
-        transform.Rotate(-turn.y, turn.x, 0, Space.Self);
-
+        // TODO: fix the initial rotation bug (kinda fixed)
 
         // NOTE: may be needed later
         /*turn += inputManager.GetArrowMovement();
         transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);*/
+
+        turn = inputManager.GetArrowMovement();
+        transform.Rotate(-turn.y, turn.x, 0, Space.Self);
     }
 
     public void ReturnArrow()
@@ -175,16 +140,11 @@ public class ArrowController : MonoBehaviour
                 rb.rotation = targetReturnTo.rotation;
                 returningTime = 0f;
 
-                //gameObject.SetActive(false);
                 transform.parent = parent;
             }
         }
     }
 
-    private void SetLastDirection(Vector3 direction)
-    {
-        lastDirection = direction;
-    }
 
     public void OnAcceleratePressed(InputAction.CallbackContext context)
     {

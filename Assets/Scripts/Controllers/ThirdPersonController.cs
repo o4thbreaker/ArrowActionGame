@@ -13,7 +13,6 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float playerSpeed = 5f;
     [SerializeField] private float sprintFactor = 1.5f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float turnSmoothing = 0.15f;
 
     [SerializeField] private Camera playerCamera;
@@ -60,6 +59,7 @@ public class ThirdPersonController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         throwHash = Animator.StringToHash("Throw");
+
         groundedDrag = rb.drag;
     }
 

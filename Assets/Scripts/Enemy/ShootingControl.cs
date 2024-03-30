@@ -11,14 +11,11 @@ public class ShootingControl : MonoBehaviour
 {
     [SerializeField] private Transform bone;
 
-    [SerializeField] private int iterations = 10;
     [Range(0,1)] [SerializeField] private float boneWeight = 1.0f;
 
     [SerializeField] private float angleLimit = 90f;
     [SerializeField] private float distanceLimit = 1.5f;
     [SerializeField] private Vector3 aimingOffset;
-
-    [SerializeField] private float shootForce = 50f;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private ParticleSystem muzzleFlash;
@@ -27,17 +24,7 @@ public class ShootingControl : MonoBehaviour
 
     private Transform targetTransform;
     private Transform aimTransform;
-    private bool isShootAllowed = false;
-    
-    private void LateUpdate()
-    {
-        /*if (targetTransform == null || aimTransform == null || !isShootAllowed) return;
 
-        Vector3 targetPosition = GetTargetPosition();
-
-        for (int i = 0; i < iterations; i++)
-            AimAtTarget(bone, targetPosition, boneWeight); */  
-    }
 
     // animation trigger
     private void Shoot()
@@ -56,6 +43,7 @@ public class ShootingControl : MonoBehaviour
         return Physics.Raycast(gunMuzzle.position, gunMuzzle.position + gunMuzzle.forward * 50, out RaycastHit hit, float.MaxValue, shootingLayerMask);
     }
 
+    // NOTE: may be used later
     private Vector3 GetTargetPosition()
     {
         Vector3 targetDirection = (targetTransform.position + aimingOffset) - aimTransform.position;
@@ -99,10 +87,5 @@ public class ShootingControl : MonoBehaviour
     public void SetAimTransform(Transform target)
     {
         aimTransform = target;
-    }
-
-    public void SetShooting(bool condition)
-    {
-        isShootAllowed = condition;
     }
 }
