@@ -15,8 +15,8 @@ TagManager:
   - ShootTarget
   - Water
   - UI
-  - PlayerCamera
-  - ArrowCamera
+  - 
+  - Player
   - Arrow
   - Enemy
   - Enviroment

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,14 +17,21 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float turnSmoothing = 0.15f;
 
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private LayerMask aimColliderMask = new LayerMask();
+    [SerializeField] private Transform debugTransform;
 
     private Vector3 forceDirection = Vector3.zero;
     private int isWalkingHash;
     private int isRunningHash;
     private int throwHash;
     private bool isSprinting = false;
+    private bool isAiming = false;
     private float groundedDrag;
     private float movementMultiplier = 60f;
+    private Vector3 mouseWorldPosition = Vector3.zero;
+
+    public Action OnAimStart;
+    public Action OnAimEnd;
 
     private void Awake()
     {
@@ -45,26 +53,39 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnGameStart += EnableCharacter;
+        GameManager.Instance.OnCharacterActivated += EnableCharacter;
+        GameManager.Instance.OnArrowActivated += DisableCharacter;
+
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         throwHash = Animator.StringToHash("Throw");
         groundedDrag = rb.drag;
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        inputManager.OnPlayerMapEnable();
+        GameManager.Instance.OnGameStart -= EnableCharacter;
+        GameManager.Instance.OnCharacterActivated -= EnableCharacter;
+        GameManager.Instance.OnArrowActivated -= DisableCharacter;
     }
 
-    private void OnDisable()
+    private void EnableCharacter()
     {
-        inputManager.OnPlayerMapDisable();
+
     }
+
+    private void DisableCharacter()
+    {
+        
+    }
+
 
     private void Update()
     {
         HandleMovement();
         HandleRotation();
+        HandleAiming();
     }
 
     private void HandleMovement()
@@ -86,6 +107,43 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+    private void HandleAiming()
+    {
+        // TODO: fix the tweaking between cameras bug
+        // TODO: make crosshair appear only during aiming state
+
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, aimColliderMask))
+        {
+            mouseWorldPosition = hit.point;
+        }
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 direction = rb.velocity;
+
+        if (inputManager.IsPlayerMoving() && direction.sqrMagnitude > 0.1f && !isAiming)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
+            rb.MoveRotation(newRotation);
+        }
+        else if (isAiming)
+        {
+            Vector3 worldAimTarget = mouseWorldPosition;
+            worldAimTarget.y = transform.position.y;
+            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+
+            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 40f);
+        }
+        else 
+        {
+            rb.angularVelocity = Vector3.zero; 
+        }
+    }
+
     private Vector3 CalculateDirection(float playerForward, float playerRight)
     {
         Vector3 cameraForward = playerCamera.transform.forward;
@@ -95,24 +153,9 @@ public class ThirdPersonController : MonoBehaviour
         cameraForward = cameraForward.normalized;
         cameraRight = cameraRight.normalized;
 
-        // probably did smth wrong here but it works so fine for now
         Vector3 targetDirection = cameraForward * playerRight + cameraRight * playerForward;
 
         return targetDirection;
-    }
-
-    private void HandleRotation()
-    {
-        Vector3 direction = rb.velocity;
-
-        if (inputManager.IsPlayerMoving() && direction.sqrMagnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
-            rb.MoveRotation(newRotation);
-        }
-        else 
-            rb.angularVelocity = Vector3.zero;
     }
 
     private bool IsGrounded()
@@ -146,6 +189,30 @@ public class ThirdPersonController : MonoBehaviour
         isSprinting = false;
     }
 
+    public void OnAimPressed(InputAction.CallbackContext context)
+    {
+        isAiming = true;
+        OnAimStart?.Invoke();
+    }
+
+    public void OnAimReleased(InputAction.CallbackContext context)
+    {
+        isAiming = false;
+        OnAimEnd?.Invoke();
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, aimColliderMask) && isAiming)
+        {
+            debugTransform.position = hit.point;
+            GetComponent<ActivateArrow>().TriggerArrow();
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (IsGrounded())
@@ -160,5 +227,5 @@ public class ThirdPersonController : MonoBehaviour
         {
             animator.Play(throwHash); //plays an animation with trigger
         }
-    }   
+    }
 }

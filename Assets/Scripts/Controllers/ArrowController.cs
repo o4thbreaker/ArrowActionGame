@@ -10,10 +10,10 @@ public class ArrowController : MonoBehaviour
     [SerializeField] private float turnSmoothing = 0.15f;
     [SerializeField] private float sprintFactor = 2f;
     [SerializeField] private TimeController timeController;
-    [SerializeField] private Transform arrowCamera;
     [SerializeField] private Transform parent;
     [SerializeField] private Transform targetReturnTo;
     [SerializeField] private Transform curvePoint;
+
 
 
     private Rigidbody rb;
@@ -27,6 +27,11 @@ public class ArrowController : MonoBehaviour
     private bool isReturning = false;
     private Vector3 oldPosition;
     private float returningTime = 0f;
+
+    public float lookRateSpeed = 90f;
+    private Vector2 turn;
+
+    private Vector3 screenCenter;
 
     private void Awake()
     {
@@ -47,22 +52,38 @@ public class ArrowController : MonoBehaviour
 
     private void Start()
     {
+        screenCenter.x = Screen.width * .5f;
+        screenCenter.y = Screen.height * .5f;
+
+        GameManager.Instance.OnArrowActivated += EnableArrow;
+        GameManager.Instance.OnCharacterActivated += DisableArrow;
+
         previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        inputManager.OnArrowMapEnable();
+        GameManager.Instance.OnArrowActivated -= EnableArrow;
+        GameManager.Instance.OnCharacterActivated -= DisableArrow;
     }
 
-    private void OnDisable()
+    private void EnableArrow()
     {
-        inputManager.OnArrowMapDisable();
+        rb.isKinematic = false;
+        GetComponentInChildren<CapsuleCollider>().enabled = true;
+    }
+
+    private void DisableArrow()
+    {
+        // NOTE: collider disables when in rewind mode. may cause problems in future
+
+        rb.isKinematic = true;
+        GetComponentInChildren<CapsuleCollider>().enabled = false;
     }
 
     private void HandleFlight()
     {
-        Vector3 direction = CalculateDirection(inputManager.GetArrowMovement().x, inputManager.GetArrowMovement().y);
+        //Vector3 direction = CalculateDirection(inputManager.GetArrowMovement().x, inputManager.GetArrowMovement().y);
 
         if (previousUnscaledTimeFactor != timeController.UnscaledTimeFactor)
         {
@@ -70,23 +91,24 @@ public class ArrowController : MonoBehaviour
             previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
         }
 
+        
         float speed = flySpeed * 10 * (isAccelerating ? sprintFactor : 1);
         float timeFactor = timeController.UnscaledTimeFactor;
-        rb.velocity = speed * timeFactor * direction;
+        rb.velocity = speed * timeFactor * transform.forward;
 
         HandleRotation();
     }
 
     private Vector3 CalculateDirection(float horizontal, float vertical)
     {
-        Vector3 forward = arrowCamera.TransformDirection(Vector3.forward);
+        Vector3 up = transform.TransformDirection(Vector3.up);
         // Camera forward Y component is relevant when flying.
-        forward = forward.normalized;
+        up = up.normalized;
 
-        Vector3 right = new Vector3(forward.z, 0, -forward.x);
+        Vector3 right = new Vector3(up.z, 0, -up.x);
 
         // Calculate target direction based on camera forward and direction key.
-        Vector3 targetDirection = forward * vertical + right * horizontal;
+        Vector3 targetDirection = -up * vertical + right * horizontal;
 
         // Return the current fly direction.
         return targetDirection;
@@ -94,18 +116,28 @@ public class ArrowController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 direction = rb.velocity;
+        // TODO: fix the initial rotation bug
 
-        // Rotate the arrow to the correct fly position.
-        if (inputManager.IsArrowMoving() && direction.sqrMagnitude > 0.1f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
+        /* Vector3 direction = rb.velocity;
 
-            rb.MoveRotation(newRotation);
-            SetLastDirection(direction);
-        }
+         // Rotate the arrow to the correct fly position.
+         if (inputManager.IsArrowMoving() && direction.sqrMagnitude > 0.1f)
+         {
+             Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+             Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
+
+             rb.MoveRotation(newRotation);
+             SetLastDirection(direction);
+         }*/
+        turn = inputManager.GetArrowMovement();
+        transform.Rotate(-turn.y, turn.x, 0, Space.Self);
+
+
+        // NOTE: may be needed later
+        /*turn += inputManager.GetArrowMovement();
+        transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);*/
     }
 
     public void ReturnArrow()
@@ -142,7 +174,6 @@ public class ArrowController : MonoBehaviour
                 rb.position = targetReturnTo.position;
                 rb.rotation = targetReturnTo.rotation;
                 returningTime = 0f;
-                rb.isKinematic = false;
 
                 //gameObject.SetActive(false);
                 transform.parent = parent;
@@ -170,7 +201,7 @@ public class ArrowController : MonoBehaviour
     }
 
     public void OnTransferControl(InputAction.CallbackContext context)
-    { 
+    {
         GameManager.Instance.UpdateState(GameManager.State.RepeatingArrowPath);
     }
 

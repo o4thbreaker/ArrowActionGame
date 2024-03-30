@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     public static event Action<InputActionMap> actionMapChange;
 
     private InputAction playerMove;
+    private InputAction playerAim;
+    private InputAction playerShoot;
     private InputAction playerSprint;
     private InputAction playerJump;
     private InputAction playerTransferControl;
@@ -26,7 +28,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 GetArrowMovement()
     {
-        return arrowMove.ReadValue<Vector2>();
+        return arrowLook.ReadValue<Vector2>();
     }
 
     public InputAction GetArrowAccelerate()
@@ -49,6 +51,8 @@ public class InputManager : MonoBehaviour
         playerInput = new PlayerInputActions();
 
         playerMove = playerInput.Player.Move;
+        playerAim = playerInput.Player.Aim;
+        playerShoot = playerInput.Player.Shoot;
         playerSprint = playerInput.Player.Sprint;
         playerJump = playerInput.Player.Jump;
         playerTransferControl = playerInput.Player.TransferControl;
@@ -76,7 +80,7 @@ public class InputManager : MonoBehaviour
     public static void EnableActionMap(InputActionMap actionMap)
     {
         if (actionMap.enabled) return;
-        
+
         playerInput.Disable();
         actionMapChange?.Invoke(actionMap);
         actionMap.Enable();
@@ -94,55 +98,55 @@ public class InputManager : MonoBehaviour
 
     private void EnableCharacter()
     {
-        EnableActionMap(playerInput.Player);
-    }
-
-    private void EnableArrow()
-    {
-        EnableActionMap(playerInput.Arrow);
-    }
-
-    public void OnPlayerMapEnable()
-    {
-        Debug.Log("OnPlayerMapEnable()");
+        Debug.Log("EnableCharacter");
 
         playerSprint.performed += ThirdPersonController.Instance.OnSprintPressed;
         playerSprint.canceled += ThirdPersonController.Instance.OnSprintReleased;
 
+        playerAim.performed += ThirdPersonController.Instance.OnAimPressed;
+        playerAim.canceled += ThirdPersonController.Instance.OnAimReleased;
+
+        playerShoot.performed += ThirdPersonController.Instance.OnShoot;
+
         playerJump.performed += ThirdPersonController.Instance.OnJump;
 
         playerTransferControl.performed += ThirdPersonController.Instance.OnTransferControl;
-    }
 
-    public void OnPlayerMapDisable()
-    {
-        Debug.Log("OnPlayerMapDisable()");
+        EnableActionMap(playerInput.Player);
 
-        playerSprint.performed -= ThirdPersonController.Instance.OnSprintPressed;
-        playerSprint.canceled -= ThirdPersonController.Instance.OnSprintReleased;
+        //================DISABLE ARROW================
 
-        playerJump.performed -= ThirdPersonController.Instance.OnJump;
-
-        playerTransferControl.performed -= ThirdPersonController.Instance.OnTransferControl;
-    }
-
-    public void OnArrowMapEnable()
-    {
-        Debug.Log("OnArrowMapEnable()");
-
-        arrowAccelerate.performed += ArrowController.Instance.OnAcceleratePressed;
-        arrowAccelerate.canceled += ArrowController.Instance.OnAccelerateReleased;
-
-        arrowTransferControl.performed += ArrowController.Instance.OnTransferControl;
-    }
-
-    public void OnArrowMapDisable()
-    {
-        Debug.Log("OnArrowMapDisable()");
+        Debug.Log("DisableArrow");
 
         arrowAccelerate.performed -= ArrowController.Instance.OnAcceleratePressed;
         arrowAccelerate.canceled -= ArrowController.Instance.OnAccelerateReleased;
 
         arrowTransferControl.performed -= ArrowController.Instance.OnTransferControl;
+    }
+
+    private void EnableArrow()
+    {
+        Debug.Log("EnableArrow");
+
+        arrowAccelerate.performed += ArrowController.Instance.OnAcceleratePressed;
+        arrowAccelerate.canceled += ArrowController.Instance.OnAccelerateReleased;
+
+        arrowTransferControl.performed += ArrowController.Instance.OnTransferControl;
+
+        EnableActionMap(playerInput.Arrow);
+
+        // ================DISABLE PLAYER================
+
+        Debug.Log("DisableCharacter");
+
+        playerSprint.performed -= ThirdPersonController.Instance.OnSprintPressed;
+        playerSprint.canceled -= ThirdPersonController.Instance.OnSprintReleased;
+
+        playerAim.performed -= ThirdPersonController.Instance.OnAimPressed;
+        playerAim.canceled -= ThirdPersonController.Instance.OnAimReleased;
+
+        playerJump.performed -= ThirdPersonController.Instance.OnJump;
+
+        playerTransferControl.performed -= ThirdPersonController.Instance.OnTransferControl;
     }
 }

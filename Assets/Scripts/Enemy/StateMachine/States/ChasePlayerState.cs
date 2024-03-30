@@ -39,14 +39,6 @@ public class ChasePlayerState : AIState
         agent.animator.SetFloat(speed, agent.navMeshAgent.desiredVelocity.sqrMagnitude);
     }
 
-    private void LookAtTarget(AIAgent agent)
-    {
-        Vector3 lookPosition = agent.target.position - agent.gunMuzzle.position;
-        lookPosition.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPosition);
-        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, rotation, agent.config.rotateSpeed * Time.deltaTime);
-    }
-
     private void UpdatePath(AIAgent agent)
     {
         if (Time.time >= pathUpdateDeadline)

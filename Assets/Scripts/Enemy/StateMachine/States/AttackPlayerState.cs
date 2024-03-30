@@ -28,13 +28,23 @@ public class AttackPlayerState : AIState
         agent.animator.SetBool(isShooting, false);
     }
 
-    public void Update(AIAgent agent)
+    public void Update(AIAgent agent) 
     {
-        bool targetInRange = Vector3.Distance(agent.transform.position, agent.target.position) <= shootingDistance;
-
-        if (targetInRange)
+        
+        if (agent.weapon.GetRaycastHit())
+        {
+            LookAtTarget(agent);
             agent.weapon.SetShooting(true);
+        }
         else
             agent.stateMachine.ChangeState(AIStateId.ChasePlayer);
+    }
+
+    private void LookAtTarget(AIAgent agent)
+    {
+        Vector3 lookPosition = agent.target.position - agent.gunMuzzle.position;
+        lookPosition.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPosition);
+        agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, rotation, agent.config.rotateSpeed * Time.deltaTime);
     }
 }

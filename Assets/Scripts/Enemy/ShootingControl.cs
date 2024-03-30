@@ -28,37 +28,38 @@ public class ShootingControl : MonoBehaviour
     private Transform targetTransform;
     private Transform aimTransform;
     private bool isShootAllowed = false;
-    private bool canShoot = true;
     
     private void LateUpdate()
     {
-        if (targetTransform == null || aimTransform == null || !isShootAllowed) return;
+        /*if (targetTransform == null || aimTransform == null || !isShootAllowed) return;
 
         Vector3 targetPosition = GetTargetPosition();
 
         for (int i = 0; i < iterations; i++)
-            AimAtTarget(bone, targetPosition, boneWeight);   
+            AimAtTarget(bone, targetPosition, boneWeight); */  
     }
 
     // animation trigger
     private void Shoot()
     {
-        if (Physics.Raycast(gunMuzzle.position, gunMuzzle.position + gunMuzzle.forward * 50, out RaycastHit hit, float.MaxValue, shootingLayerMask)
-            && canShoot)
+        if (GetRaycastHit())
         {
             Debug.DrawRay(gunMuzzle.position, gunMuzzle.forward * 50, Color.red, 1f);
 
             GameObject bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.parent.rotation);
 
-            bullet.GetComponent<Rigidbody>().AddForce(gunMuzzle.forward * shootForce, ForceMode.Impulse);
-            //muzzleFlash.Play
+            muzzleFlash.Emit(1);
         }
+    }
+    public bool GetRaycastHit()
+    {
+        return Physics.Raycast(gunMuzzle.position, gunMuzzle.position + gunMuzzle.forward * 50, out RaycastHit hit, float.MaxValue, shootingLayerMask);
     }
 
     private Vector3 GetTargetPosition()
     {
-        //Vector3 targetDirection = (targetTransform.position + aimingOffset) - aimTransform.position;
-        Vector3 targetDirection = (targetTransform.position) - aimTransform.position;
+        Vector3 targetDirection = (targetTransform.position + aimingOffset) - aimTransform.position;
+       
         Vector3 aimDirection = aimTransform.forward;
         float blendOut = 0f;
 
@@ -66,17 +67,15 @@ public class ShootingControl : MonoBehaviour
         if (targetAngle > angleLimit)
         {
             blendOut += (targetAngle - angleLimit) / 50f;
-            canShoot = false;
+            
         }
-        else canShoot = true;
 
         float targetDistance = targetDirection.magnitude;
         if (targetDistance < distanceLimit)
         {
             blendOut += distanceLimit - targetDistance;
-            canShoot = false;
+            
         }
-        else canShoot = true;
 
         Vector3 direction = Vector3.Slerp(targetDirection, aimDirection, blendOut);
         return aimTransform.position + direction;
@@ -105,10 +104,5 @@ public class ShootingControl : MonoBehaviour
     public void SetShooting(bool condition)
     {
         isShootAllowed = condition;
-    }
-
-    public bool GetCanShoot()
-    {
-        return canShoot;
     }
 }
