@@ -4,11 +4,12 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     private AIAgent agent;
-    [SerializeField] private CapsuleCollider arrow;
+    private CapsuleCollider arrow;
 
     private void Start()
     {
         agent = GetComponent<AIAgent>();
+        arrow = ArrowController.Instance.GetComponentInChildren<CapsuleCollider>();
 
         var rigidBodies = GetComponentsInChildren<Rigidbody>();
 
@@ -23,7 +24,13 @@ public class EnemyHealth : MonoBehaviour
 
     private void HitBox_OnCollideWithArrow(object sender, EventArgs e)
     {
-        agent.stateMachine.ChangeState(AIStateId.Death);
+        if (!agent.stateMachine.CheckCurrentState(AIStateId.Death))
+        {
+            
+            agent.stateMachine.ChangeState(AIStateId.Death);
+           
+        }
+            
     }
 
 }

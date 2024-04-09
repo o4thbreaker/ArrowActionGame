@@ -1,26 +1,30 @@
+using JetBrains.Annotations;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public enum State 
+    public enum gameState 
     {
-        InitialState,
-        ControllingCharacter,
-        ControllingArrow,
-        RepeatingArrowPath,
-        GameOver,
-        LevelComplete
+       GameStart,
+       LevelEntered,
+       LevelCompleted,
+       GameCompleted,
+       GameOver
     }
     
-    public Action OnArrowPathRepeated; 
-    public Action OnArrowActivated; 
-    public Action OnCharacterActivated; 
     public Action OnGameStart; 
+    public Action OnGameCompleted; 
+    public Action OnLevelEntered; 
+    public Action OnLevelCompleted; 
+    public Action OnGameOver;
 
-    private State state;
+
+    [SerializeField] private Transform[] enemySpawnPoints;
+    [SerializeField] private GameObject enemyPrefab;
 
     private void Awake()
     {
@@ -38,65 +42,70 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateState(State.InitialState);
+        UpdateState(gameState.GameStart);
     }
 
-    public void UpdateState(State newState)
+    public void UpdateState(gameState newState)
     {
-        state = newState;
 
         switch (newState)
         {
-            case State.InitialState:
-                HandleInitialState();
+            case gameState.GameStart:
+                HandleGameStart();
                 break;
-            case State.ControllingCharacter:
-                HandleCharacterControlState();
+            case gameState.LevelEntered:
+                HandleLevelEntered();
                 break;
-            case State.ControllingArrow:
-                HandleArrowRewindState();
+            case gameState.LevelCompleted:
+                HandleLevelCompleted();
                 break;
-            case State.RepeatingArrowPath:
-                HandleArrowControlState();
+            case gameState.GameCompleted:
+                HandleGameCompleted();
                 break;
-            case State.GameOver:
-                HandleGameOverState();
-                break;
-            case State.LevelComplete:
-                HandleLevelCompleteState();
+            case gameState.GameOver:
+                HandleGameOver();
                 break;
         }
     }
 
-    private void HandleInitialState()
+  
+
+    private void HandleGameStart()
     {
         OnGameStart?.Invoke();
     }
 
-    private void HandleCharacterControlState()
+    private void HandleGameCompleted()
     {
-        Debug.Log("In Character Control state");
-        OnCharacterActivated?.Invoke();
+        OnGameCompleted?.Invoke();
     }
 
-    private void HandleArrowRewindState()
+    private void HandleLevelEntered()
     {
-        OnArrowActivated?.Invoke();
+        OnLevelEntered?.Invoke();
+
+        StartCoroutine(EnemySpawnCoroutine());
     }
 
-    private void HandleArrowControlState()
+    private void HandleLevelCompleted()
     {
-        Debug.Log("In Arrow repeating its own path state");
-        OnArrowPathRepeated?.Invoke();
+        OnLevelCompleted?.Invoke();
+
+        Debug.Log($"<color=green>Level completed!</color>");
     }
 
-    private void HandleGameOverState()
+    private void HandleGameOver()
     {
-
+        OnGameOver?.Invoke();
     }
 
-    private void HandleLevelCompleteState()
+    private IEnumerator EnemySpawnCoroutine()
     {
+        yield return new WaitForSeconds(1f);
 
+        for (int i = 0; i < enemySpawnPoints.Length; i++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, enemySpawnPoints[i].position, enemySpawnPoints[i].rotation);
+        }
     }
 }

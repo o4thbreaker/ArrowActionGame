@@ -15,8 +15,13 @@ public class AIAgent : MonoBehaviour
     public Transform gunMuzzle;
     public Transform target;
 
+    public static int totalEnemiesAmount;
+
     private void Start()
     {
+        target = ThirdPersonController.Instance.transform;
+        totalEnemiesAmount++;
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         ragdoll = GetComponent<Ragdoll>();

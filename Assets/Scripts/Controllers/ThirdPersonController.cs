@@ -52,32 +52,11 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnGameStart += EnableCharacter;
-        GameManager.Instance.OnCharacterActivated += EnableCharacter;
-        GameManager.Instance.OnArrowActivated += DisableCharacter;
-
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         throwHash = Animator.StringToHash("Throw");
 
         groundedDrag = rb.drag;
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnGameStart -= EnableCharacter;
-        GameManager.Instance.OnCharacterActivated -= EnableCharacter;
-        GameManager.Instance.OnArrowActivated -= DisableCharacter;
-    }
-
-    private void EnableCharacter()
-    {
-
-    }
-
-    private void DisableCharacter()
-    {
-        
     }
 
 

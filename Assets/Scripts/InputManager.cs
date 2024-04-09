@@ -65,16 +65,16 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnGameStart += EnableCharacter;
-        GameManager.Instance.OnCharacterActivated += EnableCharacter;
-        GameManager.Instance.OnArrowActivated += EnableArrow;
+        PlayerStateManager.Instance.OnGameStart += EnableCharacter;
+        PlayerStateManager.Instance.OnCharacterActivated += EnableCharacter;
+        PlayerStateManager.Instance.OnArrowActivated += EnableArrow;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnGameStart -= EnableCharacter;
-        GameManager.Instance.OnCharacterActivated -= EnableCharacter;
-        GameManager.Instance.OnArrowActivated -= EnableArrow;
+        PlayerStateManager.Instance.OnGameStart -= EnableCharacter;
+        PlayerStateManager.Instance.OnCharacterActivated -= EnableCharacter;
+        PlayerStateManager.Instance.OnArrowActivated -= EnableArrow;
     }
 
     public static void EnableActionMap(InputActionMap actionMap)

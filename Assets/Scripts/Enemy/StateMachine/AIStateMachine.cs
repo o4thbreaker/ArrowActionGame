@@ -35,4 +35,9 @@ public class AIStateMachine
         currentState = newState;
         GetState(currentState)?.EnterState(agent);
     }
+
+    public bool CheckCurrentState(AIStateId stateToCheckId)
+    {
+        return stateToCheckId == currentState;
+    }
 }

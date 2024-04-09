@@ -3,9 +3,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float shootForce = 50f;
+    [SerializeField] private string targetTag = "Player";
 
     private Rigidbody rb;
-    private string targetTag = "TargetPoint";
+   
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();

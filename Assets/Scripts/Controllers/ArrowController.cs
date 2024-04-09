@@ -27,8 +27,6 @@ public class ArrowController : MonoBehaviour
 
     private Vector2 turn;
 
-    private Vector3 screenCenter;
-
     private void Awake()
     {
         if (Instance == null)
@@ -48,19 +46,16 @@ public class ArrowController : MonoBehaviour
 
     private void Start()
     {
-        screenCenter.x = Screen.width * .5f;
-        screenCenter.y = Screen.height * .5f;
-
-        GameManager.Instance.OnArrowActivated += EnableArrow;
-        GameManager.Instance.OnCharacterActivated += DisableArrow;
+        PlayerStateManager.Instance.OnArrowActivated += EnableArrow;
+        PlayerStateManager.Instance.OnCharacterActivated += DisableArrow;
 
         previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnArrowActivated -= EnableArrow;
-        GameManager.Instance.OnCharacterActivated -= DisableArrow;
+        PlayerStateManager.Instance.OnArrowActivated -= EnableArrow;
+        PlayerStateManager.Instance.OnCharacterActivated -= DisableArrow;
     }
 
     private void EnableArrow()
@@ -96,6 +91,7 @@ public class ArrowController : MonoBehaviour
     private void HandleRotation()
     {
         // TODO: fix the initial rotation bug (kinda fixed)
+        // TODO: add button to normalise arrow rotation around z axis
 
         // NOTE: may be needed later
         /*turn += inputManager.GetArrowMovement();
@@ -162,7 +158,7 @@ public class ArrowController : MonoBehaviour
 
     public void OnTransferControl(InputAction.CallbackContext context)
     {
-        GameManager.Instance.UpdateState(GameManager.State.RepeatingArrowPath);
+        PlayerStateManager.Instance.UpdateState(PlayerStateManager.playerState.RepeatingArrowPath);
     }
 
     private void Update()

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class AttackPlayerState : AIState
 {
-    private float shootingDistance;
     private string isShooting = "isShooting";
 
     public AIStateId GetId()
@@ -16,14 +15,11 @@ public class AttackPlayerState : AIState
         agent.weapon.SetTargetTransform(agent.target);
 
         agent.animator.SetBool(isShooting, true);
-
-        shootingDistance = agent.navMeshAgent.stoppingDistance;
     }
 
     public void ExitState(AIAgent agent)
     {
         agent.weapon.SetAimTransform(null);
-        agent.weapon.SetShooting(false);
 
         agent.animator.SetBool(isShooting, false);
     }
@@ -34,7 +30,6 @@ public class AttackPlayerState : AIState
         if (agent.weapon.GetRaycastHit())
         {
             LookAtTarget(agent);
-            agent.weapon.SetShooting(true);
         }
         else
             agent.stateMachine.ChangeState(AIStateId.ChasePlayer);

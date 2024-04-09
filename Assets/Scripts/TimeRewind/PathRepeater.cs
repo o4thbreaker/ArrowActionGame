@@ -15,8 +15,8 @@ public class PathRepeater : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnArrowActivated += StartTracking;
-        GameManager.Instance.OnArrowPathRepeated += StopTracking;
+        PlayerStateManager.Instance.OnArrowActivated += StartTracking;
+        PlayerStateManager.Instance.OnArrowPathRepeated += StopTracking;
     }
 
     private void FixedUpdate()
@@ -55,6 +55,6 @@ public class PathRepeater : MonoBehaviour
         graduallyMoveForward = true;
         Debug.Log("Moving back to past");
 
-        GameManager.Instance.UpdateState(GameManager.State.ControllingCharacter);
+        PlayerStateManager.Instance.UpdateState(PlayerStateManager.playerState.ControllingCharacter);
     }
 }

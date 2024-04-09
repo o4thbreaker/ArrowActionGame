@@ -26,7 +26,7 @@ public class ArrowModeTimer : MonoBehaviour
         else if (timeLeft < 0f)
         {
             timeLeft = 0f;
-            GameManager.Instance.UpdateState(GameManager.State.RepeatingArrowPath);
+            PlayerStateManager.Instance.UpdateState(PlayerStateManager.playerState.RepeatingArrowPath);
             //ArrowController.Instance.ReturnArrow();
 
             isTimeOut = true;

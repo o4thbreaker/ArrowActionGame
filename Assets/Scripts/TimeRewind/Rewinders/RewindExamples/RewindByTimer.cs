@@ -6,14 +6,14 @@ public class RewindByTimer : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnArrowPathRepeated += DisableRewind;
-        GameManager.Instance.OnCharacterActivated += EnableRewind;
+        PlayerStateManager.Instance.OnArrowPathRepeated += DisableRewind;
+        PlayerStateManager.Instance.OnCharacterActivated += EnableRewind;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnArrowPathRepeated -= DisableRewind;
-        GameManager.Instance.OnCharacterActivated -= EnableRewind;
+        PlayerStateManager.Instance.OnArrowPathRepeated -= DisableRewind;
+        PlayerStateManager.Instance.OnCharacterActivated -= EnableRewind;
     }
 
     private void EnableRewind()

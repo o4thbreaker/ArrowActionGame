@@ -24,9 +24,9 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnArrowActivated += TurnOnArrowCamera;
-        GameManager.Instance.OnArrowPathRepeated += TurnOnPlayerCamera;
-        GameManager.Instance.OnCharacterActivated += TurnOnPlayerCamera;
+        PlayerStateManager.Instance.OnArrowActivated += TurnOnArrowCamera;
+        PlayerStateManager.Instance.OnArrowPathRepeated += TurnOnPlayerCamera;
+        PlayerStateManager.Instance.OnCharacterActivated += TurnOnPlayerCamera;
 
         ThirdPersonController.Instance.OnAimStart += TurnOnAimCamera;
         ThirdPersonController.Instance.OnAimEnd += TurnOffAimCamera;
@@ -34,9 +34,9 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnArrowActivated -= TurnOnArrowCamera;
-        GameManager.Instance.OnArrowPathRepeated -= TurnOnPlayerCamera;
-        GameManager.Instance.OnCharacterActivated -= TurnOnPlayerCamera;
+        PlayerStateManager.Instance.OnArrowActivated -= TurnOnArrowCamera;
+        PlayerStateManager.Instance.OnArrowPathRepeated -= TurnOnPlayerCamera;
+        PlayerStateManager.Instance.OnCharacterActivated -= TurnOnPlayerCamera;
 
         ThirdPersonController.Instance.OnAimStart -= TurnOnAimCamera;
         ThirdPersonController.Instance.OnAimEnd -= TurnOffAimCamera;
@@ -56,11 +56,13 @@ public class CameraSwitcher : MonoBehaviour
 
     private void TurnOnAimCamera()
     {
+        Debug.Log("TurnOnAimCamera");
         playerAimCamera.Priority = 2;
     }
 
     private void TurnOffAimCamera()
     {
+        Debug.Log("TurnOffAimCamera");
         playerAimCamera.Priority = 0;
     }
 }

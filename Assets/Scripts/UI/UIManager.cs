@@ -23,17 +23,17 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnArrowActivated += ActivateArrowTimer;
-        GameManager.Instance.OnArrowPathRepeated += ResetArrowTimer;
+        PlayerStateManager.Instance.OnArrowActivated += ActivateArrowTimer;
+        PlayerStateManager.Instance.OnArrowPathRepeated += ResetArrowTimer;
 
-        GameManager.Instance.OnArrowActivated += ResetCooldownTimer;
-        GameManager.Instance.OnCharacterActivated += ActivateCooldownTimer;
+        PlayerStateManager.Instance.OnArrowActivated += ResetCooldownTimer;
+        PlayerStateManager.Instance.OnCharacterActivated += ActivateCooldownTimer;
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.OnArrowActivated -= ActivateArrowTimer;
-        GameManager.Instance.OnArrowPathRepeated -= ResetArrowTimer;
+        PlayerStateManager.Instance.OnArrowActivated -= ActivateArrowTimer;
+        PlayerStateManager.Instance.OnArrowPathRepeated -= ResetArrowTimer;
     }
 
     private void ActivateArrowTimer()
