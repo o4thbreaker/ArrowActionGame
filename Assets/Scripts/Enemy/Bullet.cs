@@ -17,9 +17,10 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //TODO: change to GetComponent instead of tag
-        if (collision.gameObject.tag == targetTag)
+        if (collision.gameObject.GetComponent<ThirdPersonController>() != null)
         {
-            Debug.Log($"<color=red>Target got hit!</color>");
+            Debug.Log($"<color=orange>Player got hit!</color>");
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
         }
 
         Destroy(gameObject);

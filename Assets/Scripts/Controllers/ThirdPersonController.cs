@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ThirdPersonController : MonoBehaviour
@@ -7,26 +8,36 @@ public class ThirdPersonController : MonoBehaviour
     public static ThirdPersonController Instance { get; private set; }
 
     private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
     private InputManager inputManager;
     private Animator animator;
 
     [SerializeField] private float playerSpeed = 5f;
     [SerializeField] private float sprintFactor = 1.5f;
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float maxSlopeAngle = 50f;
     [SerializeField] private float turnSmoothing = 0.15f;
 
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask aimColliderMask = new LayerMask();
-    [SerializeField] private Transform debugTransform;
+    [SerializeField] private LayerMask groundLayerMask = new LayerMask();
+    [SerializeField] private Transform debugHitTransform;
 
     private Vector3 forceDirection = Vector3.zero;
+
     private int isWalkingHash;
     private int isRunningHash;
     private int throwHash;
+
     private bool isSprinting = false;
     private bool isAiming = false;
+
     private float groundedDrag;
-    private float movementMultiplier = 60f;
+    private float playerHeight;
+    private float movementMultiplier = 100f;
+    private RaycastHit slopeHit;
+    
+
     private Vector3 mouseWorldPosition = Vector3.zero;
 
     public Action OnAimStart;
@@ -47,7 +58,8 @@ public class ThirdPersonController : MonoBehaviour
         inputManager = InputManager.Instance;
 
         rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     private void Start()
@@ -57,8 +69,8 @@ public class ThirdPersonController : MonoBehaviour
         throwHash = Animator.StringToHash("Throw");
 
         groundedDrag = rb.drag;
+        playerHeight = capsuleCollider.height;
     }
-
 
     private void Update()
     {
@@ -73,17 +85,42 @@ public class ThirdPersonController : MonoBehaviour
         {
             animator.SetBool(isWalkingHash, true);
 
-            forceDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y);
+            if (IsOnSlope())
+                forceDirection = GetSlopeMoveDirection();
+            else
+                forceDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y).normalized;
 
-            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintFactor : 1) * Time.deltaTime * movementMultiplier, ForceMode.Force); 
+            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintFactor : 1) * Time.deltaTime * movementMultiplier); 
 
-            // to remove movement after releasing the button
-            forceDirection = Vector3.zero;
         }
         else
         {
+            forceDirection = Vector3.zero;
             animator.SetBool(isWalkingHash, false);
         }
+
+        rb.drag = IsGrounded() ? groundedDrag : 0;
+        rb.useGravity = !IsOnSlope();
+
+        //Debug.Log("grounded: " + IsGrounded());
+        Debug.DrawLine(transform.position, (transform.position + Vector3.down), Color.red);
+    }
+
+    private bool IsOnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.2f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        Vector3 moveDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y);
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     private void HandleAiming()
@@ -139,18 +176,12 @@ public class ThirdPersonController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
+        Ray ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
-        {
-            rb.drag = groundedDrag;
+        if (Physics.Raycast(ray, playerHeight * 0.5f + 0.2f, groundLayerMask))
             return true;
-        }
         else
-        {
-            rb.drag = 0;
             return false;
-        }
     }
 
     public void OnSprintPressed(InputAction.CallbackContext context)
@@ -187,7 +218,7 @@ public class ThirdPersonController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, aimColliderMask) && isAiming)
         {
-            debugTransform.position = hit.point;
+            debugHitTransform.position = hit.point;
             GetComponent<ActivateArrow>().TriggerArrow();
         }
     }
@@ -196,7 +227,9 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            rb.velocity += jumpForce * Vector3.up;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
     }
 
