@@ -9,7 +9,9 @@ public class TeleportTrigger : MonoBehaviour
     {
         if (other.tag == playerTag && !string.IsNullOrEmpty(playerTag))
         {
+            other.GetComponent<CharacterController>().enabled = false;
             other.transform.position = teleportTo.position;
+            other.GetComponent<CharacterController>().enabled = true;
 
             GameManager.Instance.UpdateState(GameManager.gameState.LevelEntered);
         }

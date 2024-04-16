@@ -7,23 +7,25 @@ public class ThirdPersonController : MonoBehaviour
 {
     public static ThirdPersonController Instance { get; private set; }
 
-    private Rigidbody rb;
-    private CapsuleCollider capsuleCollider;
+    private CharacterController cc;
     private InputManager inputManager;
     private Animator animator;
 
     [SerializeField] private float playerSpeed = 5f;
     [SerializeField] private float sprintFactor = 1.5f;
     [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float maxSlopeAngle = 50f;
     [SerializeField] private float turnSmoothing = 0.15f;
+    [SerializeField] private float aimTurnSmoothing = 5;
+
+    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float groundedGravity = -.05f;
 
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask aimColliderMask = new LayerMask();
-    [SerializeField] private LayerMask groundLayerMask = new LayerMask();
     [SerializeField] private Transform debugHitTransform;
 
-    private Vector3 forceDirection = Vector3.zero;
+    private Vector3 moveDirection = Vector3.zero;
+    private float currentGravity = 0f;
 
     private int isWalkingHash;
     private int isRunningHash;
@@ -31,12 +33,6 @@ public class ThirdPersonController : MonoBehaviour
 
     private bool isSprinting = false;
     private bool isAiming = false;
-
-    private float groundedDrag;
-    private float playerHeight;
-    private float movementMultiplier = 100f;
-    private RaycastHit slopeHit;
-    
 
     private Vector3 mouseWorldPosition = Vector3.zero;
 
@@ -57,9 +53,8 @@ public class ThirdPersonController : MonoBehaviour
 
         inputManager = InputManager.Instance;
 
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        cc = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -67,9 +62,6 @@ public class ThirdPersonController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         throwHash = Animator.StringToHash("Throw");
-
-        groundedDrag = rb.drag;
-        playerHeight = capsuleCollider.height;
     }
 
     private void Update()
@@ -85,47 +77,22 @@ public class ThirdPersonController : MonoBehaviour
         {
             animator.SetBool(isWalkingHash, true);
 
-            if (IsOnSlope())
-                forceDirection = GetSlopeMoveDirection();
-            else
-                forceDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y).normalized;
+            moveDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y).normalized;
+            moveDirection.y = GetGravityValue();
 
-            rb.AddForce(forceDirection * playerSpeed * (isSprinting ? sprintFactor : 1) * Time.deltaTime * movementMultiplier); 
-
+            cc.Move(moveDirection * playerSpeed * (isSprinting ? sprintFactor : 1) * Time.deltaTime); 
         }
         else
         {
-            forceDirection = Vector3.zero;
+            moveDirection.y = GetGravityValue();
+            cc.Move(new Vector3(0f, moveDirection.y, 0f) * Time.deltaTime);
+
             animator.SetBool(isWalkingHash, false);
         }
-
-        rb.drag = IsGrounded() ? groundedDrag : 0;
-        rb.useGravity = !IsOnSlope();
-
-        //Debug.Log("grounded: " + IsGrounded());
-        Debug.DrawLine(transform.position, (transform.position + Vector3.down), Color.red);
-    }
-
-    private bool IsOnSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.2f))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0;
-        }
-
-        return false;
-    }
-
-    private Vector3 GetSlopeMoveDirection()
-    {
-        Vector3 moveDirection = CalculateDirection(inputManager.GetPlayerMovement().x, inputManager.GetPlayerMovement().y);
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     private void HandleAiming()
     {
-        // TODO: fix the tweaking between cameras bug
         // TODO: make crosshair appear only during aiming state
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
@@ -138,13 +105,14 @@ public class ThirdPersonController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 direction = rb.velocity;
+        Vector3 direction = moveDirection;
+        direction.y = 0f;
+        Quaternion currentRotation = transform.rotation;
 
-        if (inputManager.IsPlayerMoving() && direction.sqrMagnitude > 0.1f && !isAiming)
+        if (inputManager.IsPlayerMoving() && !isAiming)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            Quaternion newRotation = Quaternion.Slerp(rb.rotation, targetRotation, turnSmoothing);
-            rb.MoveRotation(newRotation);
+            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, turnSmoothing * Time.deltaTime);
         }
         else if (isAiming)
         {
@@ -152,11 +120,8 @@ public class ThirdPersonController : MonoBehaviour
             worldAimTarget.y = transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 40f);
-        }
-        else 
-        {
-            rb.angularVelocity = Vector3.zero; 
+            Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
+            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, aimTurnSmoothing * Time.deltaTime);
         }
     }
 
@@ -174,14 +139,21 @@ public class ThirdPersonController : MonoBehaviour
         return targetDirection;
     }
 
-    private bool IsGrounded()
+    private float GetGravityValue()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
-
-        if (Physics.Raycast(ray, playerHeight * 0.5f + 0.2f, groundLayerMask))
-            return true;
+        if (cc.isGrounded)
+        {
+            currentGravity = 0f;
+            return groundedGravity;
+        }
         else
-            return false;
+        {
+            float previousGravity = currentGravity;
+            float newGravity = currentGravity + (gravity * Time.deltaTime);
+            float nextGravity = Mathf.Max((previousGravity + newGravity) * .5f, -20.0f);
+            currentGravity = nextGravity;
+            return currentGravity;
+        }
     }
 
     public void OnSprintPressed(InputAction.CallbackContext context)
@@ -225,12 +197,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
+   
     }
 
     public void OnTransferControl(InputAction.CallbackContext context)
