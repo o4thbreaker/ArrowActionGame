@@ -30,7 +30,7 @@ public class IdleState : AIState
         float dotProduct = Vector3.Dot(playerDirection, agentDirection);
         if (dotProduct > 0) // target is in front (or in sight to be more precise)
         {
-            agent.stateMachine.ChangeState(AIStateId.ChasePlayer);
+            agent.stateMachine.ChangeState(AIStateId.RunToCover);
         }
     }
 }

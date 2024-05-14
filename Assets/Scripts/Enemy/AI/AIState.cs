@@ -1,10 +1,12 @@
-
 public enum AIStateId
 {
-    ChasePlayer,
-    Death,
     Idle,
-    AttackPlayer
+    RunToCover,
+    InCover,
+    ChasePlayer,
+    AttackPlayer,
+    Death,
+    Delay
 }
 
 public interface AIState

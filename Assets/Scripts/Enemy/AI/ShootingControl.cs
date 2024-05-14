@@ -40,7 +40,8 @@ public class ShootingControl : MonoBehaviour
     }
     public bool GetRaycastHit()
     {
-        return Physics.Raycast(gunMuzzle.position, gunMuzzle.position + gunMuzzle.forward * 50, out RaycastHit hit, float.MaxValue, shootingLayerMask);
+        return Physics.Raycast(gunMuzzle.position, gunMuzzle.position + gunMuzzle.forward * 50, 
+            out RaycastHit hit, float.MaxValue, shootingLayerMask);
     }
 
     // NOTE: may be used later

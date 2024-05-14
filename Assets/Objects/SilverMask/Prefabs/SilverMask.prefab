@@ -4072,7 +4072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448480b824bb3ce47bc99f935fea9049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrow: {fileID: 0}
 --- !u!114 &6912971800818223241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4124,10 +4123,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   ragdoll: {fileID: 0}
   weapon: {fileID: 0}
+  coverArea: {fileID: 0}
   shootingLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  initialState: 2
+  initialState: 0
   config: {fileID: 11400000, guid: eb540f1babe2ebb4eae733e4deeaa21d, type: 2}
   gunMuzzle: {fileID: 2456810682586778315}
   target: {fileID: 0}

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,6 +8,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private ArrowModeTimer arrowModeClock;
     [SerializeField] private ArrowCooldownTimer arrowCooldownClock;
+    [SerializeField] private TextMeshProUGUI missionText;
+    [SerializeField] private MissionWaypoint missionWaypoint;
 
     private void Awake()
     {
@@ -28,6 +31,10 @@ public class UIManager : MonoBehaviour
 
         PlayerStateManager.Instance.OnArrowActivated += ResetCooldownTimer;
         PlayerStateManager.Instance.OnCharacterActivated += ActivateCooldownTimer;
+
+        GameManager.Instance.OnLevelEntered += SetUpLevelUI;
+        GameManager.Instance.OnGameStart += SetUpGameUI;
+        GameManager.Instance.OnLevelCompleted += SetWinUI;
     }
 
     private void OnDestroy()
@@ -60,5 +67,22 @@ public class UIManager : MonoBehaviour
     public bool GetCooldownActive()
     {
         return arrowCooldownClock.IsCooldown;
+    }
+
+    private void SetUpGameUI()
+    {
+        missionText.text = "Go to enterance";
+        missionWaypoint.gameObject.SetActive(true);
+    }
+
+    private void SetUpLevelUI()
+    {
+        missionWaypoint.gameObject.SetActive(false);
+        missionText.text = "Eliminate all enemies";
+    }
+
+    private void SetWinUI()
+    {
+        missionText.text = $"<color=green>MISSION COMPLETE</color>";
     }
 }

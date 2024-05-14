@@ -11,28 +11,32 @@ public class AttackPlayerState : AIState
 
     public void EnterState(AIAgent agent)
     {
+        Debug.Log("entering");
+
         agent.weapon.SetAimTransform(agent.gunMuzzle);
         agent.weapon.SetTargetTransform(agent.target);
 
         agent.animator.SetBool(isShooting, true);
     }
 
-    public void ExitState(AIAgent agent)
-    {
-        agent.weapon.SetAimTransform(null);
-
-        agent.animator.SetBool(isShooting, false);
-    }
-
     public void Update(AIAgent agent) 
     {
-        
         if (agent.weapon.GetRaycastHit())
         {
             LookAtTarget(agent);
         }
         else
             agent.stateMachine.ChangeState(AIStateId.ChasePlayer);
+    }
+
+    public void ExitState(AIAgent agent)
+    {
+        Debug.Log("exiting");
+
+        agent.weapon.SetAimTransform(null);
+        agent.weapon.SetTargetTransform(null);
+
+        agent.animator.SetBool(isShooting, false);
     }
 
     private void LookAtTarget(AIAgent agent)

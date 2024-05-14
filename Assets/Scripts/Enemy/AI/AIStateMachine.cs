@@ -40,4 +40,9 @@ public class AIStateMachine
     {
         return stateToCheckId == currentState;
     }
+
+    public AIStateId GetCurrentState()
+    {
+        return currentState;
+    }
 }
