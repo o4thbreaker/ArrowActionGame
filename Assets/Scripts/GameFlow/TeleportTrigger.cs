@@ -13,7 +13,7 @@ public class TeleportTrigger : MonoBehaviour
             other.transform.position = teleportTo.position;
             other.GetComponent<CharacterController>().enabled = true;
 
-            GameManager.Instance.UpdateState(GameManager.gameState.LevelEntered);
+            GameManager.Instance.UpdateState(GameManager.gameState.Tutorial);
         }
     }
 }

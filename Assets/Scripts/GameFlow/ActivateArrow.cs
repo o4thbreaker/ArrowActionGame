@@ -14,24 +14,17 @@ public class ActivateArrow : MonoBehaviour
 
         StartCoroutine(LaunchArrowCoroutine());
 
-        Debug.Log("Updating state....");
+        //Debug.Log("Updating state....");
         //GameManager.Instance.UpdateState(GameManager.State.ControllingArrow);
     }
 
     private IEnumerator LaunchArrowCoroutine()
     {
         // TODO: take a better look at coroutines and how to use them
-
-        Debug.Log("before yield");
-
         arrow.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * 20f, ForceMode.VelocityChange);
 
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log("after yield");
-
         PlayerStateManager.Instance.UpdateState(PlayerStateManager.playerState.ControllingArrow);
-
-        
     }
 }

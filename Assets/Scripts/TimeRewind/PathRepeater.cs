@@ -31,7 +31,7 @@ public class PathRepeater : MonoBehaviour
             {
                 graduallyMoveForward = false;
                 rewindManager.StopRewindTimeBySeconds();
-                Debug.Log("Object is now in present");
+                //Debug.Log("Object is now in present");
                 // call a return arrow
                 ArrowController.Instance.ReturnArrow();
             }

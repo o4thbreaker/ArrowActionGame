@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     private InputAction playerShoot;
     private InputAction playerSprint;
     private InputAction playerJump;
-    private InputAction playerTransferControl;
+    private InputAction playerConfirm;
 
     private InputAction arrowMove;
     private InputAction arrowLook;
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
         playerShoot = playerInput.Player.Shoot;
         playerSprint = playerInput.Player.Sprint;
         playerJump = playerInput.Player.Jump;
-        playerTransferControl = playerInput.Player.TransferControl;
+        playerConfirm = playerInput.Player.Confirm;
 
         arrowMove = playerInput.Arrow.Move;
         arrowLook = playerInput.Arrow.Look;
@@ -66,15 +66,31 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         PlayerStateManager.Instance.OnGameStart += EnableCharacter;
+        PlayerStateManager.Instance.OnGameStart += DisableArrow;
+
         PlayerStateManager.Instance.OnCharacterActivated += EnableCharacter;
+        PlayerStateManager.Instance.OnCharacterActivated += DisableArrow;
+
         PlayerStateManager.Instance.OnArrowActivated += EnableArrow;
+        PlayerStateManager.Instance.OnArrowActivated += DisablePlayer;
+
+        GameManager.Instance.OnGameOver += DisablePlayer;
+        GameManager.Instance.OnGameOver += DisableArrow;
     }
 
     private void OnDestroy()
     {
         PlayerStateManager.Instance.OnGameStart -= EnableCharacter;
+        PlayerStateManager.Instance.OnGameStart -= DisableArrow;
+
         PlayerStateManager.Instance.OnCharacterActivated -= EnableCharacter;
+        PlayerStateManager.Instance.OnCharacterActivated -= DisableArrow;
+
         PlayerStateManager.Instance.OnArrowActivated -= EnableArrow;
+        PlayerStateManager.Instance.OnArrowActivated -= DisablePlayer;
+
+        GameManager.Instance.OnGameOver -= DisablePlayer;
+        GameManager.Instance.OnGameOver -= DisableArrow;
     }
 
     public static void EnableActionMap(InputActionMap actionMap)
@@ -110,10 +126,13 @@ public class InputManager : MonoBehaviour
 
         playerJump.performed += ThirdPersonController.Instance.OnJump;
 
-        playerTransferControl.performed += ThirdPersonController.Instance.OnTransferControl;
+        playerConfirm.performed += ThirdPersonController.Instance.OnConfirm;
 
         EnableActionMap(playerInput.Player);
+    }
 
+    private void DisableArrow()
+    {
         //================DISABLE ARROW================
 
         Debug.Log("DisableArrow");
@@ -133,8 +152,11 @@ public class InputManager : MonoBehaviour
 
         arrowTransferControl.performed += ArrowController.Instance.OnTransferControl;
 
-        EnableActionMap(playerInput.Arrow);
+        EnableActionMap(playerInput.Arrow);   
+    }
 
+    private void DisablePlayer()
+    {
         // ================DISABLE PLAYER================
 
         Debug.Log("DisableCharacter");
@@ -147,6 +169,6 @@ public class InputManager : MonoBehaviour
 
         playerJump.performed -= ThirdPersonController.Instance.OnJump;
 
-        playerTransferControl.performed -= ThirdPersonController.Instance.OnTransferControl;
+        playerConfirm.performed -= ThirdPersonController.Instance.OnConfirm;
     }
 }

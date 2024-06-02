@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class ThirdPersonController : MonoBehaviour
@@ -22,14 +21,12 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask aimColliderMask = new LayerMask();
-    [SerializeField] private Transform debugHitTransform;
 
     private Vector3 moveDirection = Vector3.zero;
     private float currentGravity = 0f;
 
     private int isWalkingHash;
     private int isRunningHash;
-    private int throwHash;
 
     private bool isSprinting = false;
     private bool isAiming = false;
@@ -44,7 +41,6 @@ public class ThirdPersonController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -52,16 +48,15 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         inputManager = InputManager.Instance;
-
-        animator = GetComponent<Animator>();
-        cc = GetComponent<CharacterController>();
     }
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        cc = GetComponent<CharacterController>();
+
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
-        throwHash = Animator.StringToHash("Throw");
     }
 
     private void Update()
@@ -190,7 +185,6 @@ public class ThirdPersonController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, aimColliderMask) && isAiming)
         {
-            debugHitTransform.position = hit.point;
             GetComponent<ActivateArrow>().TriggerArrow();
         }
     }
@@ -200,11 +194,8 @@ public class ThirdPersonController : MonoBehaviour
    
     }
 
-    public void OnTransferControl(InputAction.CallbackContext context)
+    public void OnConfirm(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.GetCooldownActive())
-        {
-            animator.Play(throwHash); //plays an animation with trigger
-        }
+        GameManager.Instance.UpdateState(GameManager.gameState.LevelEntered);
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     {
        GameStart,
        LevelEntered,
+       Tutorial,
        LevelCompleted,
        GameCompleted,
        GameOver
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameStart; 
     public Action OnGameCompleted; 
     public Action OnLevelEntered; 
+    public Action OnTutorial;
     public Action OnLevelCompleted; 
     public Action OnGameOver;
 
@@ -28,11 +30,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-    
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -56,6 +57,9 @@ public class GameManager : MonoBehaviour
             case gameState.LevelEntered:
                 HandleLevelEntered();
                 break;
+            case gameState.Tutorial:
+                HandleTutorial();
+                break;
             case gameState.LevelCompleted:
                 HandleLevelCompleted();
                 break;
@@ -68,16 +72,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-  
-
     private void HandleGameStart()
     {
+        // TEMPORARY SOLUTION BECAUSE OF STRANGE BUG
+        // TODO: FIX THIS BUG!!!!!!
+        Time.timeScale = 1f; 
+
         OnGameStart?.Invoke();
     }
 
     private void HandleGameCompleted()
     {
         OnGameCompleted?.Invoke();
+    }
+
+    private void HandleTutorial()
+    {
+        OnTutorial?.Invoke();
     }
 
     private void HandleLevelEntered()

@@ -8,7 +8,6 @@ public class ArrowCameraManager : MonoBehaviour
     [SerializeField] private float defaultFOV = 60;                     // Default Camera's FOV
 
     private CinemachineVirtualCamera arrowVirtualCamera;               // Camera's reference
-	private CinemachineBrain brain;
 
     private float targetFOV;                                           // Target camera Field of View
 
@@ -25,8 +24,6 @@ public class ArrowCameraManager : MonoBehaviour
         }
 
         arrowVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-		brain = GetComponent<CinemachineBrain>();
-
 		ResetFOV();
 	}
 

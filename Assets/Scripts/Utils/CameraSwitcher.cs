@@ -56,13 +56,11 @@ public class CameraSwitcher : MonoBehaviour
 
     private void TurnOnAimCamera()
     {
-        Debug.Log("TurnOnAimCamera");
         playerAimCamera.Priority = 2;
     }
 
     private void TurnOffAimCamera()
     {
-        Debug.Log("TurnOffAimCamera");
         playerAimCamera.Priority = 0;
     }
 }

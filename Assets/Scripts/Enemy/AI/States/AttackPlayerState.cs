@@ -11,8 +11,6 @@ public class AttackPlayerState : AIState
 
     public void EnterState(AIAgent agent)
     {
-        Debug.Log("entering");
-
         agent.weapon.SetAimTransform(agent.gunMuzzle);
         agent.weapon.SetTargetTransform(agent.target);
 
@@ -31,8 +29,6 @@ public class AttackPlayerState : AIState
 
     public void ExitState(AIAgent agent)
     {
-        Debug.Log("exiting");
-
         agent.weapon.SetAimTransform(null);
         agent.weapon.SetTargetTransform(null);
 

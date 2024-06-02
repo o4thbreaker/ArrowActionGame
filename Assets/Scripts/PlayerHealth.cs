@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log($"<color=red>Player is dead!</color>");
+            GameManager.Instance.UpdateState(GameManager.gameState.GameOver);
         }
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
-    [SerializeField] Slider slider;
-    [SerializeField] TextMeshProUGUI speedText;
+    [SerializeField] private float hintTimeScale = 0.01f;
+    [SerializeField] private float arrowModeTimeScale = 0.2f;
+    [SerializeField] private float shootTutorialTimeScale = 0.15f;
+    [SerializeField] private float gameOverTimeScale = 0.001f;
 
     private float fixedTime = 0f;
     private float maxfixedTime = 0f;
@@ -14,36 +16,72 @@ public class TimeController : MonoBehaviour
     private float previousUnscaledTimeFactor;
     private const float minUnscaledTimeFactor = 0.000001f;
 
+    public float UnscaledTimeFactor => GetUnscaledTimeFactor();
+
     private void Start()
     {
+        GameManager.Instance.OnTutorial += SetHintTimeScale;
+        GameManager.Instance.OnLevelEntered += SetShootTutorialTimeScale;
+        GameManager.Instance.OnGameOver += SetGameOverTimeScale;
+        GameManager.Instance.OnGameStart += SetNormalTimeScale;
+
+        PlayerStateManager.Instance.OnArrowActivated += SetArrowModeTimeScale;
+        PlayerStateManager.Instance.OnCharacterActivated += SetNormalTimeScale;
+
         fixedTime = Time.fixedDeltaTime;
         maxfixedTime = Time.fixedDeltaTime;
         unscaledTimeFactor = 1 / Time.timeScale;
-
-        SetSlider();
     }
 
-    private void Update()
+    private void OnDestroy()
     {
+        GameManager.Instance.OnTutorial -= SetHintTimeScale;
+        GameManager.Instance.OnLevelEntered -= SetShootTutorialTimeScale;
+        GameManager.Instance.OnGameOver -= SetGameOverTimeScale;
+        GameManager.Instance.OnGameStart -= SetNormalTimeScale;
+
+        PlayerStateManager.Instance.OnArrowActivated -= SetArrowModeTimeScale;
+        PlayerStateManager.Instance.OnCharacterActivated -= SetNormalTimeScale;
+    }
+
+    private void SetHintTimeScale()
+    {
+        Time.timeScale = hintTimeScale;
+
         ChangeTimeScale();
     }
 
-    private void SetSlider()
+    private void SetArrowModeTimeScale()
     {
-        slider.maxValue = 1.0f;
-        slider.minValue = 0.01f;
-        slider.value = 1f;
+        Time.timeScale = arrowModeTimeScale;
+
+        ChangeTimeScale();
+    }
+
+    private void SetShootTutorialTimeScale()
+    {
+        Time.timeScale = shootTutorialTimeScale;
+
+        ChangeTimeScale();
+    }
+
+    private void SetNormalTimeScale()
+    {
+        Debug.Log("Set normal");
+        Time.timeScale = 1f;
+
+        ChangeTimeScale();
+    }
+
+    private void SetGameOverTimeScale()
+    {
+        Time.timeScale = gameOverTimeScale;
+
+        ChangeTimeScale();
     }
 
     public void ChangeTimeScale()
     {
-        /*if (ArrowController.Instance.isArrowActive)
-        {
-            Time.timeScale = 0.2f;
-        }*/
-        speedText.text = slider.value.ToString("N2");
-        Time.timeScale = slider.value;
-
         Time.fixedDeltaTime = Mathf.Clamp(fixedTime * Time.timeScale, 0f, maxfixedTime);
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         lastFrameChanged = Time.frameCount;
@@ -52,12 +90,14 @@ public class TimeController : MonoBehaviour
         unscaledTimeFactor = 1 / Time.timeScale;
     }
 
-    public float UnscaledTimeFactor => GetUnscaledTimeFactor();
-
     private float GetUnscaledTimeFactor()
     {
         float factor = Time.frameCount <= lastFrameChanged ? previousUnscaledTimeFactor : unscaledTimeFactor;
         return factor <= minUnscaledTimeFactor ? minUnscaledTimeFactor : factor;
     }
 
+    private void Update()
+    {
+        //Debug.Log(Time.timeScale);
+    }
 }

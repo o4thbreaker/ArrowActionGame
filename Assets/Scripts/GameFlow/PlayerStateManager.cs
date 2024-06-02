@@ -10,9 +10,7 @@ public class PlayerStateManager : MonoBehaviour
         InitialState,
         ControllingCharacter,
         ControllingArrow,
-        RepeatingArrowPath,
-        GameOver,
-        LevelComplete
+        RepeatingArrowPath
     }
     
     public Action OnArrowPathRepeated; 
@@ -28,7 +26,7 @@ public class PlayerStateManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -38,6 +36,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Start()
     {
+
         UpdateState(playerState.InitialState);
     }
 
@@ -69,7 +68,6 @@ public class PlayerStateManager : MonoBehaviour
 
     private void HandleCharacterControlState()
     {
-        Debug.Log("In Character Control state");
         OnCharacterActivated?.Invoke();
     }
 
@@ -80,7 +78,6 @@ public class PlayerStateManager : MonoBehaviour
 
     private void HandleArrowControlState()
     {
-        Debug.Log("In Arrow repeating its own path state");
         OnArrowPathRepeated?.Invoke();
     }
 }

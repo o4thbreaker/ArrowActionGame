@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TransferControl",
+                    "name": "Confirm",
                     "type": "Button",
                     "id": "5a64a184-80a4-4ec0-b56c-1414c819f05b",
                     "expectedControlType": "Button",
@@ -253,7 +253,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "TransferControl",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

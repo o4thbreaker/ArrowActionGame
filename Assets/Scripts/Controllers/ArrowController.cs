@@ -12,8 +12,10 @@ public class ArrowController : MonoBehaviour
     [SerializeField] private Transform parent;
     [SerializeField] private Transform targetReturnTo;
     [SerializeField] private Transform curvePoint;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private Rigidbody rb;
+   
     private InputManager inputManager;
 
     private float previousUnscaledTimeFactor;
@@ -32,7 +34,7 @@ public class ArrowController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,6 +50,7 @@ public class ArrowController : MonoBehaviour
     {
         PlayerStateManager.Instance.OnArrowActivated += EnableArrow;
         PlayerStateManager.Instance.OnCharacterActivated += DisableArrow;
+        PlayerStateManager.Instance.OnGameStart += DisableArrow;
 
         previousUnscaledTimeFactor = timeController.UnscaledTimeFactor;
     }
@@ -56,11 +59,13 @@ public class ArrowController : MonoBehaviour
     {
         PlayerStateManager.Instance.OnArrowActivated -= EnableArrow;
         PlayerStateManager.Instance.OnCharacterActivated -= DisableArrow;
+        PlayerStateManager.Instance.OnGameStart -= DisableArrow;
     }
 
     private void EnableArrow()
     {
         rb.isKinematic = false;
+        trailRenderer.gameObject.SetActive(true);
         GetComponentInChildren<CapsuleCollider>().enabled = true;
     }
 
@@ -69,6 +74,7 @@ public class ArrowController : MonoBehaviour
         // NOTE: collider disables when in rewind mode. may cause problems in future
 
         rb.isKinematic = true;
+        trailRenderer.gameObject.SetActive(false);
         GetComponentInChildren<CapsuleCollider>().enabled = false;
     }
 
@@ -140,7 +146,6 @@ public class ArrowController : MonoBehaviour
             }
         }
     }
-
 
     public void OnAcceleratePressed(InputAction.CallbackContext context)
     {

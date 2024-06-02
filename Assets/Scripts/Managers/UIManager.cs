@@ -10,13 +10,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ArrowCooldownTimer arrowCooldownClock;
     [SerializeField] private TextMeshProUGUI missionText;
     [SerializeField] private MissionWaypoint missionWaypoint;
+    [SerializeField] private TutorialUI tutorialUI;
+    [SerializeField] private GameOverUI gameOverUI;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -27,20 +28,43 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         PlayerStateManager.Instance.OnArrowActivated += ActivateArrowTimer;
+        PlayerStateManager.Instance.OnArrowActivated += ResetCooldownTimer;
+        PlayerStateManager.Instance.OnArrowActivated += HideShootTutorialUI;
+
         PlayerStateManager.Instance.OnArrowPathRepeated += ResetArrowTimer;
 
-        PlayerStateManager.Instance.OnArrowActivated += ResetCooldownTimer;
         PlayerStateManager.Instance.OnCharacterActivated += ActivateCooldownTimer;
 
         GameManager.Instance.OnLevelEntered += SetUpLevelUI;
+        GameManager.Instance.OnLevelEntered += HideArrowModeTutorialUI;
+        GameManager.Instance.OnLevelEntered += ShowShootTutorialUI;
+
+        GameManager.Instance.OnTutorial += ShowArrowModeTutorialUI;
+
         GameManager.Instance.OnGameStart += SetUpGameUI;
-        GameManager.Instance.OnLevelCompleted += SetWinUI;
+        GameManager.Instance.OnLevelCompleted += SetVictoryUI;
+        GameManager.Instance.OnGameOver += SetUpGameOverUI;
     }
 
     private void OnDestroy()
     {
         PlayerStateManager.Instance.OnArrowActivated -= ActivateArrowTimer;
+        PlayerStateManager.Instance.OnArrowActivated -= ResetCooldownTimer;
+        PlayerStateManager.Instance.OnArrowActivated -= HideShootTutorialUI;
+
         PlayerStateManager.Instance.OnArrowPathRepeated -= ResetArrowTimer;
+
+        PlayerStateManager.Instance.OnCharacterActivated -= ActivateCooldownTimer;
+
+        GameManager.Instance.OnLevelEntered -= SetUpLevelUI;
+        GameManager.Instance.OnLevelEntered -= HideArrowModeTutorialUI;
+        GameManager.Instance.OnLevelEntered -= ShowShootTutorialUI;
+
+        GameManager.Instance.OnTutorial -= ShowArrowModeTutorialUI;
+
+        GameManager.Instance.OnGameStart -= SetUpGameUI;
+        GameManager.Instance.OnLevelCompleted -= SetVictoryUI;
+        GameManager.Instance.OnGameOver -= SetUpGameOverUI;
     }
 
     private void ActivateArrowTimer()
@@ -81,8 +105,33 @@ public class UIManager : MonoBehaviour
         missionText.text = "Eliminate all enemies";
     }
 
-    private void SetWinUI()
+    private void SetVictoryUI()
     {
         missionText.text = $"<color=green>MISSION COMPLETE</color>";
+    }
+
+    private void ShowArrowModeTutorialUI()
+    {
+        tutorialUI.arrowModeTutorial.SetActive(true);
+    }
+
+    private void HideArrowModeTutorialUI()
+    {
+        tutorialUI.arrowModeTutorial.SetActive(false);
+    }
+
+    private void ShowShootTutorialUI()
+    {
+        tutorialUI.shootArrowTutorial.SetActive(true);
+    }
+
+    private void HideShootTutorialUI()
+    {
+        tutorialUI.shootArrowTutorial.SetActive(false);
+    }
+
+    private void SetUpGameOverUI()
+    {
+        gameOverUI.gameOverScreen.SetActive(true);
     }
 }
